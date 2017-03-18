@@ -291,3 +291,22 @@ a {
     width: 1170px;
     background-color: #fff;
 }
+.hotline{
+	position: fixed;
+	bottom: 0px;
+	right: 20px;
+	z-index: 9999;
+}
+.hotlineClose{
+	float:right;
+}
+.hotlineInfo{
+	background-color: orangered;
+	padding: 10px;
+	text-align: center;
+	font-size: 20px;
+	border-radius: 10px;
+}
+.hotlineInfo strong{
+	color: white;
+}
