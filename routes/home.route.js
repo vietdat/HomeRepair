@@ -3,14 +3,14 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   res.render('Home/homepage', {
-  	title: "First page",
+  	title: "Sửa chữa cải tạo Hưng Thịnh",
   	body: "body"
   });
 });
 
 router.get('/home', function(req, res, next) {
  	res.render('Home/homepage', {
-  	title: "Dịch vụ xây dựng Hưng Thịnh",
+  	title: "Sửa chữa cải tạo Hưng Thịnh",
   	body: "body"
   });
 });

@@ -15,17 +15,7 @@ div.container {
   background-color: #184575!important;
 }
 
-.footer {}
 
-.container {
-  
-}
-
-.black {
-    padding-top: 50px !important;
-    background: #222222 !important;
-    color: #fff;
-}
 nav {
     float: left;
     margin: 0;
@@ -40,25 +30,6 @@ nav ul {
 nav ul a {
     text-decoration: none;
 }
-
-.left-menu {
-	display: block;
-	border-radius: 1;
-
-}
-
-
-.carousel {
-    height: 50%;
-}
-
-
-.dropdown-menu{
-background:rgba(255,255,255,0.25);
-border: none;
-
-}
-
 .dropdown-menu{
       -webkit-box-shadow: none;
     box-shadow:none;
@@ -90,31 +61,3 @@ border: none;
   padding: 15px!important;
 }
 
-.parent-menu {
-  background-color: #184575!important;
-  text-align: center!important;
-  overflow: hidden;
-  padding-bottom: 5px !important;
-  padding-top: 5px !important;
-}
-
-.parent-menu ul {
-  width: 100%; 
-  list-style-type:none;
-  margin:auto;
-  padding:0;
-  position:relative;
-
-}
-
-.widget {
-    display: block;
-    margin: 20px 0px;
-}
-
-.main-title {
-  font-size: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 0px;
-}

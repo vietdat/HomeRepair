@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/abc', function(req, res, next) {
-  res.send('Home page');
+router.get('/sua-chua-cai-tao-hung-thinh', function(req, res, next) {
+  res.render('GioiThieu/introductionpage', {
+  	title: "Sửa chữa cải tạo Hưng Thịnh",
+  	body: "body"
+  });
 });
 
 router.get('/bc', function(req, res, next) {
