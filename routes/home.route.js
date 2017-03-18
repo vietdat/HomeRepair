@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/home', function(req, res, next) {
  	res.render('Home/homepage', {
-  	title: "First page",
+  	title: "Dịch vụ xây dựng Hưng Thịnh",
   	body: "body"
   });
 });
