@@ -310,3 +310,10 @@ a {
 .hotlineInfo strong{
 	color: white;
 }
+.list-group a>span{
+	display: inline-block;
+}
+.list-group a:hover:not(.active) span{
+	transform: scale(1.1);
+	color:orangered !important;
+}
