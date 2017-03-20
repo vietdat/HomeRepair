@@ -82,8 +82,14 @@ body {
 .list-group a>span{
 	display: inline-block;
 }
+
 .list-group a:hover:not(.active) span{
 	transform: scale(1.1);
+	color:orangered !important;
+}
+
+.list-group-menu a:hover:not(.active) {
+	transform: scale(1.007);
 	color:orangered !important;
 }
 
@@ -93,4 +99,23 @@ body {
 
 .distance-10 {
   height: 10px;
+}
+
+.menu-color {
+	background: #012341 !important;
+}
+
+div.container {
+    margin: 0 auto;
+    background: #fff;
+}
+
+.text-color-white {
+	color: #fff;
+}
+
+.phone-strong {
+	font-size: 30px;
+	font-weight: bold;
+	color: #fff;
 }

@@ -1,8 +1,3 @@
-div.container {
-    margin: 0 auto;
-    background: #fff;
-}
-
 .header {
     color: black;
     padding: 0px;
@@ -61,3 +56,6 @@ nav ul a {
   padding: 15px!important;
 }
 
+a:hover { 
+    text-decoration: none;
+}

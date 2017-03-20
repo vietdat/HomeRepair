@@ -3,19 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="vi-vn" lang="vi-vn" dir="ltr" >
   <head>
     <title>{{title}}</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
     <link rel='stylesheet' href='/css/style.css' rel="stylesheet" />
   	<link href="/css/home.css" type="text/css" rel="stylesheet" />
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-
-    <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
+	<!-- Custom CSS -->
+    
     <script src="/js/layout.js"></script>
     <script src="/js/homepage.js"></script>
     <!-- Script to Activate the Carousel -->
@@ -35,7 +34,7 @@
 	                        <div class="navbar-header" style="padding: 0px">
 	                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i>
 	                            </button>
-	                            <a href=#" class="custom-logo-link" rel="home" itemprop="url">
+	                            <a href="#" class="custom-logo-link" rel="home" itemprop="url">
 	                            	<img src="../images/header-back-ground.jpg" alt="sửa chữa cải tạo" width="100%" class="custom-logo" alt="" itemprop="logo">
 	                            </a>                        
 	                        </div>
@@ -43,21 +42,21 @@
 	                </div>
 	            </div>
 	            <div class="container" style="padding-left: 0px; padding-right: 0px;">
-	            	<nav class="scroll-menu">
-				        <div class="container">
+	            	<nav class="scroll-menu menu-color">
+				        <div class="menu-color container">
 				            <ul class="nav navbar-nav">
 				                <li class="menu"> 
-				                    <button class="btn btn-default dropdown-toggle active" type="button" data-toggle="dropdown">Trang chủ</button>
+				                    <a href="http://localhost:3000/" class="btn btn-default" style="padding: 6px 12px">Trang chủ</a>
 				                </li>
 				                <li class="menu"> 
-				                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Giới thiệu</button
+				                    <a href="http://localhost:3000/" class="btn btn-default" style="padding: 6px 12px">Giới thiệu</a>
 				                </li>
 
 				                <li class="menu"> 
 				                    <div class="dropdown">
 				                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Đơn giá sửa chữa cải tạo
 				                        <span class="caret"></span></button>
-				                        <ul class="dropdown-menu">
+				                        <ul class="dropdown-menu list-group-menu">
 				                          <li><a href="#">Sửa chữa cải tạo nhà trọn gói</a></li>
 				                          <li><a href="#">Sửa chữa cải tạo sân vườn</a></li>
 				                          <li><a href="#">Sửa chữa cải tạo phòng khách</a></li>
@@ -73,7 +72,7 @@
 				                    <div class="dropdown">
 				                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Đơn giá xây dựng mới
 				                        <span class="caret"></span></button>
-				                        <ul class="dropdown-menu">
+				                        <ul class="dropdown-menu list-group-menu">
 				                          <li><a href="#">Báo giá xây dựng phần thô</a></li>
 				                          <li><a href="#">Báo giá phần hoàn thiện</a></li>
 				                          <li><a href="#">Những điểm cần lưu ý</a></li>
@@ -84,7 +83,7 @@
 				                    <div class="dropdown">
 				                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Đơn giá thiết kế
 				                        <span class="caret"></span></button>
-				                        <ul class="dropdown-menu">
+				                        <ul class="dropdown-menu list-group-menu">
 				                          <li><a href="#">Thiết kế nhà trọn gói</a></li>
 				                          <li><a href="#">Thiết kế kiến trúc</a></li>
 				                          <li><a href="#">Thiết kế kết cấu</a></li>
@@ -97,7 +96,7 @@
 				                    <div class="dropdown">
 				                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Thực tế
 				                        <span class="caret"></span></button>
-				                        <ul class="dropdown-menu">
+				                        <ul class="dropdown-menu list-group-menu">
 				                          <li><a href="#">Hình ảnh sửa chữa cải tạo</a></li>
 				                          <li><a href="#">Video sửa chữa cải tạo</a></li>
 				                          <li><a href="#">Kinh nghiệm sửa chữa cải tạo</a></li>
@@ -177,7 +176,7 @@
 		    </div>
 		</div>
 
-		<div class="container black">
+		<div class="container menu-color text-color-white">
 	        <div class="col-md-4">
 	            <div class="footer-widget info-widget">
 	                <h3>VỀ CHÚNG TÔI</h3>
@@ -216,9 +215,9 @@
 			</div>
 			<div style="clear:both"></div>
 			<div class="hotlineInfo">
-			<p>Liên hệ ngay để được tư vấn</p>
-			<i class="glyphicon glyphicon-earphone"></i>
-			<strong>0933 789 712</strong>
+				<p style="margin: 0">Tư vấn Miễn phí</p>
+				<!-- <i class="glyphicon glyphicon-earphone"></i> -->
+				<p class="phone-strong" style="margin: 0">0933 789 712</p>
 			</div>
 		</div>
 	</body>
