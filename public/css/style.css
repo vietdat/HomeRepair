@@ -10,7 +10,6 @@ body {
 	line-height: 1.75;
 }
 .navbar {
-	background-color: #333132 ;
 	transition: all 0.2s ease-out 0s;
 	z-index: 3000;
 	margin-bottom: 0;
@@ -41,6 +40,10 @@ body {
 
 .no-margin-top {
 	margin-top: 0px !important;
+}
+
+.margin-top-20 {
+	margin-top: 20px !important;
 }
 
 .padding-15 {
@@ -118,4 +121,36 @@ div.container {
 	font-size: 30px;
 	font-weight: bold;
 	color: #fff;
+}
+
+.padding-10 {
+	padding: 10px;
+}
+
+.padding-left-20 {
+	padding-left: 20px;
+}
+
+.margin-10 {
+	margin: 10px;
+}
+
+.margin-buttom-10 {
+	margin-bottom: 10px;
+}
+
+.content-background-color {
+	background-color: #eeeded;
+}
+
+.background-image {
+	background-image: url("../images/sua-chua-cai-tao-background.png");
+}
+
+.border {
+  padding: 0px !important;
+}
+
+.body-border {
+  padding: 15px!important;
 }

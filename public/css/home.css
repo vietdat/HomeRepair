@@ -46,16 +46,6 @@ nav ul a {
   /*background-color: #3B5998 !important;*/
 }
 
-.border {
-  outline: 1px solid black;
-  padding: 0px !important;
-}
-
-.body-border {
-  outline: 1px solid black;
-  padding: 15px!important;
-}
-
 a:hover { 
     text-decoration: none;
 }
