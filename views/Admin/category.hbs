@@ -1,0 +1,95 @@
+<!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="wrap-content">
+  <div class="u-max-full-width">
+    <header class="row">
+      <h1>Category Manager</h1>
+    </header>
+  </div>
+  <div class="u-max-full-width padding10px">
+    <div class="row" style="position: relative">
+      <aside class="three columns">
+        <ul style="list-style: none">
+          <li>
+            <a class="active" href="category"><i class="fa fa-tags" aria-hidden="true"></i>Category Manager</a></li>
+          <li>
+            <a href="article"><i class="fa fa-tags" aria-hidden="true"></i>Article Manager</a></li>
+         
+        </ul>
+      </aside>
+      <section class="nine columns main-content" style="position: relative">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Url</th>
+            <th>Command</th>
+          </tr>
+          {{#each categoryList}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{url}}</td>
+            <td style="margin-left: 10px;"><button class="EditCategory" idCategory={{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
+              <button class="deleteCategory" idCategory={{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
+            </td>
+          </tr>
+          {{/each}}
+        </table>
+
+
+      </section>
+      <div class="add-button">
+        <button class="circle-button" id="add-button"><i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+
+      </div>
+    </div>
+  </div>
+  <div class="u-max-full-width">
+    <footer class="row">
+      <span>xcode.bk@gmail.com</span>
+    </footer>
+  </div>
+</div>
+
+<div class="add-category">
+  <h2>Add Category</h2>
+  <form method="POST" action="/category/add">
+    <label for="name">Name Category</label>
+    <input type="text" name="name" value="">
+    <label for="url">Url Category</label>
+    <input type="text" name="url" value="">
+    <br>
+    <button type="submit">Add</button>
+    <button type="button" id="close-add-category">Close</button>
+  </form>
+</div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script>
+  $("#close-add-category").click(function () {
+    $(".add-category").css("display", "none");
+    $(".wrap-content").css("opacity", "1");
+  });
+  $("#add-button").click(function () {
+    $(".add-category").css("display", "block");
+    $(".wrap-content").css("opacity", "0.2");
+  });
+  $(".deleteCategory").click(function () {
+    var cButton=$(this);
+    var id = $(this).attr('idCategory');
+    $.ajax({
+  type: "POST",
+  success:function(result){
+      if(result=='success')
+      cButton.parent().parent().remove();
+      else{
+        alert(result);
+      }
+      
+  },
+  url: "category/delete",
+  data: {id:id},
+});
+  });
+</script>

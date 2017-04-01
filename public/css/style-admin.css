@@ -1,0 +1,118 @@
+body{
+    background-color: #30363d;
+    color:white;
+    font-family: 'Open Sans', sans-serif;
+
+}
+header{
+    background: -webkit-linear-gradient(#070707, #282727); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#070707, #282727); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#070707, #282727); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#070707, #282727); /* Standard syntax */
+    height: 50px;
+}
+header h1{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+}
+aside{
+    height: 650px;
+    background-color: #23272d;
+    border: 1px solid #3e72d8;
+}
+section{
+    height:650px;
+    background-color: #23272d;
+    border: 1px solid #3e72d8;
+        overflow-y: scroll;
+
+}
+.padding10px{
+    padding: 10px;
+}
+footer{
+ background: -webkit-linear-gradient(#070707, #282727); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#070707, #282727); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#070707, #282727); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#070707, #282727); /* Standard syntax */
+    height: 50px;
+    text-align: center;
+}
+footer span{
+    color:white;
+    line-height: 50px;
+}
+aside ul li{
+}
+
+aside ul li a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color:white;
+}
+aside ul li a:hover{
+    background-color:#3d6dba;
+    color: white;
+}
+aside ul li .active{
+    background-color:#3d6dba;
+    color: white;
+}
+aside ul li a i{
+    margin-right: 4px;
+}
+.add-category{
+    background-color:#151719;text-align: center;position: fixed; top:50%;left:50%;  transform: translate(-50%, -50%);
+    padding: 40px;
+    display: none;
+}
+.add-article{
+    background-color:#151719;text-align: center;position: fixed; top:50%;left:50%;  transform: translate(-50%, -50%);
+    padding: 40px;
+    display: none;
+    z-index: 100;
+}
+form input{
+    color:black;
+}
+form button{
+    color:white;
+}
+.add-button{
+    position: absolute;
+    right:70px;
+    bottom: 90px;
+}
+.circle-button{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0;
+    background-color: blue;
+    opacity: 0.8;
+}
+.circle-button i{
+    line-height: 50px;
+    font-size: 30px;
+    color:white;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 98%;
+    margin: auto;
+    margin-top:10px;
+}
+
+td, th {
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+td button {
+    color:white;
+}
