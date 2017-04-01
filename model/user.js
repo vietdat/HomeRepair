@@ -5,7 +5,9 @@ var userSchema = new Schema({
   password: String
 });
 userSchema.methods.validPassword=function(password){
+ if (password==this.password)
  return true;
+ else return false;
 };
 var User = mongoose.model('User', userSchema);
 
