@@ -17,6 +17,7 @@ var data 			= require('./routes/data.route');
 var administrator = require('./routes/Admin/administrator');
 var filemanager = require('./filemanager');
 
+
 var app = express();
 
 // view engine setup
@@ -56,7 +57,6 @@ app.use('/hungthinh-admin', administrator);
 
 app.use('/', home);
 app.use('/gioi-thieu', introduction);
-app.use('/data', data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
