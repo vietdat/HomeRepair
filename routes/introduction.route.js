@@ -9,8 +9,6 @@ var GioiThieuModel = require('../model/gioithieu.model');
 router.get('/', function(req, res, next) {
   async.auto({
     linkbar:function(done) {
-        var domain = req.hostname;
-        var protocol = req.protocol;
         var path = req.path;
         var linkbar = {};
 
@@ -40,7 +38,7 @@ router.get('/', function(req, res, next) {
             } else {
               length = data.getData.length;
             }
-
+            var link = config.domain;
             for(var i = 0; i < length; i++) {
               html = html 
                 + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
@@ -54,7 +52,7 @@ router.get('/', function(req, res, next) {
                 +     '</div>'
                 +     '<div class="col-sm-10">'
                 +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="data.getData[i].url">'+ data.getData[i].title +'</a>'
+                +             '<a href="'+ config.domain + "/gioi-thieu/" + data.getData[i].url +'">'+ data.getData[i].title +'</a>'
                 +         '</h4>'
                 +         '<div class="col-md-12 no-padding-left">'
                 +             '<div class="entry-content">'
