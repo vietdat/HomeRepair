@@ -1,116 +1,75 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var async = require('async');
+var decode = require('decode-html');
+var config = require('../config.js');
+var GioiThieuModel = require('../model/gioithieu.model');
 
 router.get('/', function(req, res, next) {
-  res.render('GioiThieu/introductionpage', {
-  	title: "Sửa chữa cải tạo Hưng Thịnh",
-  	body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-hung-thinh', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitao', {
-  	title: "Sửa chữa cải tạo Hưng Thịnh",
-  	body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-1', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan1', {
-  	title: "Sửa chữa cải tạo Hưng Thịnh",
-  	body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-2', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan2', {
+  res.render('GioiThieu/gioithieu', {
     title: "Sửa chữa cải tạo Hưng Thịnh",
     body: "body"
   });
 });
 
-router.get('/sua-chua-cai-tao-quan-3', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan3', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
 
-router.get('/sua-chua-cai-tao-quan-4', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan4', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
+router.get('/:url', function(req, res, next) {
+  async.auto({
+    data: function(done) {
+      var query = {};
 
-router.get('/sua-chua-cai-tao-quan-5', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan5', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
+      query['url'] = req.params.url;
 
-router.get('/sua-chua-cai-tao-quan-6', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan6', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
+      GioiThieuModel.findOne(query).lean().exec(done);
+    },
+    linkbar: ['data', function(data, done) {
+      if(data.data) {
+        var domain = req.hostname;
+        var protocol = req.protocol;
+        var path = req.path;
+        var linkbar = {};
 
-router.get('/sua-chua-cai-tao-quan-7', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan7', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-8', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan8', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-9', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan9', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-10', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan10', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-11', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan11', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-12', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquan12', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-thu-duc', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquanthuduc', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
-});
-
-router.get('/sua-chua-cai-tao-quan-go-vap', function(req, res, next) {
-  res.render('GioiThieu/suachuacaitaoquangovap', {
-    title: "Sửa chữa cải tạo Hưng Thịnh",
-    body: "body"
-  });
+        console.log("Config ", config );
+        linkbar[0] = config.domain;
+        linkbar[1] = linkbar[0] + "/gioi-thieu";
+        linkbar[2] = linkbar[1] + "/" + req.params.url;
+        
+        var html = "<div>"
+                    + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/ "
+                    + '<a href=' + linkbar[1] + '>Giới thiệu</a>' + "/ "
+                    + '<a href=' + linkbar[2] + '>' + data.data.title +'</a>'
+                    + '</div>';
+        done(null, html);
+      } else {
+        done();
+      }
+    }],
+    getDataFooter: function(done) {
+      GioiThieuModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} } 
+              ]).exec(done);
+    },
+    footer: ['getDataFooter', function(done) {
+      
+      done();
+    }]
+  },
+  function(err, data) {
+    if(err) {
+      console.log(err);
+    }
+    if(data.data) {
+      var body = decode(data.data.content);
+      res.render('GioiThieu/suachuacaitaoquan', {
+        title: "Sửa chữa cải tạo Hưng Thịnh",
+        body: body,
+        linkbar: data.linkbar
+      });
+    } else {
+      return;
+    }
+    
+  })
 });
 
 
