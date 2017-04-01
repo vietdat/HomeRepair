@@ -1,4 +1,4 @@
-﻿<!-- Primary Page Layout
+<!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="wrap-content">
     <div class="u-max-full-width">
@@ -13,21 +13,21 @@
                     <li>
                         <a href="category"><i class="fa fa-tags" aria-hidden="true"></i>Category Manager</a></li>
                     <li>
-                        <a class="active" href="article"><i class="fa fa-tags" aria-hidden="true"></i>Article Manager</a></li>
+                        <a href="article"><i class="fa fa-tags" aria-hidden="true"></i>Article Manager</a></li>
+                    <li>
+                        <a class="active" href="gioi-thieu"><i class="fa fa-tags" aria-hidden="true"></i>Giới thiệu </a></li>
 <li>
-                        <a  href="gioi-thieu"><i class="fa fa-tags" aria-hidden="true"></i>Giới thiệu </a></li>
-                        <li>
                         <a  href="resource"><i class="fa fa-tags" aria-hidden="true"></i>Tài nguyên</a></li>
                 </ul>
             </aside>
             <section class="nine columns main-content" style="position: relative">
                 <table>
                     <tr>
-                        <th>Name</th>
+                        <th>Title</th>
                         <th>Url</th>
                         <th>Command</th>
                     </tr>
-                    {{#each articleList}}
+                    {{#each IntroductionList}}
                     <tr>
                         <td>{{title}}</td>
                         <td>{{url}}</td>
@@ -53,8 +53,8 @@
 </div>
 
 <div class="add-article">
-    <h2>Add Article</h2>
-    <form method="POST" action="/article/add">
+    <h2>Add Introduction Article</h2>
+    <form method="POST" action="/gioi-thieu/add">
         <span>Title Article</span>
         <input type="text" name="title" value="">
         <br>
@@ -117,7 +117,7 @@
                 }
 
             },
-            url: "article/delete",
+            url: "gioi-thieu/delete",
             data: { id: id },
         });
     });
