@@ -12,7 +12,7 @@ mongoose.Promise 	= global.Promise;
 mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home 			= require('./routes/home.route');
 var introduction 	= require('./routes/introduction.route');
-var data 			= require('./routes/data.route');
+
 //admin router
 var administrator = require('./routes/Admin/administrator');
 var filemanager = require('./filemanager');
@@ -56,7 +56,6 @@ app.use('/hungthinh-admin', administrator);
 
 app.use('/', home);
 app.use('/gioi-thieu', introduction);
-app.use('/data', data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
