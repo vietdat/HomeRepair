@@ -20,10 +20,12 @@ router.get('/', function(req, res, next) {
  // res.render('index', { title: 'Express' });
 });
 router.post('/add',function(req,res,next){
-    var article=new Article(req.body);
-    article.save(function(err){
+    console.log(req.body);
+
+     var item=new Introduction(req.body);
+    item.save(function(err){
   if (err) throw err;
-  else res.redirect('/article');
+  else res.redirect('/hungthinh-admin/gioi-thieu');
     })
 })
 router.post('/delete',function(req,res,next){
