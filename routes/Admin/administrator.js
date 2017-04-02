@@ -6,6 +6,7 @@ var categoryRouter=require("./category");
 var gioithieu=require("./gioithieu");
 var resource=require("./resource");
 var login=require('./login');
+var logout=require('./logout');
 /* GET home page. */
 function isLoggedIn(req, res, next) {  
   if (req.isAuthenticated())
@@ -16,6 +17,7 @@ router.get('/',isLoggedIn,function(req,res,next){
     res.redirect('/hungthinh-admin/category');
 });
 router.use('/login',login);
+router.use('/logout',logout);
 router.use('/article',isLoggedIn,articleRouter);
 router.use('/category',isLoggedIn,categoryRouter);
 router.use('/gioi-thieu',isLoggedIn,gioithieu);

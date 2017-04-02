@@ -1,9 +1,11 @@
-﻿<!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div class="wrap-content">
     <div class="u-max-full-width">
         <header class="row">
-            <h1>Category Manager</h1>
+            <div class="ten columns">
+                <h1>Article Manager</h1>
+            </div>
+            <div class="two columns" style="text-align: center"><button id="logoutbtn" >Logout</button></div>
+
         </header>
     </div>
     <div class="u-max-full-width padding10px">
@@ -14,10 +16,10 @@
                         <a href="category"><i class="fa fa-tags" aria-hidden="true"></i>Category Manager</a></li>
                     <li>
                         <a class="active" href="article"><i class="fa fa-tags" aria-hidden="true"></i>Article Manager</a></li>
-<li>
-                        <a  href="gioi-thieu"><i class="fa fa-tags" aria-hidden="true"></i>Giới thiệu </a></li>
-                        <li>
-                        <a  href="resource"><i class="fa fa-tags" aria-hidden="true"></i>Tài nguyên</a></li>
+                    <li>
+                        <a href="gioi-thieu"><i class="fa fa-tags" aria-hidden="true"></i>Giới thiệu </a></li>
+                    <li>
+                        <a href="resource"><i class="fa fa-tags" aria-hidden="true"></i>Tài nguyên</a></li>
                 </ul>
             </aside>
             <section class="nine columns main-content" style="position: relative">
@@ -121,5 +123,4 @@
             data: { id: id },
         });
     });
-
 </script>

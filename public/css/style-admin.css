@@ -124,3 +124,11 @@ td button {
         background-color:#151719;text-align: center;position: fixed;
 display:none;
 }
+#logoutbtn{
+    margin-top: 6px;
+    color:white;
+}
+#logoutbtn:hover{
+    color:red;
+    background-color: black;
+}
