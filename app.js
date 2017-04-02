@@ -12,16 +12,20 @@ var mongoose 		= require('mongoose');
 var User=require('./model/user');
 mongoose.Promise 	= global.Promise;
 mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
-var home 			= require('./routes/home.route');
-var introduction 	= require('./routes/introduction.route');
+
+var home 			            = require('./routes/home.route');
+var introduction 	        = require('./routes/introduction.route');
+var dichvusuachuacaitao   = require('./routes/dichvusuachuacaitao.route');
+
 //admin router
 var administrator = require('./routes/Admin/administrator');
 var filemanager = require('./filemanager');
+
 //Auth
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-//config passport
 
+//config passport
 passport.use(new LocalStrategy(
   function(username, password, done) {
     console.log(username);
@@ -37,6 +41,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -58,11 +63,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 //init passport
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({ secret: 'keyboard cat' }));
-  app.use(passport.initialize());
-  app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Config filemanager
 //using for file filemanager
 var config = JSON.parse(
@@ -91,6 +98,7 @@ app.use('/hungthinh-admin', administrator);
 
 app.use('/', home);
 app.use('/gioi-thieu', introduction);
+app.use('/dich-vu-sua-chua-cai-tao', dichvusuachuacaitao);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

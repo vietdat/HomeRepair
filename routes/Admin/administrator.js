@@ -2,7 +2,7 @@ var express 				= require('express');
 var router 					= express.Router();
 var decode 					= require('decode-html');
 var gioithieu				= require("./gioithieu");
-var dongiasuachuacaitao 	= require("./dongiasuachuacaitao");
+var dichvusuachuacaitao 	= require("./dichvusuachuacaitao");
 var resource				= require("./resource");
 var login 					= require('./login');
 
@@ -20,7 +20,7 @@ router.use('/login',login);
 
 router.use('/gioi-thieu',isLoggedIn,gioithieu);
 
-router.use('/don-gia-sua-chua-cai-tao',isLoggedIn,dongiasuachuacaitao);
+router.use('/dich-vu-sua-chua-cai-tao',isLoggedIn,dichvusuachuacaitao);
 
 router.use('/resource',isLoggedIn,resource);
 
