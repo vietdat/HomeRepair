@@ -98,7 +98,7 @@ app.use('/hungthinh-admin', administrator);
 
 app.use('/', home);
 app.use('/gioi-thieu', introduction);
-app.use('/dich-vu-sua-chua-cai-tao', dichvusuachuacaitao);
+app.use('/', dichvusuachuacaitao);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

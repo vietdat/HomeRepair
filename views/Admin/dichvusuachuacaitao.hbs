@@ -6,7 +6,7 @@
                 <th>link</th>
                 <th>Lệnh</th>
             </tr>
-            {{#each IntroductionList}}
+            {{#each data}}
             <tr>
                 <td>{{title}}</td>
                 <td>{{url}}</td>
@@ -58,7 +58,7 @@
                 <br>
 
                 Description<br>
-                <textarea style="color:#000" rows="5" cols="35" >
+                <textarea name="description" style="color:#000" rows="5" cols="35" >
                 </textarea>
                 <br>
             </div>

@@ -1,3 +1,4 @@
+
 var express 				= require('express');
 var router 					= express.Router();
 var decode 					= require('decode-html');
@@ -5,7 +6,9 @@ var gioithieu				= require("./gioithieu");
 var dichvusuachuacaitao 	= require("./dichvusuachuacaitao");
 var resource				= require("./resource");
 var login 					= require('./login');
+var logout					= require('./logout');
 
+/* GET home page. */
 function isLoggedIn(req, res, next) {  
   if (req.isAuthenticated())
       return next();
@@ -17,6 +20,8 @@ router.get('/',isLoggedIn,function(req,res,next){
 });
 
 router.use('/login',login);
+
+router.use('/logout',logout);
 
 router.use('/gioi-thieu',isLoggedIn,gioithieu);
 

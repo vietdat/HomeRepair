@@ -74,6 +74,20 @@
           </footer>
       </div>
     </div>
+<script>
+  $("#logoutbtn").click(function () {
+        $.ajax({
+            type: "GET",
+            url: '/hungthinh-admin/logout',
+            success: function (data, textStatus) {
+                if (data="success") {
+                    // data.redirect contains the string URL to redirect to
+                    window.location.href = "/hungthinh-admin";
+                }
+            }
+        });
+    })
+</script>
 </body>
 
 </html>
