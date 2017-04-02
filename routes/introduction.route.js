@@ -30,11 +30,11 @@ router.get('/', function(req, res, next) {
       var html = '';
       console.log("data ", data);
       if(data) {
-          if( data.getData) {
+          if( data.getData ) {
             console.log(data.getData);
             var length = -1;
-            if(data.getData.length > 4) {
-              length = 4;
+            if(data.getData.length > 10) {
+              length = 10;
             } else {
               length = data.getData.length;
             }

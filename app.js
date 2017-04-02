@@ -12,7 +12,6 @@ mongoose.Promise 	= global.Promise;
 mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home 			= require('./routes/home.route');
 var introduction 	= require('./routes/introduction.route');
-
 //admin router
 var administrator = require('./routes/Admin/administrator');
 var filemanager = require('./filemanager');

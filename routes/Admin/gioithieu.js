@@ -20,10 +20,52 @@ router.get('/', function(req, res, next) {
  // res.render('index', { title: 'Express' });
 });
 router.post('/add',function(req,res,next){
-    var article=new Article(req.body);
-    article.save(function(err){
+    console.log(req.body);
+
+    if(req.body.url && req.body.url==="") {
+        console.log("Missing url");
+        return;
+    }
+
+    if(req.body.title && req.body.title === "") {
+        console.log("Missing url");
+        return;
+    }
+
+    if(req.body.content && req.body.content === "") {
+        console.log("Missing url");
+        return;
+    }
+
+    if(req.body.alt && req.body.altImage === "") {
+        console.log("Missing url");
+        return;
+    }
+
+    if(req.body.urlImage && req.body.urlImage === "") {
+        console.log("Missing url");
+        return;
+    }
+
+    if(req.body.description && req.body.description === "") {
+        console.log("Missing url");
+        return;
+    }
+
+    var item=new Introduction({
+        url:req.body.url,
+        title:req.body.title,
+        content:req.body.content,
+        image:{
+            'alt':req.body.altImage,
+            'src':req.body.urlImage
+        },
+        description:req.body.description
+    });
+
+    item.save(function(err){
   if (err) throw err;
-  else res.redirect('/article');
+  else res.redirect('/hungthinh-admin/gioi-thieu');
     })
 })
 router.post('/delete',function(req,res,next){

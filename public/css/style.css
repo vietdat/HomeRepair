@@ -105,7 +105,7 @@ body {
 }
 
 .menu-color {
-	background: #012341 !important;
+	background: #008000 !important;
 }
 
 div.container {
@@ -153,4 +153,10 @@ div.container {
 
 .body-border {
   padding: 15px!important;
+}
+
+.list-group-item.active {
+	background-color: #008000 !important;
+    border-color: #008000 !important;
+    font-size: 16px !important;
 }

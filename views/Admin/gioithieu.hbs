@@ -52,17 +52,31 @@
     </div>
 </div>
 
-<div class="add-article">
+<div class="u-full-width add-article-gioithieu">
     <h2>Add Introduction Article</h2>
-    <form method="POST" action="/gioi-thieu/add">
+    <form  class="row" method="POST" action="gioi-thieu/add">
+        <div class="six columns">
         <span>Title Article</span>
         <input type="text" name="title" value="">
         <br>
         <span>Url Article</span>
         <input type="text" name="url" value="">
         <br>
+        <span>Image Url</span>
+        <input type="text" name="urlImage" value="">
+        <br>
+        <span>Image Alt</span>
+        <input type="text" name="altImage" value="">
+        <br>
+        <span>Description</span>
+        <textarea  name="description" >
+        </textarea>
+        <br>
+        </div>
+        <div class="six columns">
         <textarea name="content" id="editor2" rows="5" cols="80">
             </textarea>
+           
         <script>
             CKEDITOR.replace('editor2', {
                 extraPlugins: 'uploadimage,image2',
@@ -90,6 +104,7 @@
         <br>
         <button type="submit">Add</button>
         <button type="button" id="close-add-article">Close</button>
+         </div>
     </form>
 </div>
 
@@ -97,11 +112,11 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script>
     $("#close-add-article").click(function () {
-        $(".add-article").css("display", "none");
+        $(".add-article-gioithieu").css("display", "none");
         $(".wrap-content").css("opacity", "1");
     });
     $("#add-button").click(function () {
-        $(".add-article").css("display", "block");
+        $(".add-article-gioithieu").css("display", "block");
         $(".wrap-content").css("opacity", "0.2");
     });
     $(".deleteCategory").click(function () {

@@ -116,3 +116,11 @@ td, th {
 td button {
     color:white;
 }
+.add-article-gioithieu{
+    position: fixed;
+    height: 100%;
+    top:0;
+    left:0;
+        background-color:#151719;text-align: center;position: fixed;
+display:none;
+}
