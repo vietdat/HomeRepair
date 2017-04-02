@@ -1,0 +1,140 @@
+<section class="nine columns main-content" style="position: relative">
+    <div>
+        <table>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>link</th>
+                <th>Lệnh</th>
+            </tr>
+            {{#each IntroductionList}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{url}}</td>
+                <td style="margin-left: 10px;"><button class="EditCategory" idArticle={{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
+                    <button class="deleteCategory" idArticle={{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+
+    <div class="u-full-width add-article-dongiasuachuacaitao" style="display:none">
+        <h2>Add Introduction Article</h2>
+        <form  class="row" method="POST" action="don-gia-sua-chua-cai-tao/add" id="user-data">
+            <div class="five columns">
+                Tiêu đề bài viết:<br>
+                <input type="text" name="title" value="" size="35">
+                <br>
+                Đường đẫn bài viết:<br>
+                <input type="text" name="url" value="" size="35">
+                <br>
+                
+                Danh mục<br>
+                <select name="type" form="user-data" style="color:#000">
+                  <option value="sua-chua-cai-tao-nha-tron-goi">Sửa chữa cải tạo nhà trọn gói</option>
+                  <option value="sua-chua-cai-tao-nha-pho">Sửa chữa cải tạo nhà phố</option>
+                  <option value="sua-chua-cai-tao-nha-cap-4">Sửa chữa cải tạo nhà cấp 4</option>
+                  <option value="sua-chua-cai-tao-nha-mat-tien">Sửa chữa cải tạo nhà mặt tiền</option>
+                  <option value="sua-chua-cai-tao-nha-mai-ton">Sửa chữa cải tạo nhà mái tôn</option>
+                  <option value="sua-chua-cai-tao-mat-bang">Sửa chữa cải tạo mặt bằng</option>
+                  <option value="sua-chua-cai-tao-san-vuon">Sửa chữa cải tạo sân vườn</option>
+                  <option value="sua-chua-cai-tao-phong-khach">Sửa chữa cải tạo phòng khách</option>
+                  <option value="sua-chua-cai-tao-nha-ve-sinh">Sửa chữa cải tạo nhà vệ sinh</option>
+                  <option value="sua-chua-cai-tao-ban-cong">Sửa chữa cải tạo ban công</option>
+                  <option value="sua-chua-cai-tao-phong-bep">Sửa chữa cải tạo phòng bếp</option>
+                  <option value="sua-chua-cai-tao-phong-ngu">Sửa chữa cải tạo phòng ngủ</option>
+                  <option value="sua-chua-cai-tao-mai">Sửa chữa cải tạo mái</option>
+                  <option value="dich-vu-son-nuoc-gia-re">Dịch vụ sơn nước giá rẻ</option>
+                  <option value="dich-vu-chong-tham">Dịch vụ chống thấm</option>
+                </select>
+                <br>
+
+                Đường đẫn image:<br>
+                <input type="text" name="urlImage" value="" size="35">
+                <br>
+
+                Chú thích ảnh<br>
+                <input type="text" name="altImage" value="" size="35">
+                <br>
+
+                Description<br>
+                <textarea style="color:#000" rows="5" cols="35" >
+                </textarea>
+                <br>
+            </div>
+
+            <div class="six columns">
+            <textarea name="content" id="editor2" rows="5" cols="80">
+                </textarea>
+               
+            <script>
+                CKEDITOR.replace('editor2', {
+                    extraPlugins: 'uploadimage,image2',
+                    height: 300,
+                    filebrowserBrowseUrl: '/Filemanager/',
+                    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
+                    filebrowserImageUploadUrl: '/fm/',
+                    filebrowserFlashUploadUrl: '/fm/',
+                    stylesSet: [
+                        { name: 'Narrow image', type: 'widget', widget: 'image', attributes: { 'class': 'image-narrow' } },
+                        { name: 'Wide image', type: 'widget', widget: 'image', attributes: { 'class': 'image-wide' } }
+                    ],
+                    // Load the default contents.css file plus customizations for this sample.
+                    contentsCss: [CKEDITOR.basePath + 'contents.css', 'http://sdk.ckeditor.com/samples/assets/css/widgetstyles.css'],
+                    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+                    // resizer (because image size is controlled by widget styles or the image takes maximum
+                    // 100% of the editor width).
+                    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+                    image2_disableResizer: true
+                });
+            </script>
+                <br>
+                <button type="submit">Add</button>
+                <button type="button" id="close-add-article">Close</button>
+            </div>
+        </form>
+
+        
+
+    </div>
+
+</section>
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script>
+    $("#close-add-article").click(function () {
+        $(".add-article-dongiasuachuacaitao").css("display", "none");
+        $(".wrap-content").css("opacity", "1");
+        $(".add-button").css("z-index", "1");
+    });
+    $("#add-button").click(function () {
+        $(".add-article-dongiasuachuacaitao").css("display", "block");
+        $(".wrap-content").css("opacity", "1");
+        $(".add-button").css("z-index", "-1");
+    });
+    $(".deleteCategory").click(function () {
+        var cButton = $(this);
+        var id = $(this).attr('idArticle');
+        $.ajax({
+            type: "POST",
+            success: function (result) {
+                if (result == 'success')
+                    cButton.parent().parent().remove();
+                else {
+                    alert(result);
+                }
+
+            },
+            url: "gioi-thieu/delete",
+            data: { id: id },
+        });
+    });
+
+</script>
+
+<script>
+    $("#don-gia-sua-chua-cai-tao").addClass( "active" );
+</script>
