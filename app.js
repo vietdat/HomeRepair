@@ -22,8 +22,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 //config passport
 
-<<<<<<< HEAD
-=======
 passport.use(new LocalStrategy(
   function(username, password, done) {
     console.log(username);
@@ -48,7 +46,7 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
->>>>>>> afc70a01cda0ff4cbaba97fab62da87f25777a76
+
 var app = express();
 
 // view engine setup
