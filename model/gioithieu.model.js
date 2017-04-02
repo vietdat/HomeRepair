@@ -7,10 +7,10 @@ var gioithieuSchema = new Schema({
 	title:  {type:String, require: true},
 	content:  {type:String, require: true},
 	image: {
-			alt: {type:String, require:true,default:""},
-			src: {type:String, require:true,default:""}
+			alt: {type:String, require:true},
+			src: {type:String, require:true}
 		},
-	description: {type:String, require:true,default:""},
+	description: {type:String, require:true},
 	date: {type: Date, default: Date.now()}
 });
 var GioiThieu = mongoose.model('GioiThieu', gioithieuSchema);

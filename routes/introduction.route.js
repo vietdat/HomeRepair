@@ -28,10 +28,10 @@ router.get('/', function(req, res, next) {
     },
     content: ['getData', function(data, done) {
       var html = '';
-      console.log("data ", data);
+      var html_head = '';
+
       if(data) {
           if( data.getData ) {
-            console.log(data.getData);
             var length = -1;
             if(data.getData.length > 10) {
               length = 10;
@@ -39,24 +39,46 @@ router.get('/', function(req, res, next) {
               length = data.getData.length;
             }
             var link = config.domain;
+
             for(var i = 0; i < length; i++) {
-              html = html 
+              if(data.getData[i].url === 'sua-chua-cai-tao-hung-thinh') {
+                html_head = html_head 
+                        + '<div class="col-md-3">'
+                        +    '<a href="'+ config.domain + "/gioi-thieu/" + data.getData[i].url +'">'
+                        +         '<img width="150" height="150" src="'+ data.getData[i].image.src +'" class="aligncenter wp-post-image" alt="'+data.getData[i].image.alt+'">'
+                        +     '</a>'
+                        + '</div>'
+                        + '<div class="col-md-9 no-padding-left">'          
+                        +     '<header>'
+                        +        '<h3 class="no-margin-top">'
+                        +             '<a href="'+ config.domain + "/gioi-thieu/" + data.getData[i].url +'"><h3>'+data.getData[i].title+'</h3></a>'
+                        +         '</h3>'
+                        +     '</header>'
+                        +     '<div>'
+                        +         '<div class="entry-content">'
+                        +             '<p>'+ data.getData[i].description +'...</p>'
+                        +         '</div>'
+                        +     '</div>'
+                        +  '</div>'
+              }
+              else {
+                html = html 
                 + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
                 +       '<div>'
-                +          '<a href="#" class="full-image">'
+                +          '<a href="'+ config.domain + "/gioi-thieu/" + data.getData[i].url +'" class="full-image">'
                 +            '<img alt="'+ data.getData[i].image.alt + '" src="' + data.getData[i].image.src +'" style="height:100px; width: 100px" />'
                 +          '</a>'
                 +       '</div>'
                 +     '</div>'
                 +     '<div class="col-sm-10">'
                 +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="'+ config.domain + "/gioi-thieu/" + data.getData[i].url +'">'+ data.getData[i].title +'</a>'
+                +             '<a href="'+ config.domain + "/gioi-thieu/" + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
                 +         '</h4>'
                 +         '<div class="col-md-12 no-padding-left">'
                 +             '<div class="entry-content">'
-                +                 '<p>'+ data.getData[i].description +'</p>'
+                +                 '<p>'+ data.getData[i].description +'...</p>'
                 +             '</div>'
                 +         '</div>'
                 +      '</div>'
@@ -65,7 +87,12 @@ router.get('/', function(req, res, next) {
               }
             }
           }
-          done(null, html);
+        }
+        var res = {};
+        res['html'] = html;
+        res['html_head'] = html_head;
+        console.log("res ", res);
+        done(null, res);
     }]
   },
   function(err, data) {
@@ -75,7 +102,8 @@ router.get('/', function(req, res, next) {
     res.render('GioiThieu/gioithieu', {
       title: "Sửa chữa cải tạo Hưng Thịnh",
       linkbar: data.linkbar,
-      content: data.content
+      content: data.content.html,
+      content_head: data.content.html_head
     });
   })
 });

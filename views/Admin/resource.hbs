@@ -1,37 +1,8 @@
 <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="wrap-content">
-    <div class="u-max-full-width">
-        <header class="row">
-            <h1>Category Manager</h1>
-        </header>
-    </div>
-    <div class="u-max-full-width padding10px">
-        <div class="row" style="position: relative">
-            <aside class="three columns">
-                <ul style="list-style: none">
-                    <li>
-                        <a href="category"><i class="fa fa-tags" aria-hidden="true"></i>Category Manager</a></li>
-                    <li>
-                        <a  href="article"><i class="fa fa-tags" aria-hidden="true"></i>Article Manager</a></li>
-<li>
-                        <a  href="gioi-thieu"><i class="fa fa-tags" aria-hidden="true"></i>Giới thiệu </a></li>
-                        <li>
-                        <a  class="active" href="resource"><i class="fa fa-tags" aria-hidden="true"></i>Tài nguyên</a></li>
-                </ul>
-            </aside>
-            <section class="nine columns main-content" style="position: relative">
-                <iframe style="width:100%;height:100%" src="/Filemanager"></iframe>
-            </section>
-        </div>
-    </div>
-    <div class="u-max-full-width">
-        <footer class="row">
-            <span>xcode.bk@gmail.com</span>
-        </footer>
-    </div>
-</div>
-
+<section class="nine columns main-content" style="position: relative">
+    <iframe style="width:100%;height:100%" src="/Filemanager"></iframe>
+</section>
 <div class="add-article">
     <h2>Add Article</h2>
     <form method="POST" action="/article/add">
@@ -102,4 +73,8 @@
         });
     });
 
+</script>
+
+<script>
+    $("#resource").addClass( "active" );
 </script>

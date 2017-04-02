@@ -28,27 +28,27 @@ router.post('/add',function(req,res,next){
     }
 
     if(req.body.title && req.body.title === "") {
-        console.log("Missing url");
+        console.log("Missing title");
         return;
     }
 
     if(req.body.content && req.body.content === "") {
-        console.log("Missing url");
+        console.log("Missing content");
         return;
     }
 
     if(req.body.alt && req.body.altImage === "") {
-        console.log("Missing url");
+        console.log("Missing altImage");
         return;
     }
 
     if(req.body.urlImage && req.body.urlImage === "") {
-        console.log("Missing url");
+        console.log("Missing urlImage");
         return;
     }
 
     if(req.body.description && req.body.description === "") {
-        console.log("Missing url");
+        console.log("Missing description");
         return;
     }
 

@@ -1,78 +1,49 @@
-<!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="wrap-content">
-    <div class="u-max-full-width">
-        <header class="row">
-            <h1>Category Manager</h1>
-        </header>
+<section class="nine columns main-content" style="position: relative">
+    <div>
+        <table>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>link</th>
+                <th>Lệnh</th>
+            </tr>
+            {{#each IntroductionList}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{url}}</td>
+                <td style="margin-left: 10px;"><button class="EditCategory" idArticle={{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
+                    <button class="deleteCategory" idArticle={{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
     </div>
-    <div class="u-max-full-width padding10px">
-        <div class="row" style="position: relative">
-            <aside class="three columns">
-                <ul style="list-style: none">
-                    <li>
-                        <a href="category"><i class="fa fa-tags" aria-hidden="true"></i>Category Manager</a></li>
-                    <li>
-                        <a href="article"><i class="fa fa-tags" aria-hidden="true"></i>Article Manager</a></li>
-                    <li>
-                        <a class="active" href="gioi-thieu"><i class="fa fa-tags" aria-hidden="true"></i>Giới thiệu </a></li>
-<li>
-                        <a  href="resource"><i class="fa fa-tags" aria-hidden="true"></i>Tài nguyên</a></li>
-                </ul>
-            </aside>
-            <section class="nine columns main-content" style="position: relative">
-                <table>
-                    <tr>
-                        <th>Title</th>
-                        <th>Url</th>
-                        <th>Command</th>
-                    </tr>
-                    {{#each IntroductionList}}
-                    <tr>
-                        <td>{{title}}</td>
-                        <td>{{url}}</td>
-                        <td style="margin-left: 10px;"><button class="EditCategory" idArticle={{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
-                            <button class="deleteCategory" idArticle={{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </table>
-
-
-            </section>
-            <div class="add-button">
-                <button class="circle-button" id="add-button"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            </div>
-        </div>
-    </div>
-    <div class="u-max-full-width">
-        <footer class="row">
-            <span>xcode.bk@gmail.com</span>
-        </footer>
-    </div>
-</div>
+</section>
 
 <div class="u-full-width add-article-gioithieu">
     <h2>Add Introduction Article</h2>
     <form  class="row" method="POST" action="gioi-thieu/add">
-        <div class="six columns">
-        <span>Title Article</span>
-        <input type="text" name="title" value="">
-        <br>
-        <span>Url Article</span>
-        <input type="text" name="url" value="">
-        <br>
-        <span>Image Url</span>
-        <input type="text" name="urlImage" value="">
-        <br>
-        <span>Image Alt</span>
-        <input type="text" name="altImage" value="">
-        <br>
-        <span>Description</span>
-        <textarea  name="description" >
-        </textarea>
-        <br>
+        <div class="five columns">
+            Tiêu đề bài viết:<br>
+            <input type="text" name="title" value="" size="35">
+            <br>
+            Đường đẫn bài viết:<br>
+            <input type="text" name="url" value="" size="35">
+            <br>
+        
+            Đường đẫn image:<br>
+            <input type="text" name="urlImage" value="" size="35">
+            <br>
+
+            Chú thích ảnh<br>
+            <input type="text" name="altImage" value="" size="35">
+            <br>
+
+            Description<br>
+            <textarea style="color:#000" rows="5" cols="40">
+            </textarea>
+            <br>
         </div>
+
         <div class="six columns">
         <textarea name="content" id="editor2" rows="5" cols="80">
             </textarea>
@@ -81,13 +52,10 @@
             CKEDITOR.replace('editor2', {
                 extraPlugins: 'uploadimage,image2',
                 height: 300,
-                // Upload images to a CKFinder connector (note that the response type is set to JSON).
                 filebrowserBrowseUrl: '/Filemanager/',
                 filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
                 filebrowserImageUploadUrl: '/fm/',
                 filebrowserFlashUploadUrl: '/fm/',
-                // The following options are not necessary and are used here for presentation purposes only.
-                // They configure the Styles drop-down list and widgets to use classes.
                 stylesSet: [
                     { name: 'Narrow image', type: 'widget', widget: 'image', attributes: { 'class': 'image-narrow' } },
                     { name: 'Wide image', type: 'widget', widget: 'image', attributes: { 'class': 'image-wide' } }
@@ -101,10 +69,10 @@
                 image2_disableResizer: true
             });
         </script>
-        <br>
-        <button type="submit">Add</button>
-        <button type="button" id="close-add-article">Close</button>
-         </div>
+            <br>
+            <button type="submit">Add</button>
+            <button type="button" id="close-add-article">Close</button>
+        </div>
     </form>
 </div>
 
@@ -114,10 +82,12 @@
     $("#close-add-article").click(function () {
         $(".add-article-gioithieu").css("display", "none");
         $(".wrap-content").css("opacity", "1");
+        $(".add-button").css("z-index", "1");
     });
     $("#add-button").click(function () {
         $(".add-article-gioithieu").css("display", "block");
-        $(".wrap-content").css("opacity", "0.2");
+        $(".wrap-content").css("opacity", "1");
+        $(".add-button").css("z-index", "-1");
     });
     $(".deleteCategory").click(function () {
         var cButton = $(this);
@@ -137,4 +107,8 @@
         });
     });
 
+</script>
+
+<script>
+    $("#gioi-thieu").addClass( "active" );
 </script>

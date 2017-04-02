@@ -6,7 +6,7 @@ router.get('/',function(req,res){
   res.render('Admin/login');
 })
 router.post('/',
-  passport.authenticate('local', { successRedirect: '/hungthinh-admin/category',
+  passport.authenticate('local', { successRedirect: '/hungthinh-admin/gioi-thieu',
                                    failureRedirect: '/hungthinh-admin/'
                                   })
 );

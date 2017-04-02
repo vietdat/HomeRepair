@@ -70,7 +70,8 @@ aside ul li a i{
     display: none;
 }
 .add-article{
-    background-color:#151719;text-align: center;position: fixed; top:50%;left:50%;  transform: translate(-50%, -50%);
+    background-color:#151719;
+     text-align: center;position: fixed; top:50%;left:50%;  transform: translate(-50%, -50%);
     padding: 40px;
     display: none;
     z-index: 100;
@@ -84,6 +85,7 @@ form button{
 .add-button{
     position: absolute;
     right:70px;
+    z-index: 1;
     bottom: 90px;
 }
 .circle-button{
@@ -117,6 +119,15 @@ td button {
     color:white;
 }
 .add-article-gioithieu{
+    position: fixed;
+    height: 100%;
+    top:0;
+    left:0;
+        background-color:#151719;text-align: center;position: fixed;
+display:none;
+}
+
+.add-article-dongiasuachuacaitao{
     position: fixed;
     height: 100%;
     top:0;
