@@ -16,6 +16,11 @@ mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo'
 var home 			            = require('./routes/home.route');
 var introduction 	        = require('./routes/introduction.route');
 var dichvusuachuacaitao   = require('./routes/dichvusuachuacaitao.route');
+var camnangsuachuanha     = require('./routes/camnangsuachuanha.route');
+var dongia                = require('./routes/dongia.route');
+var mangluoi                = require('./routes/mangluoi.route');
+var lienhe                = require('./routes/lienhe.route');
+var thucte                = require('./routes/thucte.route');
 
 //admin router
 var administrator = require('./routes/Admin/administrator');
@@ -98,7 +103,13 @@ app.use('/hungthinh-admin', administrator);
 
 app.use('/', home);
 app.use('/gioi-thieu', introduction);
-app.use('/', dichvusuachuacaitao);
+app.use('/cam-nang', camnangsuachuanha);
+app.use('/dich-vu', dichvusuachuacaitao);
+app.use('/don-gia', dongia);
+app.use('/mang-luoi', mangluoi);
+app.use('/lien-he', lienhe);
+app.use('/thuc-te', thucte);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

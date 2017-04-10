@@ -1,22 +1,24 @@
-var express                         = require('express');
-var router                          = express.Router();
-var DichVuSuaChuaCaiTaoModel        = require('../../model/dichvusuachuacaitao.model');
-var decode                          = require('decode-html');
+var express = require('express');
+var router = express.Router();
+var MangLuoiModel=require('../../model/mangluoi.model');
+var decode = require('decode-html');
 
-
+/* GET home page. */
 router.get('/', function(req, res, next) {
-    DichVuSuaChuaCaiTaoModel.find(function(err, data){
+    //get category list
+    MangLuoiModel.find(function(err,MangLuoiModelList){
         if (err) throw err;
         else{
-            data.forEach(function(element) {
+            MangLuoiModelList.forEach(function(element) {
+                console.log(decode(element.content));
                 element.content=decode(element.content);
             }, this);
-            res.locals.data=data;
-            res.render('Admin/dichvusuachuacaitao', {layout:'Admin/layout'});
+            res.locals.MangLuoiModelList=MangLuoiModelList;
+            res.render('Admin/mangluoi',{layout:'Admin/layout'});
         }
     })
+ // res.render('index', { title: 'Express' });
 });
-
 router.post('/add',function(req,res,next){
     console.log(req.body);
 
@@ -50,32 +52,25 @@ router.post('/add',function(req,res,next){
         return;
     }
 
-    if(req.body.type && req.body.type === "") {
-        console.log("Missing type");
-        return;
-    }
-
-    var item = new DichVuSuaChuaCaiTaoModel({
-        url         : req.body.url,
-        title       : req.body.title,
-        content     : req.body.content,
-        image       : {
-                        'alt':req.body.altImage,
-                        'src':req.body.urlImage
-                    },
-        type        : req.body.type,
-        description : req.body.description
+    var item=new MangLuoiModel({
+        url:req.body.url,
+        title:req.body.title,
+        content:req.body.content,
+        image:{
+            'alt':req.body.altImage,
+            'src':req.body.urlImage
+        },
+        description:req.body.description
     });
 
     item.save(function(err){
-        if (err) throw err;
-        else res.redirect('/hungthinh-admin/dich-vu-sua-chua-cai-tao');
-    });
-});
-
+  if (err) throw err;
+  else res.redirect('/hungthinh-admin/mang-luoi');
+    })
+})
 router.post('/delete',function(req,res,next){
     var id=req.body.id;
-    DichVuSuaChuaCaiTaoModel.remove({_id:id},function(err){
+    MangLuoiModel.remove({_id:id},function(err){
         console.log(err);
         if (err){
             res.send(err);
