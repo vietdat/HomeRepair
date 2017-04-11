@@ -1,18 +1,18 @@
 var express                         = require('express');
 var router                          = express.Router();
-var DichVuSuaChuaCaiTaoModel        = require('../../model/dichvusuachuacaitao.model');
+var ThucTeModel        = require('../../model/thucte.model');
 var decode                          = require('decode-html');
 
 
 router.get('/', function(req, res, next) {
-    DichVuSuaChuaCaiTaoModel.find(function(err, data){
+    ThucTeModel.find(function(err, data){
         if (err) throw err;
         else{
             data.forEach(function(element) {
                 element.content=decode(element.content);
             }, this);
             res.locals.data=data;
-            res.render('Admin/dichvusuachuacaitao', {layout:'Admin/layout'});
+            res.render('Admin/thucte', {layout:'Admin/layout'});
         }
     })
 });
@@ -20,42 +20,42 @@ router.get('/', function(req, res, next) {
 router.post('/add',function(req,res,next){
     console.log(req.body);
 
-    if(req.body.url && req.body.url==="") {
+    if(!req.body.url || req.body.url==="") {
         console.log("Missing url");
-        return;
+        res.render('error');
     }
 
-    if(req.body.title && req.body.title === "") {
+    if(!req.body.title || req.body.title === "") {
         console.log("Missing title");
-        return;
+        res.render('error');
     }
 
-    if(req.body.content && req.body.content === "") {
+    if(!req.body.content || req.body.content === "") {
         console.log("Missing content");
-        return;
+        res.render('error');
     }
 
-    if(req.body.alt && req.body.altImage === "") {
+    if(!req.body.altImage || req.body.altImage === "") {
         console.log("Missing altImage");
-        return;
+        res.render('error');
     }
 
-    if(req.body.urlImage && req.body.urlImage === "") {
+    if(!req.body.urlImage || req.body.urlImage === "") {
         console.log("Missing urlImage");
-        return;
+        res.render('error');
     }
 
-    if(req.body.description && req.body.description === "") {
+    if(!req.body.description || req.body.description === "") {
         console.log("Missing description");
-        return;
+        res.render('error');
     }
 
-    if(req.body.type && req.body.type === "") {
+    if(!req.body.type || req.body.type === "") {
         console.log("Missing type");
-        return;
+        res.render('error');
     }
 
-    var item = new DichVuSuaChuaCaiTaoModel({
+    var item = new ThucTeModel({
         url         : req.body.url,
         title       : req.body.title,
         content     : req.body.content,
@@ -69,13 +69,13 @@ router.post('/add',function(req,res,next){
 
     item.save(function(err){
         if (err) throw err;
-        else res.redirect('/hungthinh-admin/dich-vu-sua-chua-cai-tao');
+        else res.redirect('/hungthinh-admin/thuc-te');
     });
 });
 
 router.post('/delete',function(req,res,next){
     var id=req.body.id;
-    DichVuSuaChuaCaiTaoModel.remove({_id:id},function(err){
+    ThucTeModel.remove({_id:id},function(err){
         console.log(err);
         if (err){
             res.send(err);

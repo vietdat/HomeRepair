@@ -135,6 +135,34 @@ display:none;
     background-color:#151719;text-align: center;position: fixed;
     display:none;
 }
+
+.add-article-camnangsuachuanha{
+    position: fixed;
+    height: 100%;
+    top:0;
+    left:0;
+    background-color:#151719;text-align: center;position: fixed;
+    display:none;
+}
+
+.add-article-thucte{
+    position: fixed;
+    height: 100%;
+    top:0;
+    left:0;
+    background-color:#151719;text-align: center;position: fixed;
+    display:none;
+}
+
+.add-article-mangluoi{
+    position: fixed;
+    height: 100%;
+    top:0;
+    left:0;
+    background-color:#151719;text-align: center;position: fixed;
+    display:none;
+}
+
 #logoutbtn{
     margin-top: 6px;
     color:white;
@@ -143,3 +171,5 @@ display:none;
     color:red;
     background-color: black;
 }
+
+
