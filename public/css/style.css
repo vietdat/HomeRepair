@@ -252,3 +252,17 @@ figure.image-wide img, img.image-wide {
 .container1 {
 	height:300px; padding:0; overflow:hidden;
 }
+
+.wrap {
+    height: 130px;
+    border: 1px solid red;
+    overflow: hidden;
+}
+
+.autoScroll {
+    overflow: hidden;
+}
+
+.autoScroll a {
+    display: block;
+}

@@ -1,116 +1,32 @@
+function autoScroll(autoScrId, time, numOfItem) {
+            var aS = $("#" + autoScrId);
+            var itemHeight = aS.children().first().height();
+            //add children
+            var child = aS.children().clone().slice(0, numOfItem);
+            aS.append(child);
 
-var html ='<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
-		+'<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
-		+'<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
-		+'<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
-		+'<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
-		+'<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
-		+'<a href="" class="list-group-item">'
-		+ '<div class="list">'
-		+	'<div class="img_banner">'
-		+ '<img src="http://localhost:3000/images/gioithieu1.jpg" alt="" class="logo">'
-		+ '</div>'
-		+ '<div class="title_banner">'
-		+	'<h3 class="padding-0 margin-0" style="font-size: 16px">'
-		+		'<span>T?i sao DT xây d?ng nhà th?u tính l?i nhi?u...1</span>'
-		+	'</h3>'
-		+ '</div>'
-		+'</div>'	
-		+'</a>'
+            //set height box
+            aS.parent().css('height', (numOfItem * itemHeight).toString() + "px")
+            console.log(itemHeight);
+            var step = aS.height() - aS.parent().height();
 
+            function loop() {
+                aS.animate({
+                    'margin-top': '-' + step + "px"
+                }, (time / step) * (step + parseInt(aS.css("margin-top"))), "linear", function() {
+                    aS.css("margin-top", "0px")
+                    loop();
+                })
+            }
+            aS.hover(function() {
+                aS.stop(true)
 
-
-$(document).ready(function() {
-	if ($('.content').height() > $('.container').height()) {
-        setInterval(function () {
-            start();
-       }, 3000); 
-   
-    }
-});
-var animationOffset = 0;
-function animateContent(direction) {  
-    // var animationOffset = $('.container1').height() - $('.content').height() - 30;
-    animationOffset = animationOffset - 200;
-    console.log("Animation: ", animationOffset);
-    $('.content').animate({ "marginTop": (animationOffset)+ "px" }, 10000);
-}
-
-function down(){
-    animateContent("down")
-}
-
-function start(){
-	down();
-
-	$('.content').append(html);
-	// setTimeout(function () {
-	   
-	// }, 0);
-}    
+            }, function() {
+                loop();
+            });
+            loop();
+        }
+        $(document).ready(function() {
+            autoScroll('sc1', 30000, 6);
+            autoScroll('sc2', 35000, 5);
+        })
