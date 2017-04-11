@@ -6,7 +6,7 @@
                 <th>link</th>
                 <th>Lệnh</th>
             </tr>
-            {{#each IntroductionList}}
+            {{#each MangLuoiModelList}}
             <tr>
                 <td>{{title}}</td>
                 <td>{{url}}</td>
@@ -19,9 +19,9 @@
     </div>
 </section>
 
-<div class="u-full-width add-article-gioithieu">
-    <h2>Add Introduction Article</h2>
-    <form  class="row" method="POST" action="gioi-thieu/add">
+<div class="u-full-width add-article-mangluoi">
+    <h2>Add MangLuoi Article</h2>
+    <form  class="row" method="POST" action="mang-luoi/add">
         <div class="five columns">
             Tiêu đề bài viết:<br>
             <input type="text" name="title" value="" size="35">
@@ -76,12 +76,12 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script>
     $("#close-add-article").click(function () {
-        $(".add-article-gioithieu").css("display", "none");
+        $(".add-article-mangluoi").css("display", "none");
         $(".wrap-content").css("opacity", "1");
         $(".add-button").css("z-index", "1");
     });
     $("#add-button").click(function () {
-        $(".add-article-gioithieu").css("display", "block");
+        $(".add-article-mangluoi").css("display", "block");
         $(".wrap-content").css("opacity", "1");
         $(".add-button").css("z-index", "-1");
     });
@@ -98,7 +98,7 @@
                 }
 
             },
-            url: "gioi-thieu/delete",
+            url: "mang-luoi/delete",
             data: { id: id },
         });
     });
@@ -106,5 +106,5 @@
 </script>
 
 <script>
-    $("#gioi-thieu").addClass( "active" );
+    $("#mang-luoi").addClass( "active" );
 </script>

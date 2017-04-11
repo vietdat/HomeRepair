@@ -1,18 +1,18 @@
 var express                         = require('express');
 var router                          = express.Router();
-var DichVuSuaChuaCaiTaoModel        = require('../../model/dichvusuachuacaitao.model');
+var DonGiaModel        = require('../../model/dongia.model');
 var decode                          = require('decode-html');
 
 
 router.get('/', function(req, res, next) {
-    DichVuSuaChuaCaiTaoModel.find(function(err, data){
+    DonGiaModel.find(function(err, data){
         if (err) throw err;
         else{
             data.forEach(function(element) {
                 element.content=decode(element.content);
             }, this);
             res.locals.data=data;
-            res.render('Admin/dichvusuachuacaitao', {layout:'Admin/layout'});
+            res.render('Admin/dongia', {layout:'Admin/layout'});
         }
     })
 });
@@ -55,7 +55,7 @@ router.post('/add',function(req,res,next){
         return;
     }
 
-    var item = new DichVuSuaChuaCaiTaoModel({
+    var item = new DonGiaModel({
         url         : req.body.url,
         title       : req.body.title,
         content     : req.body.content,
@@ -69,13 +69,13 @@ router.post('/add',function(req,res,next){
 
     item.save(function(err){
         if (err) throw err;
-        else res.redirect('/hungthinh-admin/dich-vu-sua-chua-cai-tao');
+        else res.redirect('/hungthinh-admin/don-gia');
     });
 });
 
 router.post('/delete',function(req,res,next){
     var id=req.body.id;
-    DichVuSuaChuaCaiTaoModel.remove({_id:id},function(err){
+    DonGiaModel.remove({_id:id},function(err){
         console.log(err);
         if (err){
             res.send(err);

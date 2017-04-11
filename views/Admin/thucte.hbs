@@ -18,9 +18,9 @@
         </table>
     </div>
 
-    <div class="u-full-width add-article-dichvusuachuacaitao" style="display:none">
+    <div class="u-full-width add-article-thucte" style="display:none">
         <h2>Add Introduction Article</h2>
-        <form  class="row" method="POST" action="dich-vu-sua-chua-cai-tao/add" id="user-data">
+        <form  class="row" method="POST" action="thuc-te/add" id="user-data">
             <div class="five columns">
                 Tiêu đề bài viết:<br>
                 <input type="text" name="title" value="" size="35">
@@ -31,21 +31,8 @@
                 
                 Danh mục<br>
                 <select name="type" form="user-data" style="color:#000">
-                  <option value="sua-chua-cai-tao-nha-tron-goi">Sửa chữa cải tạo nhà trọn gói</option>
-                  <option value="sua-chua-cai-tao-nha-pho">Sửa chữa cải tạo nhà phố</option>
-                  <option value="sua-chua-cai-tao-nha-cap-4">Sửa chữa cải tạo nhà cấp 4</option>
-                  <option value="sua-chua-cai-tao-nha-mat-tien">Sửa chữa cải tạo nhà mặt tiền</option>
-                  <option value="sua-chua-cai-tao-nha-mai-ton">Sửa chữa cải tạo nhà mái tôn</option>
-                  <option value="sua-chua-cai-tao-mat-bang">Sửa chữa cải tạo mặt bằng</option>
-                  <option value="sua-chua-cai-tao-san-vuon">Sửa chữa cải tạo sân vườn</option>
-                  <option value="sua-chua-cai-tao-phong-khach">Sửa chữa cải tạo phòng khách</option>
-                  <option value="sua-chua-cai-tao-nha-ve-sinh">Sửa chữa cải tạo nhà vệ sinh</option>
-                  <option value="sua-chua-cai-tao-ban-cong">Sửa chữa cải tạo ban công</option>
-                  <option value="sua-chua-cai-tao-phong-bep">Sửa chữa cải tạo phòng bếp</option>
-                  <option value="sua-chua-cai-tao-phong-ngu">Sửa chữa cải tạo phòng ngủ</option>
-                  <option value="sua-chua-cai-tao-mai">Sửa chữa cải tạo mái</option>
-                  <option value="dich-vu-son-nuoc-gia-re">Dịch vụ sơn nước giá rẻ</option>
-                  <option value="dich-vu-chong-tham">Dịch vụ chống thấm</option>
+                  <option value="da-thi-cong">Công trình đã thi công</option>
+                  <option value="dang-thi-cong">Công trình đang thi công</option>
                 </select>
                 <br>
 
@@ -100,12 +87,12 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script>
     $("#close-add-article").click(function () {
-        $(".add-article-dichvusuachuacaitao").css("display", "none");
+        $(".add-article-thucte").css("display", "none");
         $(".wrap-content").css("opacity", "1");
         $(".add-button").css("z-index", "1");
     });
     $("#add-button").click(function () {
-        $(".add-article-dichvusuachuacaitao").css("display", "block");
+        $(".add-article-thucte").css("display", "block");
         $(".wrap-content").css("opacity", "1");
         $(".add-button").css("z-index", "-1");
     });
@@ -122,7 +109,7 @@
                 }
 
             },
-            url: "dich-vu-sua-chua-cai-tao/delete",
+            url: "thuc-te/delete",
             data: { id: id },
         });
     });
@@ -130,5 +117,5 @@
 </script>
 
 <script>
-    $("#dich-vu-sua-chua-cai-tao").addClass( "active" );
+    $("#thuc-te").addClass( "active" );
 </script>
