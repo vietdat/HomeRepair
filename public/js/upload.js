@@ -1,12 +1,11 @@
-$('#upload-btn').on('click', function (){
+$("#upload-btn").on("click", function (){
     $('#upload-input').click();
-    alert("àasdff");
     $('.progress-bar').text('0%');
     $('.progress-bar').width('0%');
 });
 
 $('#upload-input').on('change', function(){
-
+  alert("ávfchkjsd");
   var files = $(this).get(0).files;
 
   if (files.length > 0){

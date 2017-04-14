@@ -15,7 +15,7 @@ router.post('/', function(req,res,next){
   form.multiples = true;
 
   // store all uploads in the /uploads directory
-  form.uploadDir = path.join(__dirname, '/images');
+  form.uploadDir = path.join(__dirname, '../../public/images');
 
   // every time a file has been uploaded successfully,
   // rename it to it's orignal name

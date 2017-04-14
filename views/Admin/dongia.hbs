@@ -17,10 +17,10 @@
             {{/each}}
         </table>
     </div>
-
+    
     <div class="u-full-width add-article-dongia" style="display:none">
         <h2>Add Introduction Article</h2>
-        <form  class="row" method="POST" action="don-gia/add" id="user-data">
+        <form name="myForm" onsubmit="return validateForm()" class="row" method="POST" action="don-gia/add" id="user-data">
             <div class="five columns">
                 Tiêu đề bài viết:<br>
                 <input type="text" name="title" value="" size="35">
@@ -38,7 +38,9 @@
                 <br>
 
                 Đường đẫn image:<br>
-                <input type="text" name="urlImage" value="" size="35">
+                <input id="imageULR" type="text" name="urlImage" size="35" />
+                <br>
+                <input id="upload-input" type="file" accept="image/gif, image/jpeg" multiple="multiple" style="color: white !important" />
                 <br>
 
                 Chú thích ảnh<br>
@@ -51,30 +53,10 @@
             </div>
 
             <div class="six columns">
-            <textarea name="content" id="editor2" rows="5" cols="80">
+                <textarea name="content" id="editor2" rows="5" cols="80">
                 </textarea>
-               
-            <script>
-                CKEDITOR.replace('editor2', {
-                    extraPlugins: 'uploadimage,image2',
-                    height: 300,
-                    filebrowserBrowseUrl: '/Filemanager/',
-                    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-                    filebrowserImageUploadUrl: '/fm/',
-                    filebrowserFlashUploadUrl: '/fm/',
-                    stylesSet: [
-                        { name: 'Narrow image', type: 'widget', widget: 'image', attributes: { 'class': 'image-narrow' } },
-                        { name: 'Wide image', type: 'widget', widget: 'image', attributes: { 'class': 'image-wide' } }
-                    ],
-                    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
-                    // resizer (because image size is controlled by widget styles or the image takes maximum
-                    // 100% of the editor width).
-                    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-                    image2_disableResizer: true
-                });
-            </script>
                 <br>
-                <button type="submit">Add</button>
+                <button type="submit" id="add-article" style="color: #fff">Add</button>
                 <button type="button" id="close-add-article">Close</button>
             </div>
         </form>
@@ -86,6 +68,57 @@
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script>
+    CKEDITOR.replace('editor2', {
+        extraPlugins: 'uploadimage,image2',
+        height: 300,
+        filebrowserBrowseUrl: '/Filemanager/',
+        filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
+        filebrowserImageUploadUrl: '/fm/',
+        filebrowserFlashUploadUrl: '/fm/',
+        stylesSet: [
+            { name: 'Narrow image', type: 'widget', widget: 'image', attributes: { 'class': 'image-narrow' } },
+            { name: 'Wide image', type: 'widget', widget: 'image', attributes: { 'class': 'image-wide' } }
+        ],
+        // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+        // resizer (because image size is controlled by widget styles or the image takes maximum
+        // 100% of the editor width).
+        image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+        image2_disableResizer: true
+    });
+</script>
+
+<script>
+    function validateForm() {
+        var title = document.forms["myForm"]["title"].value;
+        var url = document.forms["myForm"]["url"].value;
+        var urlImage = document.forms["myForm"]["urlImage"].value;
+        var altImage = document.forms["myForm"]["altImage"].value;
+        var description = document.forms["myForm"]["description"].value;
+
+        if (title == "" || url == "" || urlImage == "" || altImage == ""
+                || description == "") {
+            alert("Hãy nhập toàn bộ dữ liệu");
+            return false;
+        } else {
+            $.ajax({
+                url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                  
+                console.log('upload successful!\n' + data);
+                },
+                error: function(err) {
+                  console.log(err);
+                }
+            });
+        }
+    }
+</script>
+
 <script>
     $("#close-add-article").click(function () {
         $(".add-article-dongia").css("display", "none");
@@ -119,4 +152,23 @@
 
 <script>
     $("#don-gia").addClass( "active" );
+</script>
+
+<!------------ Upload image -------------- -->
+<script>
+    var formData = new FormData();
+    $('input[type="file"]').change(function(){
+        var fileName = this.files[0].name;
+        var fileSize = this.files[0].size;
+        var fileType = this.files[0].type;
+        
+        if (!this.files) return;
+
+        var d = new Date();
+        var n = d.getTime().toString();
+
+        formData.append('file', this.files[0], n + this.files[0].name);
+
+        $('#imageULR').val("/images/" + n + this.files[0].name);
+    });
 </script>

@@ -30,11 +30,6 @@ router.post('/add',function(req,res,next){
         res.render('error');
     }
 
-    if(!req.body.content || req.body.content === "") {
-        console.log("Missing content");
-        res.render('error');
-    }
-
     if(!req.body.altImage || req.body.altImage === "") {
         console.log("Missing altImage");
         res.render('error');
