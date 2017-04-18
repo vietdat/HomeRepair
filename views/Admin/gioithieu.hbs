@@ -31,13 +31,13 @@
             <br>
         
             Đường đẫn image:<br>
-            <input id="imageULR" type="text" name="urlImage" size="35" />
+            <input id="imageULR" type="text" name="urlImage" size="35" disabled="true"/>
             <br>
-            <input id="upload-input" type="file" accept="image/gif, image/jpeg" multiple="multiple" style="color: white !important" />
+            <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
             <br>
 
             Chú thích ảnh<br>
-            <input type="text" name="altImage" value="" size="35">
+            <input type="text" name="altImage" value="" size="35"/>
             <br>
 
             Description<br>
@@ -77,40 +77,7 @@
     });
 </script>
 <script>
-    function validateForm() {
-        var title = document.forms["myForm"]["title"].value;
-        var url = document.forms["myForm"]["url"].value;
-        var urlImage = document.forms["myForm"]["urlImage"].value;
-        var altImage = document.forms["myForm"]["altImage"].value;
-        var description = document.forms["myForm"]["description"].value;
-        var content = document.forms["myForm"]["content"].value;
 
-        if (title == "" || url == "" || urlImage == "" || altImage == ""
-                || description == "") {
-
-            alert("Hãy nhập toàn bộ dữ liệu");
-            return false;
-        } else {
-            $.ajax({
-                url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(data){
-                  
-                console.log('upload successful!\n' + data);
-                },
-                error: function(err) {
-                  console.log(err);
-                }
-            });
-        }
-    }
-</script>
-
-<!------------ Upload image -------------- -->
-<script>
     var formData = new FormData();
     $('input[type="file"]').change(function(){
         var fileName = this.files[0].name;
@@ -126,6 +93,38 @@
 
         $('#imageULR').val("/images/" + n + this.files[0].name);
     });
+
+    function validateForm() {
+        var title = document.forms["myForm"]["title"].value;
+        var url = document.forms["myForm"]["url"].value;
+        var urlImage = document.forms["myForm"]["urlImage"].value;
+        var image = document.forms["myForm"]["image"].value;
+        var altImage = document.forms["myForm"]["altImage"].value;
+        var description = document.forms["myForm"]["description"].value;
+        var content = document.forms["myForm"]["content"].value;
+
+        if (title == "" || url == "" || urlImage == "" || altImage == ""
+                || description == "" || image == null) {
+
+            alert("Hãy nhập toàn bộ dữ liệu");
+            return false;
+        } else {
+            $.ajax({
+                url: 'http://localhost:3000/hungthinh-admin/upload/',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                  
+                console.log('upload successful!\n' + data);
+                },
+                error: function(err) {
+                  console.log(err);
+                }
+            });
+        }
+    }
 </script>
 
 <script>
