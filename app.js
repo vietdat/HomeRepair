@@ -11,7 +11,7 @@ var session = require('express-session')
 var mongoose 		= require('mongoose');
 var User=require('./model/user');
 mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
+mongoose.connect('mongodb://hungthinh:tumotdenchin@127.0.0.1:27017/hungthinh');
 
 var home 			            = require('./routes/home.route');
 var introduction 	        = require('./routes/introduction.route');
@@ -67,7 +67,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'),{maxage:'2h'}));
 
 //init passport
 app.set('trust proxy', 1) // trust first proxy
