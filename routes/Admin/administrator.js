@@ -11,6 +11,7 @@ var resource				= require("./resource");
 var login 					= require('./login');
 var logout					= require('./logout');
 var thucte 					= require('./thucte');
+var upload 					= require('./upload');
 
 /* GET home page. */
 function isLoggedIn(req, res, next) {  
@@ -40,5 +41,7 @@ router.use('/mang-luoi',isLoggedIn,mangluoi);
 router.use('/thuc-te',isLoggedIn,thucte);
 
 router.use('/resource',isLoggedIn,resource);
+
+router.use('/upload',isLoggedIn,upload);
 
 module.exports = router;
