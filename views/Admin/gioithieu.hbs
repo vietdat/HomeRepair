@@ -1,163 +1,175 @@
 <section class="nine columns main-content" style="position: relative">
-    <div>
-            <table>
-	                <tr>
-			                <th>Tiêu đề</th>
-					                <th>link</th>
-							                <th>Lệnh</th>
-									            </tr>
-										                {{#each IntroductionList}}
-												            <tr>
-													                    <td>{{title}}</td>
-															                    <td>{{url}}</td>
-																	                    <td style="margin-left: 10px;"><button class="EditCategory" idArticle={{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
-																			                        <button class="deleteCategory" idArticle={{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
-																						                </td>
-																								            </tr>
-																									                {{/each}}
-																											        </table>
-																												    </div>
-																												    </section>
+  <div>
+    <table>
+      <tr>
+        <th>Tiêu đề</th>
+        <th>link</th>
+        <th>Lệnh</th>
+      </tr>
+      {{#each IntroductionList}}
+        <tr>
+          <td>{{title}}</td>
+          <td>{{url}}</td>
+          <td style="margin-left: 10px;">
+            <button class="EditCategory" idArticle= {{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
+            <button class="deleteCategory" idArticle= {{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+</section>
 
 <div class="u-full-width add-article-gioithieu">
-    <h2>Add Introduction Article</h2>
-        <form  name="myForm" class="row" method="POST"  id="user-data" action="gioi-thieu/add" enctype="multipart/form-data">
-	        <div class="five columns">
-		            Tiêu đề bài viết:<br>
-			                <input type="text" name="title" value="" size="35">
-					            <br>
-						                Đường đẫn bài viết:<br>
-								            <input type="text" name="url" value="" size="35">
-									                <br>
+  <h2>Add Introduction Article</h2>
+  <form name="myForm" class="row" method="POST" id="user-data" action="gioi-thieu/add" enctype="multipart/form-data">
+    <div class="five columns">
+      Tiêu đề bài viết:
+      <br>
+      <input type="text" name="title" value="" size="35">
+      <br> Đường đẫn bài viết:
+      <br>
+      <input type="text" name="url" value="" size="35">
+      <br> Đường đẫn image:
+      <br>
+      <input id="imageULR" type="text" name="urlImage" size="35" disabled="true" />
+      <br>
+      <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
+      <br> Chú thích ảnh
+      <br>
+      <input type="text" name="altImage" value="" size="35" />
+      <br> Description
 
-            Đường đẫn image:<br>
-	                <input id="imageULR" type="text" name="urlImage" size="35" disabled="true"/>
-			            <br>
-				                <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
-						            <br>
+      <br>
+      <textarea name="description" style="color:#000" rows="5" cols="40"></textarea>
+      <br>
+    </div>
 
-            Chú thích ảnh<br>
-	                <input type="text" name="altImage" value="" size="35"/>
-			            <br>
+    <div class="six columns">
+      <textarea name="content" id="editor2" rows="5" cols="80"></textarea>
 
-            Description<br>
-	                <textarea name="description" style="color:#000" rows="5" cols="40"></textarea>
-			            <br>
-				            </div>
+      <br>
+      <button type="submit" id="add-article" style="color: #fff">Add</button>
+      <button type="button" id="close-add-article">Close</button>
+    </div>
+  </form>
+</div>
 
-        <div class="six columns">
-	            <textarea name="content" id="editor2" rows="5" cols="80"></textarea>
-
-            <br>
-	                <button type="submit" id="add-article" style="color: #fff">Add</button>
-			            <button type="button" id="close-add-article">Close</button>
-				            </div>
-					        </form>
-						</div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script>
-      CKEDITOR.replace('editor2', {
-              extraPlugins: 'uploadimage,image2',
-	              height: 300,
-		              filebrowserBrowseUrl: '/Filemanager/',
-			              filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-				              filebrowserImageUploadUrl: '/fm/',
-					              filebrowserFlashUploadUrl: '/fm/',
-						              stylesSet: [
-							                  { name: 'Narrow image', type: 'widget', widget: 'image', attributes: { 'class': 'image-narrow' } },
-									              { name: 'Wide image', type: 'widget', widget: 'image', attributes: { 'class': 'image-wide' } }
-										              ],
-											              // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
-												              // resizer (because image size is controlled by widget styles or the image takes maximum
-													              // 100% of the editor width).
-														              image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-															              image2_disableResizer: true
-																          });
-																	  </script>
-																	  <script>
-
-    var formData = new FormData();
-        $('input[type="file"]').change(function(){
-	        var fileName = this.files[0].name;
-		        var fileSize = this.files[0].size;
-			        var fileType = this.files[0].type;
-
-        if (!this.files) return;
-
-        var d = new Date();
-	        var n = d.getTime().toString();
-
-        formData.append('file', this.files[0], n + this.files[0].name);
-
-        $('#imageULR').val("/images/" + n + this.files[0].name);
-	    });
-
-    function validateForm() {
-            var title = document.forms["myForm"]["title"].value;
-	            var url = document.forms["myForm"]["url"].value;
-		            var urlImage = document.forms["myForm"]["urlImage"].value;
-			            var image = document.forms["myForm"]["image"].value;
-				            var altImage = document.forms["myForm"]["altImage"].value;
-					            var description = document.forms["myForm"]["description"].value;
-						            var content = document.forms["myForm"]["content"].value;
-
-        if (title == "" || url == "" || urlImage == "" || altImage == ""
-	                || description == "" || image == null) {
-
-            alert("Hãy nhập toàn bộ dữ liệu");
-	                return false;
-			        } else {
-				            $.ajax({
-					                    url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
-							                    type: 'POST',
-									                    data: formData,
-											                    processData: false,
-													                    contentType: false,
-															                    success: function(data){
-
-                console.log('upload successful!\n' + data);
-		                },
-				                error: function(err) {
-						                  console.log(err);
-								                  }
-										              });
-											              }
-												          }
-													  </script>
-
+<!-- End Document-->
 <script>
-    $("#close-add-article").click(function () {
-            $(".add-article-gioithieu").css("display", "none");
-	            $(".wrap-content").css("opacity", "1");
-		            $(".add-button").css("z-index", "1");
-			        });
-				    $("#add-button").click(function () {
-				            $(".add-article-gioithieu").css("display", "block");
-					            $(".wrap-content").css("opacity", "1");
-						            $(".add-button").css("z-index", "-1");
-							        });
-								    $(".deleteCategory").click(function () {
-								            var cButton = $(this);
-									            var id = $(this).attr('idArticle');
-										            $.ajax({
-											                type: "POST",
-													            success: function (result) {
-														                    if (result == 'success')
-																                        cButton.parent().parent().remove();
-																			                else {
-																					                    alert(result);
-																							                    }
+  CKEDITOR.replace('editor2', {
+    extraPlugins: 'uploadimage,image2',
+    height: 300,
+    filebrowserBrowseUrl: '/Filemanager/',
+    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
+    filebrowserImageUploadUrl: '/fm/',
+    filebrowserFlashUploadUrl: '/fm/',
+    stylesSet: [{
+        name: 'Narrow image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-narrow'
+        }
+      },
+      {
+        name: 'Wide image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-wide'
+        }
+      }
+    ],
+    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+    // resizer (because image size is controlled by widget styles or the image takes maximum
+    // 100% of the editor width).
+    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+    image2_disableResizer: true
+  });
+</script>
+<script>
+  var formData = new FormData();
+  $('input[type="file"]').change(function() {
+    var fileName = this.files[0].name;
+    var fileSize = this.files[0].size;
+    var fileType = this.files[0].type;
 
-            },
-	                url: "gioi-thieu/delete",
-			            data: { id: id },
-				            });
-					        });
+    if (!this.files) return;
 
+    var d = new Date();
+    var n = d.getTime().toString();
+
+    formData.append('file', this.files[0], n + this.files[0].name);
+
+    $('#imageULR').val("/images/" + n + this.files[0].name);
+  });
+
+  function validateForm() {
+    var title = document.forms["myForm"]["title"].value;
+    var url = document.forms["myForm"]["url"].value;
+    var urlImage = document.forms["myForm"]["urlImage"].value;
+    var image = document.forms["myForm"]["image"].value;
+    var altImage = document.forms["myForm"]["altImage"].value;
+    var description = document.forms["myForm"]["description"].value;
+    var content = document.forms["myForm"]["content"].value;
+
+    if (title == "" || url == "" || urlImage == "" || altImage == "" ||
+      description == "" || image == null) {
+
+      alert("Hãy nhập toàn bộ dữ liệu");
+      return false;
+    } else {
+      $.ajax({
+        url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+
+          console.log('upload successful!\n' + data);
+        },
+        error: function(err) {
+          console.log(err);
+        }
+      });
+    }
+  }
 </script>
 
 <script>
-    $("#gioi-thieu").addClass( "active" );
-    </script>
+  $("#close-add-article").click(function() {
+    $(".add-article-gioithieu").css("display", "none");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "1");
+  });
+  $("#add-button").click(function() {
+    $(".add-article-gioithieu").css("display", "block");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "-1");
+  });
+  $(".deleteCategory").click(function() {
+    var cButton = $(this);
+    var id = $(this).attr('idArticle');
+    $.ajax({
+      type: "POST",
+      success: function(result) {
+        if (result == 'success')
+          cButton.parent().parent().remove();
+        else {
+          alert(result);
+        }
+
+      },
+      url: "gioi-thieu/delete",
+      data: {
+        id: id
+      },
+    });
+  });
+</script>
+
+<script>
+  $("#gioi-thieu").addClass("active");
+</script>
