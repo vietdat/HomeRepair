@@ -3,6 +3,8 @@ var router = express.Router();
 var MangLuoiModel = require('../../model/mangluoi.model');
 var decode = require('decode-html');
 var Busboy = require('busboy');
+var fs = require('fs');
+var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -82,6 +84,7 @@ router.post('/add', function(req, res, next) {
       else res.redirect('/hungthinh-admin/mang-luoi');
     })
   });
+  req.pipe(busboy);
 });
 router.post('/delete', function(req, res, next) {
   var id = req.body.id;

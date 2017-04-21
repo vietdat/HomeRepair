@@ -23,9 +23,9 @@
 
   <div class="u-full-width add-article-camnangsuachuanha" style="display:none">
     <h2>Add Introduction Article</h2>
-    <form name="myForm" onsubmit="return validateForm()" class="row" method="POST" action="cam-nang-sua-chua-nha/add" id="user-data" enctype="multipart/form-data">
+    <form name="myForm" class="row" method="POST" action="cam-nang-sua-chua-nha/add"
+     id="user-data" enctype="multipart/form-data">
       <div class="five columns">
-
         Tiêu đề bài viết:
         <br>
         <input type="text" name="title" value="" size="35">
@@ -42,7 +42,7 @@
         <br>
         <input id="imageULR" type="text" name="urlImage" size="35" />
         <br>
-        <input id="upload-input" type="file" accept="image/gif, image/jpeg" multiple="multiple" style="color: white !important" />
+        <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
         <br> Chú thích ảnh
         <br>
         <input type="text" name="altImage" value="" size="35">

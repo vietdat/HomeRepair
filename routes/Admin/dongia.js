@@ -3,6 +3,8 @@ var router = express.Router();
 var DonGiaModel = require('../../model/dongia.model');
 var decode = require('decode-html');
 var Busboy = require('busboy');
+var fs = require('fs');
+var path = require('path');
 
 router.get('/', function(req, res, next) {
   DonGiaModel.find(function(err, data) {

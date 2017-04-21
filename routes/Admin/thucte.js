@@ -3,6 +3,8 @@ var router = express.Router();
 var ThucTeModel = require('../../model/thucte.model');
 var decode = require('decode-html');
 var Busboy = require('busboy');
+var fs = require('fs');
+var path = require('path');
 
 router.get('/', function(req, res, next) {
   ThucTeModel.find(function(err, data) {
@@ -79,6 +81,7 @@ router.post('/add', function(req, res, next) {
       else res.redirect('/hungthinh-admin/thuc-te');
     })
   });
+  req.pipe(busboy);
 });
 
 router.post('/delete', function(req, res, next) {
