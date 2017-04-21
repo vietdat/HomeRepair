@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var CamNangSuaChuaNhaModel = require('../../model/camnangsuachuanha.model');
 var decode = require('decode-html');
-var Busboy = require('busboy')
+var Busboy = require('busboy');
 
 router.get('/', function(req, res, next) {
   CamNangSuaChuaNhaModel.find(function(err, data) {
@@ -31,8 +31,11 @@ router.post('/add', function(req, res, next) {
     headers: req.headers
   });
   busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    urlImage = filename;
-    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', filename)));
+    var d = new Date();
+    var n = d.getTime().toString();
+    urlImage = n + filename;
+    console.log("Url image: ", urlImage);
+    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', urlImage)));
   });
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
     console.log('Field [' + fieldname + ']: value: ');
@@ -62,6 +65,7 @@ router.post('/add', function(req, res, next) {
     }
   });
   busboy.on('finish', function() {
+    console.log("CamNangSuaChuaNha");
     var item = new CamNangSuaChuaNhaModel({
       url: url,
       title: title,
@@ -79,6 +83,7 @@ router.post('/add', function(req, res, next) {
       else res.redirect('/hungthinh-admin/cam-nang-sua-chua-nha');
     })
   });
+  req.pipe(busboy);
 });
 
 router.post('/delete', function(req, res, next) {

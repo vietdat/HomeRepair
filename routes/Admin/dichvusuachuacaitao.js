@@ -79,6 +79,7 @@ router.post('/add', function(req, res, next) {
       else res.redirect('/hungthinh-admin/dich-vu-sua-chua-cai-tao');
     })
   });
+  req.pipe(busboy);
 });
 
 router.post('/delete', function(req, res, next) {
