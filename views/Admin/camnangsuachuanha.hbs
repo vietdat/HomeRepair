@@ -80,22 +80,23 @@
       description == "") {
       alert("Hãy nhập toàn bộ dữ liệu");
       return false;
-    } else {
-      $.ajax({
-        url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-
-          console.log('upload successful!\n' + data);
-        },
-        error: function(err) {
-          console.log(err);
-        }
-      });
     }
+    // else {
+    //   $.ajax({
+    //     url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
+    //     type: 'POST',
+    //     data: formData,
+    //     processData: false,
+    //     contentType: false,
+    //     success: function(data) {
+    //
+    //       console.log('upload successful!\n' + data);
+    //     },
+    //     error: function(err) {
+    //       console.log(err);
+    //     }
+    //   });
+    // }
   }
 </script>
 
@@ -185,6 +186,6 @@
 
     formData.append('file', this.files[0], n + this.files[0].name);
 
-    $('#imageULR').val("/images/" + n + this.files[0].name);
+    $('#imageULR').val("/images/" + this.files[0].name);
   });
 </script>
