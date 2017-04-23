@@ -1,1 +1,4 @@
 node_modules
+app.js
+connectDB.js
+npm-debug.log
