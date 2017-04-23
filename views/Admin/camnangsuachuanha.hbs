@@ -13,7 +13,7 @@
           <td>{{title}}</td>
           <td>{{url}}</td>
           <td style="margin-left: 10px;">
-            <button class="EditCategory" idArticle= {{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
+            <button class="editCategory" idArticle= {{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
             <button class="deleteCategory" idArticle= {{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
           </td>
         </tr>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="six columns">
-        <textarea name="content" id="editor2" rows="5" cols="80"></textarea>
+        <textarea name="content" class="editor" id="editor2" rows="5" cols="80"></textarea>
         <br>
 
         <button type="submit" id="add-article" style="color: #fff">Add</button>
@@ -64,9 +64,52 @@
     </form>
   </div>
 
+  <div class="u-full-width edit-article-camnangsuachuanha" style="display:none">
+    <h2>Edit Article</h2>
+    <form name="myForm" class="row" method="POST" action="cam-nang-sua-chua-nha/update"
+     id="user-data" enctype="multipart/form-data">
+      <div class="five columns">
+        <input id="edit-id" type="text" name="id" value="" size="35" style="display:none">
+        Tiêu đề bài viết:
+        <br>
+        <input id="edit-title" type="text" name="title" value="" size="35">
+        <br> Đường đẫn bài viết:
+        <br>
+        <input id="edit-url" type="text" name="url" value="" size="35">
+        <br> Danh mục
+        <br>
+        <select id="edit-type" name="type" style="color:#000">
+          <option value="sua-chua-nha-hop-phong-thuy">Sửa chữa nhà hợp phong thủy</option>
+          <option value="kinh-nghiem-sua-chua-nha">Kinh nghiệm sửa chữa nhà</option>
+        </select>
+        <br> Đường đẫn image:
+        <br>
+        <input id="edit-imageULR" type="text" name="urlImage" size="35" />
+        <br>
+        <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
+        <br> Chú thích ảnh
+        <br>
+        <input id="edit-altImage" type="text" name="altImage" value="" size="35">
+        <br> Description
+
+        <br>
+        <textarea id="edit-description" name="description" style="color:#000" rows="5" cols="35"></textarea>
+        <br>
+
+      </div>
+
+      <div class="six columns">
+        <textarea name="content" class='editor' id="editor1" rows="5" cols="80"></textarea>
+        <br>
+
+        <button type="submit" id="edit-article" style="color: #fff">Add</button>
+        <button type="button" id="close-edit-article" style="color: #fff">Close</button>
+      </div>
+    </form>
+  </div>
+
 </section>
 
-<!-–––––––––––––––––––––- End HTML ––––––––––––––––––––––––– -->
 
 <script>
   function validateForm() {
@@ -81,28 +124,12 @@
       alert("Hãy nhập toàn bộ dữ liệu");
       return false;
     }
-    // else {
-    //   $.ajax({
-    //     url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
-    //     type: 'POST',
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false,
-    //     success: function(data) {
-    //
-    //       console.log('upload successful!\n' + data);
-    //     },
-    //     error: function(err) {
-    //       console.log(err);
-    //     }
-    //   });
-    // }
   }
 </script>
 
 <! --------CKEDITOR--------------- -->
 <script>
-  CKEDITOR.replace('editor2', {
+  CKEDITOR.replaceAll('editor',{
     extraPlugins: 'uploadimage,image2',
     height: 300,
     filebrowserBrowseUrl: '/Filemanager/',
@@ -132,6 +159,7 @@
     image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
     image2_disableResizer: true
   });
+
 </script>
 
 <!--------- Close ---------- -->
@@ -157,7 +185,6 @@
         else {
           alert(result);
         }
-
       },
       url: "cam-nang-sua-chua-nha/delete",
       data: {
@@ -165,13 +192,47 @@
       },
     });
   });
+  $(".editCategory").click(function() {
+    var id = $(this).attr('idArticle');
+    $(".edit-article-camnangsuachuanha").css("display", "block");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "-1");
+    $("#edit-id").val(id);
+
+    $.ajax({
+      type: "POST",
+      url: "cam-nang-sua-chua-nha/edit",
+      data: {
+        id: id
+      },
+      success: function(data) {
+        if (data){
+          $('#edit-title').val(data[0].title);
+          $('#edit-url').val(data[0].url);
+          $('#edit-type').val(data[0].type);
+          $('#edit-imageULR').val(data[0].image.src);
+          $('#edit-altImage').val(data[0].image.alt);
+          $('#edit-description').val(data[0].description);
+           CKEDITOR.instances.editor1.insertHtml(data[0].content);
+        }
+        else {
+          alert("Khong the edit, lien he vs admin de duoc fix loi");
+        }
+      }
+    });
+  });
+  $("#close-edit-article").click(function() {
+    $(".edit-article-camnangsuachuanha").css("display", "none");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "1");
+  });
 </script>
 
 <script>
   $("#cam-nang-sua-chua-nha").addClass("active");
 </script>
 
-<!------------ Upload image -------------- -->
+<!--- Upload image  -->
 <script>
   var formData = new FormData();
   $('input[type="file"]').change(function() {

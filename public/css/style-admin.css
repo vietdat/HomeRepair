@@ -118,25 +118,12 @@ td, th {
 td button {
     color:white;
 }
-.add-article-gioithieu{
-    position: fixed;
-    height: 100%;
-    top:0;
-    left:0;
-        background-color:#151719;text-align: center;position: fixed;
-display:none;
-}
 
-.add-article-dichvusuachuacaitao{
-    position: fixed;
-    height: 100%;
-    top:0;
-    left:0;
-    background-color:#151719;text-align: center;position: fixed;
-    display:none;
-}
-
-.add-article-camnangsuachuanha{
+.add-article-gioithieu, .edit-article-gioithieu, .add-article-camnangsuachuanha,
+.add-article-dichvusuachuacaitao, .edit-article-dichvusuachuacaitao,
+.add-article-thucte, .edit-article-thucte,
+.add-article-mangluoi, .edit-article-mangluoi,
+.add-article-dongia, .edit-article-dongia{
     position: fixed;
     height: 100%;
     top:0;
@@ -145,33 +132,14 @@ display:none;
     display:none;
 }
 
-.add-article-thucte{
-    position: fixed;
-    height: 100%;
-    top:0;
-    left:0;
-    background-color:#151719;text-align: center;position: fixed;
-    display:none;
+.edit-article-camnangsuachuanha {
+  position: fixed;
+  height: 100%;
+  top:0;
+  left:0;
+  background-color:#151719;text-align: center;position: fixed;
+  display:none;
 }
-
-.add-article-mangluoi{
-    position: fixed;
-    height: 100%;
-    top:0;
-    left:0;
-    background-color:#151719;text-align: center;position: fixed;
-    display:none;
-}
-
-.add-article-dongia {
-     position: fixed;
-    height: 100%;
-    top:0;
-    left:0;
-    background-color:#151719;text-align: center;position: fixed;
-    display:none;
-}
-
 
 #logoutbtn{
     margin-top: 6px;
@@ -181,5 +149,3 @@ display:none;
     color:red;
     background-color: black;
 }
-
-
