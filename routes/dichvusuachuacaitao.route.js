@@ -20,7 +20,7 @@ router.get('/:url', function(req, res, next) {
         }
 
         linkbar[0] = config.domain;
-        linkbar[1] = linkbar[0] + "/" + req.params.url;
+        linkbar[1] = linkbar[0] + "/dich-vu/" + req.params.url;
         var url_title = '';
         switch(req.params.url) {
           case "sua-chua-cai-tao-nha-tron-goi":
