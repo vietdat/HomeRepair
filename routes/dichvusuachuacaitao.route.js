@@ -242,10 +242,14 @@ router.get('/:type/:title_url', function(req, res, next) {
         linkbar[1] = linkbar[0] + "/" + req.params.type;
         linkbar[2] = linkbar[1] + "/" + req.params.title_url;
 
+        var first = data.data.title.substring(0,1);
+        var last = data.data.title.substring(1);
+        var title = first.toUpperCase() + last.toLowerCase();
+
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
                     + '<a href=' + linkbar[1] + '>'+ url_title +'</a>' + "/"
-                    + '<a href=' + linkbar[2] + '>' + data.data.title +'</a>'
+                    + '<a href=' + linkbar[2] + '>' + title +'</a>'
                     + '</div>';
         done(null, html);
       } else {

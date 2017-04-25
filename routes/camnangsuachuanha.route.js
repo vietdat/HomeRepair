@@ -44,9 +44,9 @@ router.get('/:url', function(req, res, next) {
         done(null, html);
     },
     getData: function(done) {
-      CamNangSuaChuaNhaModel.aggregate([ 
+      CamNangSuaChuaNhaModel.aggregate([
           { $match : {type : req.params.url}},
-          { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} } 
+          { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
               ]).exec(done);
     },
     content: ['getData', function(data, done) {
@@ -65,13 +65,13 @@ router.get('/:url', function(req, res, next) {
 
             for(var i = 0; i < length; i++) {
               if(i === 0) {
-                html_head = html_head 
+                html_head = html_head
                         + '<div class="col-md-6">'
                         +    '<a href="'+ config.domain + "/cam-nang/" + req.params.url +"/" + data.getData[i].url +'">'
                         +         '<img width="300" height="200" src="'+ data.getData[i].image.src +'" class="aligncenter wp-post-image" alt="'+data.getData[i].image.alt+'">'
                         +     '</a>'
                         + '</div>'
-                        + '<div class="col-md-6 no-padding-left">'          
+                        + '<div class="col-md-6 no-padding-left">'
                         +     '<header>'
                         +        '<h3 class="no-margin-top">'
                         +             '<a href="'+ config.domain + "/cam-nang/"+ req.params.url +"/" + data.getData[i].url +'"><h3 class="no-margin-top">'+data.getData[i].title+'</h3></a>'
@@ -85,7 +85,7 @@ router.get('/:url', function(req, res, next) {
                         +  '</div>'
               }
               else {
-                html = html 
+                html = html
                 + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
@@ -166,11 +166,15 @@ router.get('/:type/:title_url', function(req, res, next) {
         linkbar[0] = config.domain;
         linkbar[1] = linkbar[0] + "/cam-nang/" + req.params.type;
         linkbar[2] = linkbar[1] + "/" + req.params.title_url;
-        
+
+        var first = data.data.title.substring(0,1);
+        var last = data.data.title.substring(1);
+        var title = first.toUpperCase() + last.toLowerCase();
+
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
                     + '<a href=' + linkbar[1] + '>'+ url_title +'</a>' + "/"
-                    + '<a href=' + linkbar[2] + '>' + data.data.title +'</a>'
+                    + '<a href=' + linkbar[2] + '>' + title +'</a>'
                     + '</div>';
         done(null, html);
       } else {
@@ -178,7 +182,7 @@ router.get('/:type/:title_url', function(req, res, next) {
       }
     }],
     getDataFooter: function(done) {
-      CamNangSuaChuaNhaModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} } 
+      CamNangSuaChuaNhaModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
               ]).exec(done);
     },
     footer: ['getDataFooter', function(data, done) {
@@ -194,7 +198,7 @@ router.get('/:type/:title_url', function(req, res, next) {
             }
 
             for(var i = 0; i < length; i++) {
-              html = html 
+              html = html
                 + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
@@ -242,7 +246,7 @@ router.get('/:type/:title_url', function(req, res, next) {
             for(var i = 0; i < length; i++) {
               html = html
                       + '<li><a href="#">'+ data.getDataFooter[i].title +'</a></li>'
-            }     
+            }
           }
 
           html = html + '</ul>';
@@ -267,7 +271,7 @@ router.get('/:type/:title_url', function(req, res, next) {
     } else {
       return;
     }
-    
+
   })
 });
 

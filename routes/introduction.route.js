@@ -131,7 +131,7 @@ router.get('/:url', function(req, res, next) {
         linkbar[2] = linkbar[1] + "/" + req.params.url;
 
         var first = data.data.title.substring(0,1);
-        var last = str.substring(1);
+        var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
 
         var html = "<div>"
