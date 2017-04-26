@@ -166,14 +166,14 @@ router.get('/:url', function(req, res, next) {
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
                 +       '<div>'
-                +          '<a href="#" class="full-image">'
+                +          '<a href="'+ config.domain + "/gioi-thieu/"+ data.getDataFooter[i].url + '" class="full-image">'
                 +            '<img alt="'+ data.getDataFooter[i].image.alt + '" src="' + data.getDataFooter[i].image.src +'" style="height:100px; width: 100px" />'
                 +          '</a>'
                 +       '</div>'
                 +     '</div>'
                 +     '<div class="col-sm-10">'
                 +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="data.getDataFooter[i].url">'+ data.getDataFooter[i].title +'</a>'
+                +             '<a href="'+ config.domain +"/gioi-thieu/"+ data.getDataFooter[i].url + '">'+ data.getDataFooter[i].title +'</a>'
                 +         '</h4>'
                 +         '<div class="col-md-12 no-padding-left">'
                 +             '<div class="entry-content">'
@@ -192,7 +192,7 @@ router.get('/:url', function(req, res, next) {
       if(data) {
           var length = -1;
           var html =  '<h4 style="margin:0">'
-                    +     '<a href="'+ config.domain + "/gioi-thieu" +'">Sửa chữa cải tạo Hưng Thịnh</a>'
+                    +     '<a href="'+ config.domain +'">Sửa chữa cải tạo Hưng Thịnh</a>'
                     + '</h4>'
                     + '<hr style="height: 1px; border-top-color: #000; margin:0">';
 
@@ -208,7 +208,7 @@ router.get('/:url', function(req, res, next) {
 
             for(var i = 0; i < length; i++) {
               html = html
-                      + '<li><a href="#">'+ data.getDataFooter[i].title +'</a></li>'
+                + '<li><a href="'+ config.domain + "/gioi-thieu/" + data.getDataFooter[i].url + '">'+ data.getDataFooter[i].title +'</a></li>'
             }
           }
 

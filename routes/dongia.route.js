@@ -21,7 +21,7 @@ router.get('/:url', function(req, res, next) {
 
         console.log("Config ", config );
         linkbar[0] = config.domain;
-        linkbar[1] = linkbar[0] + "/" + req.params.url;
+        linkbar[1] = linkbar[0] + "/don-gia/" + req.params.url;
         var url_title = '';
         switch(req.params.url) {
           case "don-gia-sua-chua-cai-tao":
@@ -68,14 +68,14 @@ router.get('/:url', function(req, res, next) {
               if(i === 0) {
                 html_head = html_head
                         + '<div class="col-md-6">'
-                        +    '<a href="'+ config.domain + "/" + req.params.url +"/" + data.getData[i].url +'">'
+                        +    '<a href="'+ config.domain + "/don-gia/" + req.params.url +"/" + data.getData[i].url +'">'
                         +         '<img width="300" height="200" src="'+ data.getData[i].image.src +'" class="aligncenter wp-post-image" alt="'+data.getData[i].image.alt+'">'
                         +     '</a>'
                         + '</div>'
                         + '<div class="col-md-6 no-padding-left">'
                         +     '<header>'
                         +        '<h3 class="no-margin-top">'
-                        +             '<a href="'+ config.domain + "/"+ req.params.url +"/" + data.getData[i].url +'"><h3 class="no-margin-top">'+data.getData[i].title+'</h3></a>'
+                        +             '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/" + data.getData[i].url +'"><h3 class="no-margin-top">'+data.getData[i].title+'</h3></a>'
                         +         '</h3>'
                         +     '</header>'
                         +     '<div>'
@@ -91,14 +91,14 @@ router.get('/:url', function(req, res, next) {
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
                 +       '<div>'
-                +          '<a href="'+ config.domain + "/"+ req.params.url +"/"  + data.getData[i].url +'" class="full-image">'
+                +          '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/"  + data.getData[i].url +'" class="full-image">'
                 +            '<img alt="'+ data.getData[i].image.alt + '" src="' + data.getData[i].image.src +'" style="height:100px; width: 100px" />'
                 +          '</a>'
                 +       '</div>'
                 +     '</div>'
                 +     '<div class="col-sm-10">'
                 +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="'+ config.domain + "/"+ req.params.url +"/"  + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
+                +             '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/"  + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
                 +         '</h4>'
                 +         '<div class="col-md-12 no-padding-left">'
                 +             '<div class="entry-content">'
@@ -151,7 +151,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         var linkbar = {};
 
         var url_title = "";
-        switch(req.params.url) {
+        switch(req.params.type) {
           case "don-gia-sua-chua-cai-tao":
               url_title = "Đơn giá sửa chữa cải tạo";
               break;
@@ -168,7 +168,7 @@ router.get('/:type/:title_url', function(req, res, next) {
 
         console.log("Config ", config );
         linkbar[0] = config.domain;
-        linkbar[1] = linkbar[0] + "/" + req.params.type;
+        linkbar[1] = linkbar[0] + "/don-gia/" + req.params.type;
         linkbar[2] = linkbar[1] + "/" + req.params.title_url;
 
         var first = data.data.title.substring(0,1);
@@ -186,7 +186,7 @@ router.get('/:type/:title_url', function(req, res, next) {
       }
     }],
     getDataFooter: function(done) {
-      DichVuSuaChuaCaiTaoModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
+      DonGiaModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "type":1, "title":1, "description": 1} }
               ]).exec(done);
     },
     footer: ['getDataFooter', function(data, done) {
@@ -207,14 +207,14 @@ router.get('/:type/:title_url', function(req, res, next) {
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
                 +       '<div>'
-                +          '<a href="'+ config.domain + "/"+ req.params.type + "/"+ req.params.title_url + '" class="full-image">'
+                +          '<a href="'+ config.domain + "/don-gia/"+ data.getDataFooter[i].type + "/"+ data.getDataFooter[i].url + '" class="full-image">'
                 +            '<img alt="'+ data.getDataFooter[i].image.alt + '" src="' + data.getDataFooter[i].image.src +'" style="height:100px; width: 100px" />'
                 +          '</a>'
                 +       '</div>'
                 +     '</div>'
                 +     '<div class="col-sm-10">'
                 +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="'+ config.domain + "/"+ req.params.type + "/"+ req.params.title_url + '">'+ data.getDataFooter[i].title +'</a>'
+                +             '<a href="'+ config.domain + "/don-gia/"+ data.getDataFooter[i].type + "/"+  data.getDataFooter[i].url + '">'+ data.getDataFooter[i].title +'</a>'
                 +         '</h4>'
                 +         '<div class="col-md-12 no-padding-left">'
                 +             '<div class="entry-content">'
@@ -249,7 +249,7 @@ router.get('/:type/:title_url', function(req, res, next) {
 
             for(var i = 0; i < length; i++) {
               html = html
-                      + '<li><a href="#">'+ data.getDataFooter[i].title +'</a></li>'
+                      + '<li><a href="'+ config.domain + "/don-gia/"+ data.getDataFooter[i].type + "/"+  data.getDataFooter[i].url + '">'+ data.getDataFooter[i].title +'</a></li>'
             }
           }
 
@@ -265,6 +265,7 @@ router.get('/:type/:title_url', function(req, res, next) {
     }
     if(data.data) {
       var body = decode(data.data.content);
+      console.log("body: ", body);
       res.render('DonGia/dongiadetail', {
         title: "Sửa chữa cải tạo Hưng Thịnh",
         body: body,

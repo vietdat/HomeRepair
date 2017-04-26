@@ -204,37 +204,6 @@
 </script>
 
 <script>
-  function validateForm() {
-    var title = document.forms["myForm"]["title"].value;
-    var url = document.forms["myForm"]["url"].value;
-    var urlImage = document.forms["myForm"]["urlImage"].value;
-    var altImage = document.forms["myForm"]["altImage"].value;
-    var description = document.forms["myForm"]["description"].value;
-
-    if (title == "" || url == "" || urlImage == "" || altImage == "" ||
-      description == "") {
-      alert("Hãy nhập toàn bộ dữ liệu");
-      return false;
-    } else {
-      $.ajax({
-        url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-
-          console.log('upload successful!\n' + data);
-        },
-        error: function(err) {
-          console.log(err);
-        }
-      });
-    }
-  }
-</script>
-
-<script>
   $("#close-add-article").click(function() {
     $(".add-article-dichvusuachuacaitao").css("display", "none");
     $(".wrap-content").css("opacity", "1");
