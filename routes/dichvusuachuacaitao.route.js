@@ -257,7 +257,7 @@ router.get('/:type/:title_url', function(req, res, next) {
       }
     }],
     getDataFooter: function(done) {
-      DichVuSuaChuaCaiTaoModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
+      DichVuSuaChuaCaiTaoModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "type":1, "url":1, "title":1, "description": 1} }
               ]).exec(done);
     },
     footer: ['getDataFooter', function(data, done) {
@@ -278,14 +278,14 @@ router.get('/:type/:title_url', function(req, res, next) {
                 +    '<div class="row">'
                 +     '<div class="col-sm-2">'
                 +       '<div>'
-                +          '<a href="'+ config.domain + "/"+ req.params.type + "/"+ req.params.title_url + '" class="full-image">'
+                +          '<a href="'+ config.domain + "/dich-vu/"+ data.getDataFooter[i].type + "/"+ data.getDataFooter[i].url + '" class="full-image">'
                 +            '<img alt="'+ data.getDataFooter[i].image.alt + '" src="' + data.getDataFooter[i].image.src +'" style="height:100px; width: 100px" />'
                 +          '</a>'
                 +       '</div>'
                 +     '</div>'
                 +     '<div class="col-sm-10">'
                 +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="'+ config.domain + "/"+ req.params.type + "/"+ req.params.title_url + '">'+ data.getDataFooter[i].title +'</a>'
+                +             '<a href="'+ config.domain + "/dich-vu/"+ data.getDataFooter[i].type + "/"+ data.getDataFooter[i].url + '">'+ data.getDataFooter[i].title +'</a>'
                 +         '</h4>'
                 +         '<div class="col-md-12 no-padding-left">'
                 +             '<div class="entry-content">'
@@ -320,7 +320,7 @@ router.get('/:type/:title_url', function(req, res, next) {
 
             for(var i = 0; i < length; i++) {
               html = html
-                      + '<li><a href="#">'+ data.getDataFooter[i].title +'</a></li>'
+                      + '<li><a href="'+ config.domain + "/dich-vu/"+ data.getDataFooter[i].type + "/"+ data.getDataFooter[i].url + '">'+ data.getDataFooter[i].title +'</a></li>'
             }
           }
 

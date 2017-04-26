@@ -81,6 +81,7 @@ router.post('/add', function(req, res, next) {
       else res.redirect('/hungthinh-admin/don-gia');
     })
   });
+  req.pipe(busboy);
 });
 
 router.post('/delete', function(req, res, next) {
@@ -95,6 +96,21 @@ router.post('/delete', function(req, res, next) {
       res.send('success');
     }
   });
+});
 
-})
+router.post('/edit', function(req, res, next) {
+  var id = req.body.id;
+  DonGiaModel.find({
+    _id: id
+  }, function(err, data) {
+    console.log(err);
+    if (err) {
+      res.send(err);
+    } else {
+      data[0].content = decode(data[0].content);
+      res.send(data);
+    }
+  });
+});
+
 module.exports = router;
