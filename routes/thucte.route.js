@@ -7,9 +7,127 @@ var config = require('../config.js');
 var ThucTeModel = require('../model/thucte.model');
 
 router.get('/', function(req, res, next) {
+  async.auto({
+    thuctedata:function(done) {
+      ThucTeModel.find().lean().exec(done);
+    },
+    dathicong: ['thuctedata',function(data, done) {
+      var flag = 0;
+      var dathuchien_html = '';
+      data.thuctedata.forEach(function(congtrinh, index, arr) {
+        if(congtrinh.type  === 'da-thi-cong') {
+          if(dathuchien_html === '') {
+            dathuchien_html = dathuchien_html
+              +'<div class="col-md-6">'
+              +  '<a href="/thuc-te/da-thi-cong/'+congtrinh.url+'">'
+              +      '<img width="300" height="200" src="'+congtrinh.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+              +  '</a>'
+              +'</div>'
+              +'<div class="col-md-6 no-padding-left">'
+              +  '<div>'
+              +      '<div class="entry-content">'
+              +          '<p>'+congtrinh.description+'...</p>'
+              +      '</div>'
+              +  '</div>'
+              +'</div>'
+              +'<div class="clearfix"></div>'
+              +'<div class="distance-10"></div>'
+            }
+          else {
+            if(flag < 2) {
+              dathuchien_html = dathuchien_html
+                  +'<div class="blog-item col-sm-6">'
+                  +    '<div class="row">'
+                  +        '<div class="col-sm-4">'
+                  +            '<div>'
+                  +                '<a href="/thuc-te/da-thi-cong/'+congtrinh.url+'" class="full-image">'
+                  +                    '<img width="100" height="100" src="'+congtrinh.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+                  +                '</a>'
+                  +            '</div>'
+                  +        '</div>'
+                  +        '<div class="col-sm-8">'
+                  +            '<h4 class="no-padding-top no-margin-top"><a href="/thuc-te/da-thi-cong/'+congtrinh.url+'">'+congtrinh.title+'</a></h4>'
+                  +            '<div class="col-md-12 no-padding-left">'
+                  +                '<div class="entry-content">'
+                  +                    '<p>'+congtrinh.description+'...</p>'
+                  +                '</div>'
+                  +            '</div>'
+                  +        '</div>'
+                  +    '</div>'
+                  +'</div>';
+              flag++;
+            }
+          }
+        }
+      });
+
+      done(null, dathuchien_html);
+    }],
+    dangthicong: ['thuctedata',function(data, done) {
+      var flag = 0;
+      var dangthuchien_html = '';
+
+      data.thuctedata.forEach(function(congtrinh, index, arr) {
+        if(congtrinh.type  === 'dang-thi-cong') {
+          if(dangthuchien_html === '') {
+            dangthuchien_html = dangthuchien_html
+              +'<div class="col-md-6">'
+              +  '<a href="/thuc-te/dang-thi-cong/'+congtrinh.url+'">'
+              +      '<img width="300" height="200" src="'+congtrinh.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+              +  '</a>'
+              +'</div>'
+              +'<div class="col-md-6 no-padding-left">'
+              +  '<div>'
+              +      '<div class="entry-content">'
+              +          '<p>'+congtrinh.description+'...</p>'
+              +      '</div>'
+              +  '</div>'
+              +'</div>'
+              +'<div class="clearfix"></div>'
+              +'<div class="distance-10"></div>'
+            }
+          else {
+            if(flag < 2) {
+              dangthuchien_html = dangthuchien_html
+                  +'<div class="blog-item col-sm-6">'
+                  +    '<div class="row">'
+                  +        '<div class="col-sm-4">'
+                  +            '<div>'
+                  +                '<a href="/thuc-te/dang-thi-cong/'+congtrinh.url+'" class="full-image">'
+                  +                    '<img width="100" height="100" src="'+congtrinh.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+                  +                '</a>'
+                  +            '</div>'
+                  +        '</div>'
+                  +        '<div class="col-sm-8">'
+                  +            '<h4 class="no-padding-top no-margin-top"><a href="/thuc-te/dang-thi-cong/'+congtrinh.url+'">'+congtrinh.title+'</a></h4>'
+                  +            '<div class="col-md-12 no-padding-left">'
+                  +                '<div class="entry-content">'
+                  +                    '<p>'+congtrinh.description+'...</p>'
+                  +                '</div>'
+                  +            '</div>'
+                  +        '</div>'
+                  +    '</div>'
+                  +'</div>';
+              flag++;
+            }
+          }
+        }
+      });
+      done(null, dangthuchien_html);
+    }]
+  }, function(err, data) {
+    if(err) {
+      console.log(err);
+      res.render('ThucTe/thucte', {
+        dathicong: data.dathicong,
+        dangthicong: data.dangthicong
+      });
+    }
     res.render('ThucTe/thucte', {
-      title: "Sửa chữa cải tạo Hưng Thịnh"
+      dathicong: data.dathicong,
+      dangthicong: data.dangthicong
     });
+  });
 });
 
 router.get('/:url', function(req, res, next) {
@@ -136,7 +254,6 @@ router.get('/:url', function(req, res, next) {
     });
   })
 });
-
 
 router.get('/:type/:title_url', function(req, res, next) {
   async.auto({

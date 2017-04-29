@@ -53,39 +53,6 @@
       <div class="six columns">
         <textarea name="content" id="editor2" rows="5" cols="80">
         </textarea>
-
-        <script>
-          CKEDITOR.replace('editor2', {
-            extraPlugins: 'uploadimage,image2',
-            height: 300,
-            filebrowserBrowseUrl: '/Filemanager/',
-            filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-            filebrowserImageUploadUrl: '/fm/',
-            filebrowserFlashUploadUrl: '/fm/',
-            stylesSet: [{
-                name: 'Narrow image',
-                type: 'widget',
-                widget: 'image',
-                attributes: {
-                  'class': 'image-narrow'
-                }
-              },
-              {
-                name: 'Wide image',
-                type: 'widget',
-                widget: 'image',
-                attributes: {
-                  'class': 'image-wide'
-                }
-              }
-            ],
-            // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
-            // resizer (because image size is controlled by widget styles or the image takes maximum
-            // 100% of the editor width).
-            image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-            image2_disableResizer: true
-          });
-        </script>
         <br>
         <button type="submit">Add</button>
         <button type="button" id="close-add-article">Close</button>
@@ -93,42 +60,117 @@
     </form>
   </div>
 
+  <div class="u-full-width edit-article-thucte" style="display:none">
+    <h2>Edit Article</h2>
+    <form name="myForm" class="row" method="POST" action="thuc-te/update"
+     id="user-data" enctype="multipart/form-data">
+      <div class="five columns">
+        <input id="edit-id" type="text" name="id" value="" size="35" style="display:none">
+        Tiêu đề bài viết:
+        <br>
+        <input id="edit-title" type="text" name="title" value="" size="35">
+        <br> Đường đẫn bài viết:
+        <br>
+        <input id="edit-url" type="text" name="url" value="" size="35">
+        <br> Danh mục
+        <br>
+        <select id="edit-type" name="type" style="color:#000">
+          <option value="da-thi-cong">Công trình đã thi công</option>
+          <option value="dang-thi-cong">Công trình đang thi công</option>
+        </select>
+        <br> Đường đẫn image:
+        <br>
+        <input id="edit-imageULR" type="text" name="urlImage" size="35" />
+        <br>
+        <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
+        <br> Chú thích ảnh
+        <br>
+        <input id="edit-altImage" type="text" name="altImage" value="" size="35">
+        <br> Description
+
+        <br>
+        <textarea id="edit-description" name="description" style="color:#000" rows="5" cols="35"></textarea>
+        <br>
+
+      </div>
+
+      <div class="six columns">
+        <textarea name="content" id="editor1" rows="5" cols="80"></textarea>
+        <br>
+
+        <button type="submit" id="edit-article" style="color: #fff">Add</button>
+        <button type="button" id="close-edit-article" style="color: #fff">Close</button>
+      </div>
+    </form>
+  </div>
 </section>
 
-
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script>
-  function validateForm() {
-    var title = document.forms["myForm"]["title"].value;
-    var url = document.forms["myForm"]["url"].value;
-    var urlImage = document.forms["myForm"]["urlImage"].value;
-    var altImage = document.forms["myForm"]["altImage"].value;
-    var description = document.forms["myForm"]["description"].value;
-
-    if (title == "" || url == "" || urlImage == "" || altImage == "" ||
-      description == "") {
-      alert("Hãy nhập toàn bộ dữ liệu");
-      return false;
-    } else {
-      $.ajax({
-        url: 'http://xaydungcaitao.com/hungthinh-admin/upload/',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-
-          console.log('upload successful!\n' + data);
-        },
-        error: function(err) {
-          console.log(err);
+  CKEDITOR.replace('editor2', {
+    extraPlugins: 'uploadimage,image2',
+    height: 300,
+    filebrowserBrowseUrl: '/Filemanager/',
+    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
+    filebrowserImageUploadUrl: '/fm/',
+    filebrowserFlashUploadUrl: '/fm/',
+    stylesSet: [{
+        name: 'Narrow image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-narrow'
         }
-      });
-    }
-  }
+      },
+      {
+        name: 'Wide image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-wide'
+        }
+      }
+    ],
+    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+    // resizer (because image size is controlled by widget styles or the image takes maximum
+    // 100% of the editor width).
+    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+    image2_disableResizer: true
+  });
 </script>
+
+<script>
+  CKEDITOR.replace('editor1', {
+    extraPlugins: 'uploadimage,image2',
+    height: 300,
+    filebrowserBrowseUrl: '/Filemanager/',
+    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
+    filebrowserImageUploadUrl: '/fm/',
+    filebrowserFlashUploadUrl: '/fm/',
+    stylesSet: [{
+        name: 'Narrow image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-narrow'
+        }
+      },
+      {
+        name: 'Wide image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-wide'
+        }
+      }
+    ],
+    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+    // resizer (because image size is controlled by widget styles or the image takes maximum
+    // 100% of the editor width).
+    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+    image2_disableResizer: true
+  });
+</script>
+<!-- End Document -->
 <script>
   $("#close-add-article").click(function() {
     $(".add-article-thucte").css("display", "none");
@@ -158,6 +200,40 @@
         id: id
       },
     });
+  });
+  $(".editCategory").click(function() {
+    var id = $(this).attr('idArticle');
+    $(".edit-article-thucte").css("display", "block");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "-1");
+    $("#edit-id").val(id);
+
+    $.ajax({
+      type: "POST",
+      url: "thuc-te/edit",
+      data: {
+        id: id
+      },
+      success: function(data) {
+        if (data){
+          $('#edit-title').val(data[0].title);
+          $('#edit-url').val(data[0].url);
+          $('#edit-type').val(data[0].type);
+          $('#edit-imageULR').val(data[0].image.src);
+          $('#edit-altImage').val(data[0].image.alt);
+          $('#edit-description').val(data[0].description);
+           CKEDITOR.instances.editor1.insertHtml(data[0].content);
+        }
+        else {
+          alert("Khong the edit, lien he vs admin de duoc fix loi");
+        }
+      }
+    });
+  });
+  $("#close-edit-article").click(function() {
+    $(".edit-article-thucte").css("display", "none");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "1");
   });
 </script>
 

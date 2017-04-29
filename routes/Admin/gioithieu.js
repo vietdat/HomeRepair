@@ -24,6 +24,7 @@ router.get('/', function(req, res, next) {
   })
   // res.render('index', { title: 'Express' });
 });
+
 router.post('/add', function(req, res, next) {
   var title = "";
   var url = "";
@@ -97,7 +98,6 @@ router.post('/delete', function(req, res, next) {
 
 });
 
-
 router.post('/edit', function(req, res, next) {
   var id = req.body.id;
   Introduction.find({
@@ -114,7 +114,6 @@ router.post('/edit', function(req, res, next) {
 });
 
 router.post('/update', function(req, res, next) {
-
   var url = "",
     id = "",
     title = "",

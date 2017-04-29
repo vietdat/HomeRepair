@@ -84,7 +84,7 @@ form button{
 }
 .add-button{
     position: absolute;
-    right:70px;
+    left:70px;
     z-index: 1;
     bottom: 90px;
 }
