@@ -21,6 +21,7 @@ var dongia                = require('./routes/dongia.route');
 var mangluoi                = require('./routes/mangluoi.route');
 var lienhe                = require('./routes/lienhe.route');
 var thucte                = require('./routes/thucte.route');
+var khachhang                = require('./routes/khachhang.route');
 
 //admin router
 var administrator = require('./routes/Admin/administrator');
@@ -109,7 +110,7 @@ app.use('/don-gia', dongia);
 app.use('/mang-luoi', mangluoi);
 app.use('/lien-he', lienhe);
 app.use('/thuc-te', thucte);
-
+app.use('/khach-hang', khachhang);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

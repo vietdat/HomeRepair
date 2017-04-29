@@ -123,7 +123,8 @@ td button {
 .add-article-dichvusuachuacaitao, .edit-article-dichvusuachuacaitao,
 .add-article-thucte, .edit-article-thucte,
 .add-article-mangluoi, .edit-article-mangluoi,
-.add-article-dongia, .edit-article-dongia{
+.add-article-dongia, .edit-article-dongia,
+.add-article-khachhang, .edit-article-khachhang{
     position: fixed;
     height: 100%;
     top:0;
