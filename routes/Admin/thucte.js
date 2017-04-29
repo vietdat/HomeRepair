@@ -34,8 +34,10 @@ router.post('/add', function(req, res, next) {
     headers: req.headers
   });
   busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    urlImage = filename;
-    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', filename)));
+    var d = new Date();
+    var n = d.getTime().toString();
+    urlImage = n + filename;
+    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', urlImage)));
   });
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
     console.log('Field [' + fieldname + ']: value: ');

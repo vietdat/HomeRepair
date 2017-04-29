@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var DonGiaModel = require('../../model/dongia.model');
+var KhachHangModel = require('../../model/khachhang.model');
 var decode = require('decode-html');
 var Busboy = require('busboy');
 var fs = require('fs');
@@ -8,14 +8,14 @@ var path = require('path');
 var mongoose = require('mongoose');
 
 router.get('/', function(req, res, next) {
-  DonGiaModel.find(function(err, data) {
+  KhachHangModel.find(function(err, data) {
     if (err) throw err;
     else {
       data.forEach(function(element) {
         element.content = decode(element.content);
       }, this);
       res.locals.data = data;
-      res.render('Admin/dongia', {
+      res.render('Admin/khachhang', {
         layout: 'Admin/layout'
       });
     }
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/add', function(req, res, next) {
   var url = "",
-    title = "",
+    name = "",
     content = "",
     altImage = "",
     urlImage = "",
@@ -44,44 +44,32 @@ router.post('/add', function(req, res, next) {
   });
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
     switch (fieldname) {
-      case 'title':
-        title = val;
-        break;
-      case 'url':
-        url = val;
+      case 'name':
+        name = val;
         break;
       case 'altImage':
         altImage = val;
         break;
-      case 'description':
-        description = val;
-        break;
       case 'content':
         content = val;
-        break;
-      case 'type':
-        type = val;
         break;
       default:
         break;
     }
   });
   busboy.on('finish', function() {
-    var item = new DonGiaModel({
-      url: url,
-      title: title,
+    var item = new KhachHangModel({
+      name: name,
       content: content,
       image: {
         'alt': altImage,
         'src': '/images/' + urlImage
-      },
-      description: description,
-      type: type
+      }
     });
 
     item.save(function(err) {
       if (err) throw err;
-      else res.redirect('/hungthinh-admin/don-gia');
+      else res.redirect('/hungthinh-admin/khach-hang');
     })
   });
   req.pipe(busboy);
@@ -89,7 +77,7 @@ router.post('/add', function(req, res, next) {
 
 router.post('/delete', function(req, res, next) {
   var id = req.body.id;
-  DonGiaModel.remove({
+  KhachHangModel.remove({
     _id: id
   }, function(err) {
     console.log(err);
@@ -103,7 +91,7 @@ router.post('/delete', function(req, res, next) {
 
 router.post('/edit', function(req, res, next) {
   var id = req.body.id;
-  DonGiaModel.find({
+  KhachHangModel.find({
     _id: id
   }, function(err, data) {
     console.log(err);
@@ -120,7 +108,7 @@ router.post('/update', function(req, res, next) {
 
   var url = "",
     id = "",
-    title = "",
+    name = "",
     content = "",
     altImage = "",
     urlImage = "",
@@ -148,14 +136,11 @@ router.post('/update', function(req, res, next) {
   });
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
     switch (fieldname) {
-      case 'title':
-        title = val;
+      case 'name':
+        name = val;
         break;
       case 'id':
         id =  mongoose.Types.ObjectId(val);
-        break;
-      case 'url':
-        url = val;
         break;
       case 'altImage':
         altImage = val;
@@ -164,14 +149,8 @@ router.post('/update', function(req, res, next) {
         urlImage2 = val.substring(8);
         console.log("url image2: ", urlImage);
         break;
-      case 'description':
-        description = val;
-        break;
       case 'content':
         content = val;
-        break;
-      case 'type':
-        type = val;
         break;
       default:
         break;
@@ -182,24 +161,21 @@ router.post('/update', function(req, res, next) {
       urlImage = urlImage2;
     }
     var item = {
-      url: url,
-      title: title,
+      name: name,
       content: content,
       image: {
         'alt': altImage,
         'src': '/images/' + urlImage
-      },
-      description: description,
-      type: type
+      }
     };
 
-    DonGiaModel.findOneAndUpdate({
+    KhachHangModel.findOneAndUpdate({
       _id: id
     },item,{
       upsert: true
     },function(err, doc){
         if (err) return res.send(500, { error: err });
-        else res.redirect('/hungthinh-admin/don-gia');
+        else res.redirect('/hungthinh-admin/khach-hang');
     });
   });
   req.pipe(busboy);
