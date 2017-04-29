@@ -22,11 +22,16 @@ router.get('/', function(req, res, next) {
                     + '</div>';
         done(null, html);
     },
-    getData: function(done) {
-      MangLuoiModel.aggregate([ { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
-              ]).exec(done);
+    checkPage: function(done) {
+      var query = {};
+      MangLuoiModel.count(query, done);
     },
-    content: ['getData', function(data, done) {
+    getData: function(done) {
+      var to = req.query.page_size*10;
+      var from = (req.query.page_size - 1)*10;
+      MangLuoiModel.find().skip(from).limit(to).exec(done);
+    },
+    content: ['checkPage', 'getData', function(data, done) {
       var html = '';
       var html_head = '';
 
@@ -88,6 +93,19 @@ router.get('/', function(req, res, next) {
             }
           }
         }
+
+
+        var numOfPage = Math.floor(data.checkPage/10) + 1;
+
+        if(numOfPage > 1) {
+          html = html + '<ul class="pagination right">';
+
+          for(var i = 0; i < numOfPage; i++) {
+            html = html + '<li><a href="/mang-luoi?page_size='+ (i+1) +'">'+ (i+1) +'</a></li>'
+          }
+            html = html + '</ul>';
+        }
+
         var res = {};
         res['html'] = html;
         res['html_head'] = html_head;
