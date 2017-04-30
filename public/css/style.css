@@ -254,7 +254,7 @@ figure.image-wide img, img.image-wide {
 }
 
 .wrap {
-    height: 130px;
+    height: 300px;
     border: 1px solid red;
     overflow: hidden;
 }

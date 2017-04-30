@@ -27,6 +27,6 @@ function autoScroll(autoScrId, time, numOfItem) {
             loop();
         }
         $(document).ready(function() {
-            autoScroll('sc1', 30000, 6);
+            autoScroll('sc1', 30000, 8);
             autoScroll('sc2', 35000, 5);
         })
