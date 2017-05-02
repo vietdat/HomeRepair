@@ -16,11 +16,9 @@
     "escape-html": "^1.0.3",
     "express": "~4.14.0",
     "express-session": "^1.15.2",
-
+    "file-manager-js": "git+https://github.com/itexussoft/file-manager-js.git",
     "forever-monitor": "^1.7.1",
-
     "formidable": "^1.1.1",
-
     "hbs": "~4.0.1",
     "html-entities": "^1.1.3",
     "install": "^0.8.7",

@@ -101,6 +101,7 @@ app.use('/fm', fm);
 //Admin page
 app.use('/hungthinh-admin', administrator);
 // uncomment after placing your favicon in /public
+var browser = require('file-manager-js');
 
 
 app.use('/', home);
@@ -113,6 +114,10 @@ app.use('/lien-he', lienhe);
 app.use('/thuc-te', thucte);
 app.use('/khach-hang', khachhang);
 app.use('/dich-vu-thiet-ke', dichvuthietke);
+
+// app.post('/uploader1/upload', browser.upload);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,3 @@
-<script src="/js/upload.js"></script>
-
 <section class="nine columns main-content" style="position: relative">
   <div>
     <table>
@@ -110,60 +108,22 @@
 
 </section>
 
-
-<script>
-  function validateForm() {
-    var title = document.forms["myForm"]["title"].value;
-    var url = document.forms["myForm"]["url"].value;
-    var urlImage = document.forms["myForm"]["urlImage"].value;
-    var altImage = document.forms["myForm"]["altImage"].value;
-    var description = document.forms["myForm"]["description"].value;
-
-    if (title == "" || url == "" || urlImage == "" || altImage == "" ||
-      description == "") {
-      alert("Hãy nhập toàn bộ dữ liệu");
-      return false;
-    }
-  }
-</script>
-
 <! --------CKEDITOR--------------- -->
 <script>
+  CKEDITOR.config.extraPlugins = 'filebrowser';
+  CKEDITOR.config.language = 'en';
+  CKEDITOR.config.fillEmptyBlocks = false;
   CKEDITOR.replace('editor2',{
-    extraPlugins: 'uploadimage,image2',
-    height: 300,
     filebrowserBrowseUrl: '/Filemanager/',
-    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-    filebrowserImageUploadUrl: '/fm/',
-    filebrowserFlashUploadUrl: '/fm/',
-    stylesSet: [{
-        name: 'Narrow image',
-        type: 'widget',
-        widget: 'image',
-        attributes: {
-          'class': 'image-narrow'
-        }
-      },
-      {
-        name: 'Wide image',
-        type: 'widget',
-        widget: 'image',
-        attributes: {
-          'class': 'image-wide'
-        }
-      }
-    ],
-    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
-    // resizer (because image size is controlled by widget styles or the image takes maximum
-    // 100% of the editor width).
-    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-    image2_disableResizer: true
+    filebrowserUploadUrl: '/uploader1/upload?Type=File',
+    filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
+    filebrowserFlashUploadUrl: '/uploader1/upload?Type=Flash'
   });
 </script>
 
 <script>
   CKEDITOR.replace('editor1',{
-    extraPlugins: 'uploadimage,image2',
+    //extraPlugins: 'uploadimage,image2',
     height: 300,
     filebrowserBrowseUrl: '/Filemanager/',
     filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',

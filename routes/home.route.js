@@ -5,7 +5,9 @@ var async = require('async');
 var DonGiaModel = require('../model/dongia.model');
 var MangLuoiModel = require('../model/mangluoi.model');
 var DichVuSuaChuaCaiTaoModel = require('../model/dichvusuachuacaitao.model');
-
+var browser = require('file-manager-js');
+var Busboy = require('busboy');
+var path = require('path');
 
 router.get('/home', function(req, res, next) {
   res.render('Home/homepage', {
@@ -264,6 +266,27 @@ router.get('/', function(req, res, next) {
     });
 
   });
+});
+
+router.post('/uploader1/upload', function(req, res) {
+  var fs = require('fs');
+  var busboy = new Busboy({
+    headers: req.headers
+  });
+
+  busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+    var d = new Date();
+    var n = d.getTime().toString();
+    urlImage = n + filename;
+    console.log("Url image: ", urlImage);
+    console.log("process.env.PWD: ", process.env.PWD);
+    file.pipe(fs.createWriteStream(path.join('http://localhost:3000/', 'public/images', urlImage)));
+  });
+
+  busboy.on('finish', function() {
+    res.send("html");
+  });
+  req.pipe(busboy);
 });
 
 module.exports = router;

@@ -39,6 +39,7 @@ router.post('/add', function(req, res, next) {
     var d = new Date();
     var n = d.getTime().toString();
     urlImage = n + filename;
+    console.log("process.env.PWD: ", process.env.PWD);
     file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', urlImage)));
   });
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
