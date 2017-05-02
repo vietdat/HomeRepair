@@ -84,9 +84,9 @@
     extraPlugins: 'uploadimage,image2',
     height: 300,
     filebrowserBrowseUrl: '/Filemanager/',
-    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-    filebrowserImageUploadUrl: '/fm/',
-    filebrowserFlashUploadUrl: '/fm/',
+    filebrowserUploadUrl: '/uploader1/upload?Type=File',
+    filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
+    filebrowserFlashUploadUrl: '/uploader1/upload?Type=Flash',
     stylesSet: [{
         name: 'Narrow image',
         type: 'widget',
@@ -117,9 +117,9 @@
     extraPlugins: 'uploadimage,image2',
     height: 300,
     filebrowserBrowseUrl: '/Filemanager/',
-    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-    filebrowserImageUploadUrl: '/fm/',
-    filebrowserFlashUploadUrl: '/fm/',
+    filebrowserUploadUrl: '/uploader1/upload?Type=File',
+    filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
+    filebrowserFlashUploadUrl: '/uploader1/upload?Type=Flash',
     stylesSet: [{
         name: 'Narrow image',
         type: 'widget',
@@ -160,21 +160,29 @@
   $(".deleteCategory").click(function() {
     var cButton = $(this);
     var id = $(this).attr('idArticle');
-    $.ajax({
-      type: "POST",
-      success: function(result) {
-        if (result == 'success')
-          cButton.parent().parent().remove();
-        else {
-          alert(result);
-        }
+    var retVal = confirm("Do you want to continue ?");
+    if( retVal == true ){
+      $.ajax({
+        type: "POST",
+        success: function(result) {
+          if (result == 'success')
+            cButton.parent().parent().remove();
+          else {
+            alert(result);
+          }
 
-      },
-      url: "khach-hang/delete",
-      data: {
-        id: id
-      },
-    });
+        },
+        url: "khach-hang/delete",
+        data: {
+          id: id
+        },
+      });
+      return true;
+    }
+    else{
+      return false;
+    }
+
   });
 
   $(".editCategory").click(function() {

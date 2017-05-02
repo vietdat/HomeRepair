@@ -10,11 +10,14 @@ var Busboy = require('busboy');
 var path = require('path');
 
 router.get('/home', function(req, res, next) {
-  res.render('Home/homepage', {
-  	title: "Sửa chữa cải tạo Hưng Thịnh",
-  	body: "body"
-  });
+  res.redirect('/');
 });
+
+var subString = function(str) {
+  var res = str.substring(0, 110);
+  res = res + '...';
+  return res;
+}
 
 router.get('/', function(req, res, next) {
   async.auto({
@@ -60,7 +63,7 @@ router.get('/', function(req, res, next) {
                   +            '<h4 class="no-padding-top no-margin-top"><a href="/don-gia/don-gia-sua-chua-cai-tao/'+dongia.url+'">'+dongia.title+'</a></h4>'
                   +            '<div class="col-md-12 no-padding-left">'
                   +                '<div class="entry-content">'
-                  +                    '<p>'+dongia.description+'...</p>'
+                  +                    '<p>'+ subString(dongia.description) +'...</p>'
                   +                '</div>'
                   +            '</div>'
                   +        '</div>'
@@ -114,7 +117,7 @@ router.get('/', function(req, res, next) {
                   +            '<h4 class="no-padding-top no-margin-top"><a href="/don-gia/don-gia-xay-dung-moi/'+dongia.url+'">'+dongia.title+'</a></h4>'
                   +            '<div class="col-md-12 no-padding-left">'
                   +                '<div class="entry-content">'
-                  +                    '<p>'+dongia.description+'...</p>'
+                  +                    '<p>'+subString(dongia.description)+'...</p>'
                   +                '</div>'
                   +            '</div>'
                   +        '</div>'
@@ -174,7 +177,7 @@ router.get('/', function(req, res, next) {
                 +            '<h4 class="no-padding-top no-margin-top"><a href="/mang-luoi/'+mangluoi.url+'">'+mangluoi.title+'</a></h4>'
                 +            '<div class="col-md-12 no-padding-left">'
                 +                '<div class="entry-content">'
-                +                    '<p>'+mangluoi.description+'...</p>'
+                +                    '<p>'+subString(dongia.description)+'...</p>'
                 +                '</div>'
                 +            '</div>'
                 +        '</div>'
@@ -233,7 +236,7 @@ router.get('/', function(req, res, next) {
                 +            '<h4 class="no-padding-top no-margin-top"><a href="/dich-vu/'+dichvu.type+"/" +dichvu.url+'">'+dichvu.title+'</a></h4>'
                 +            '<div class="col-md-12 no-padding-left">'
                 +                '<div class="entry-content">'
-                +                    '<p>'+dichvu.description+'...</p>'
+                +                    '<p>'+subString(dongia.description)+'...</p>'
                 +                '</div>'
                 +            '</div>'
                 +        '</div>'
@@ -270,6 +273,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/uploader1/upload', function(req, res) {
   var fs = require('fs');
+
+  var urlImage = '';
+
   var busboy = new Busboy({
     headers: req.headers
   });
@@ -280,11 +286,19 @@ router.post('/uploader1/upload', function(req, res) {
     urlImage = n + filename;
     console.log("Url image: ", urlImage);
     console.log("process.env.PWD: ", process.env.PWD);
-    file.pipe(fs.createWriteStream(path.join('http://localhost:3000/', 'public/images', urlImage)));
+    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', urlImage)));
   });
 
   busboy.on('finish', function() {
-    res.send("html");
+    html = "";
+   html += "<script type='text/javascript'>";
+   html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+   html += "    var url     = \"/images/" + urlImage + "\";";
+   html += "    var message = \"Uploaded file successfully\";";
+   html += "";
+   html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+   html += "</script>";
+    res.send(html);
   });
   req.pipe(busboy);
 });

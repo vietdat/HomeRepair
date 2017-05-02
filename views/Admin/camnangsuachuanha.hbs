@@ -114,6 +114,7 @@
   CKEDITOR.config.language = 'en';
   CKEDITOR.config.fillEmptyBlocks = false;
   CKEDITOR.replace('editor2',{
+    extraPlugins: 'uploadimage,image2',
     filebrowserBrowseUrl: '/Filemanager/',
     filebrowserUploadUrl: '/uploader1/upload?Type=File',
     filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
@@ -123,12 +124,12 @@
 
 <script>
   CKEDITOR.replace('editor1',{
-    //extraPlugins: 'uploadimage,image2',
+    extraPlugins: 'uploadimage,image2',
     height: 300,
     filebrowserBrowseUrl: '/Filemanager/',
-    filebrowserUploadUrl: '/Filemanager?mode=add&path=/UserFiles/Image/',
-    filebrowserImageUploadUrl: '/fm/',
-    filebrowserFlashUploadUrl: '/fm/',
+    filebrowserUploadUrl: '/uploader1/upload?Type=File',
+    filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
+    filebrowserFlashUploadUrl: '/uploader1/upload?Type=Flash',
     stylesSet: [{
         name: 'Narrow image',
         type: 'widget',
@@ -154,7 +155,7 @@
   });
 </script>
 
-<!--------- Close ---------- -->
+<!-- Close  -->
 <script>
   $("#close-add-article").click(function() {
     $(".add-article-camnangsuachuanha").css("display", "none");
@@ -169,20 +170,29 @@
   $(".deleteCategory").click(function() {
     var cButton = $(this);
     var id = $(this).attr('idArticle');
-    $.ajax({
-      type: "POST",
-      success: function(result) {
-        if (result == 'success')
-          cButton.parent().parent().remove();
-        else {
-          alert(result);
-        }
-      },
-      url: "cam-nang-sua-chua-nha/delete",
-      data: {
-        id: id
-      },
-    });
+
+    var retVal = confirm("Ban co chac chan la xoa ???");
+    if( retVal == true ){
+      $.ajax({
+        type: "POST",
+        success: function(result) {
+          if (result == 'success')
+            cButton.parent().parent().remove();
+          else {
+            alert(result);
+          }
+        },
+        url: "cam-nang-sua-chua-nha/delete",
+        data: {
+          id: id
+        },
+      });
+      return true;
+    }
+    else{
+      return false;
+    }
+
   });
   $(".editCategory").click(function() {
     var id = $(this).attr('idArticle');
