@@ -100,7 +100,7 @@ router.get('/', function(req, res, next) {
       console.log(err);
     }
     res.render('GioiThieu/gioithieu', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title: "Sửa chữa cải tạo Hưng Thịnh chuyên xây dựng mới, sửa chữa cải tạo nhà ở, shop đồ, quán cafe",
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
@@ -134,6 +134,8 @@ router.get('/:url', function(req, res, next) {
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
 
+        req.url_title = title;
+        
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
                     + '<a href=' + linkbar[1] + '>Giới thiệu</a>' + "/"
@@ -225,7 +227,7 @@ router.get('/:url', function(req, res, next) {
     if(data.data) {
       var body = decode(data.data.content);
       res.render('GioiThieu/suachuacaitaoquan', {
-        title: "Sửa chữa cải tạo Hưng Thịnh",
+        title: req.url_title + "Sửa chữa cải tạo Hưng Thịnh chuyên xây dựng mới, sửa chữa cải tạo nhà ở, shop đồ, quán cafe",
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,

@@ -8,6 +8,10 @@ var DonGiaModel = require('../model/dongia.model');
 
 router.get('/:url', function(req, res, next) {
   async.auto({
+    checkPage: function(done) {
+      var query = {type : req.params.url};
+      DonGiaModel.count(query, done);
+    },
     linkbar:function(done) {
         var path = req.path;
         var linkbar = {};
@@ -37,6 +41,7 @@ router.get('/:url', function(req, res, next) {
               url_title = "";
               break;
         }
+        req.url_title = url_title;
 
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
@@ -45,10 +50,9 @@ router.get('/:url', function(req, res, next) {
         done(null, html);
     },
     getData: function(done) {
-      DonGiaModel.aggregate([
-          { $match : {type : req.params.url}},
-          { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
-              ]).exec(done);
+      var to = req.query.page_size*10;
+      var from = (req.query.page_size - 1)*10;
+      DonGiaModel.find({type : req.params.url}).skip(from).limit(to).exec(done);
     },
     content: ['getData', function(data, done) {
       var html = '';
@@ -87,36 +91,50 @@ router.get('/:url', function(req, res, next) {
               }
               else {
                 html = html
-                + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
-                +    '<div class="row">'
-                +     '<div class="col-sm-2">'
-                +       '<div>'
-                +          '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/"  + data.getData[i].url +'" class="full-image">'
-                +            '<img alt="'+ data.getData[i].image.alt + '" src="' + data.getData[i].image.src +'" style="height:100px; width: 100px" />'
-                +          '</a>'
-                +       '</div>'
-                +     '</div>'
-                +     '<div class="col-sm-10">'
-                +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/"  + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
-                +         '</h4>'
-                +         '<div class="col-md-12 no-padding-left">'
-                +             '<div class="entry-content">'
-                +                 '<p>'+ data.getData[i].description +'...</p>'
-                +             '</div>'
-                +         '</div>'
-                +      '</div>'
-                +   '</div>'
-                + '</div>'
+                  + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
+                  +    '<div class="row">'
+                  +     '<div class="col-sm-2">'
+                  +       '<div>'
+                  +          '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/"  + data.getData[i].url +'" class="full-image">'
+                  +            '<img alt="'+ data.getData[i].image.alt + '" src="' + data.getData[i].image.src +'" style="height:100px; width: 100px" />'
+                  +          '</a>'
+                  +       '</div>'
+                  +     '</div>'
+                  +     '<div class="col-sm-10">'
+                  +         '<h4 class="no-padding-top no-margin-top">'
+                  +             '<a href="'+ config.domain + "/don-gia/"+ req.params.url +"/"  + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
+                  +         '</h4>'
+                  +         '<div class="col-md-12 no-padding-left">'
+                  +             '<div class="entry-content">'
+                  +                 '<p>'+ data.getData[i].description +'...</p>'
+                  +             '</div>'
+                  +         '</div>'
+                  +      '</div>'
+                  +   '</div>'
+                  + '</div>'
               }
             }
           }
+      }
+
+      var numOfPage = Math.floor(data.checkPage/10) + 1;
+
+      if(numOfPage > 1) {
+        html = html + '<ul class="pagination right">';
+
+        for(var i = 0; i < numOfPage; i++) {
+          html = html + '<li><a href="/don-gia/'+req.params.url+'?page_size='+ (i+1) +'">'+ (i+1) +'</a></li>'
         }
-        var res = {};
-        res['html'] = html;
-        res['html_head'] = html_head;
-        console.log("res ", res);
-        done(null, res);
+          html = html + '</ul>';
+      }
+
+      var res = {};
+      res['html'] = html;
+      res['html_head'] = html_head;
+
+      console.log("res ", res);
+
+      done(null, res);
     }]
   },
   function(err, data) {
@@ -124,7 +142,7 @@ router.get('/:url', function(req, res, next) {
       console.log(err);
     }
     res.render('DonGia/dongia', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title:   req.url_title + " - Sửa chửa cải tạo, xây dựng mới nhà, shop đồ tại Hồ Chí Minh với giá cạnh tranh nhất",
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
@@ -175,6 +193,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
 
+        req.url_title = url_title + ' - ' + title;
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
                     + '<a href=' + linkbar[1] + '>'+ url_title +'</a>' + "/"
@@ -267,7 +286,7 @@ router.get('/:type/:title_url', function(req, res, next) {
       var body = decode(data.data.content);
       console.log("body: ", body);
       res.render('DonGia/dongiadetail', {
-        title: "Sửa chữa cải tạo Hưng Thịnh",
+        title: req.url_title + " - Sửa chữa cải tạo Hưng Thịnh",
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
