@@ -386,7 +386,7 @@ router.get('/:type/:title_url', function(req, res, next) {
     if(data.data) {
       var body = decode(data.data.content);
       res.render('ThucTe/congtrinhdetail', {
-        title: req,url_title + " - Hình ảnh xây dựng mới, sửa chữa cải tạo tại các công trình tại Hồ Chí Minh",
+        title: req.url_title + " - Hình ảnh xây dựng mới, sửa chữa cải tạo tại các công trình tại Hồ Chí Minh",
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,

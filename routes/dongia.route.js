@@ -52,12 +52,9 @@ router.get('/:url', function(req, res, next) {
     getData: function(done) {
       var to = req.query.page_size*10;
       var from = (req.query.page_size - 1)*10;
-      DonGiaModel.aggregate([
-          { $match : {type : req.params.url}},
-          { $project : { _id: 0, "url":1, "image":1, "title":1, "description": 1} }
-              ]).skip(from).limit(to).exec(done);
+      DonGiaModel.find({type : req.params.url}).skip(from).limit(to).exec(done);
     },
-    content: ['checkPage', 'getData', function(data, done) {
+    content: ['getData', function(data, done) {
       var html = '';
       var html_head = '';
 
@@ -118,24 +115,26 @@ router.get('/:url', function(req, res, next) {
               }
             }
           }
+      }
+
+      var numOfPage = Math.floor(data.checkPage/10) + 1;
+
+      if(numOfPage > 1) {
+        html = html + '<ul class="pagination right">';
+
+        for(var i = 0; i < numOfPage; i++) {
+          html = html + '<li><a href="/don-gia/'+req.params.url+'?page_size='+ (i+1) +'">'+ (i+1) +'</a></li>'
         }
+          html = html + '</ul>';
+      }
 
-        var numOfPage = Math.floor(data.checkPage/10) + 1;
+      var res = {};
+      res['html'] = html;
+      res['html_head'] = html_head;
 
-        if(numOfPage > 1) {
-          html = html + '<ul class="pagination right">';
+      console.log("res ", res);
 
-          for(var i = 0; i < numOfPage; i++) {
-            html = html + '<li><a href=/don-gia/'+req.params.url+'?page_size='+ (i+1) +'">'+ (i+1) +'</a></li>'
-          }
-            html = html + '</ul>';
-        }
-
-        var res = {};
-        res['html'] = html;
-        res['html_head'] = html_head;
-        console.log("res ", res);
-        done(null, res);
+      done(null, res);
     }]
   },
   function(err, data) {
@@ -143,7 +142,7 @@ router.get('/:url', function(req, res, next) {
       console.log(err);
     }
     res.render('DonGia/dongia', {
-      title:   req.url_title + " - Sửa chữa cải tạo Hưng Thịnh",
+      title:   req.url_title + " - Sửa chửa cải tạo, xây dựng mới nhà, shop đồ tại Hồ Chí Minh với giá cạnh tranh nhất",
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
