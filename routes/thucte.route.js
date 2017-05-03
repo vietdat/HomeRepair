@@ -247,7 +247,7 @@ router.get('/:url', function(req, res, next) {
       console.log(err);
     }
     res.render('ThucTe/congtrinh', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title: "Hình ảnh thực tế các công trình đã thi công - dịch vụ xây dựng mới, sửa chữa cải tạo Hưng Thịnh",
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
@@ -294,6 +294,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
 
+        req.url_title = title;
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
                     + '<a href=' + linkbar[1] + '>'+ url_title +'</a>' + "/"
@@ -385,7 +386,7 @@ router.get('/:type/:title_url', function(req, res, next) {
     if(data.data) {
       var body = decode(data.data.content);
       res.render('ThucTe/congtrinhdetail', {
-        title: "Sửa chữa cải tạo Hưng Thịnh",
+        title: req,url_title + " - Hình ảnh xây dựng mới, sửa chữa cải tạo tại các công trình tại Hồ Chí Minh",
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,

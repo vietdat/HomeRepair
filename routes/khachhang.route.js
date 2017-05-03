@@ -57,7 +57,7 @@ router.get('/', function(req, res, next) {
       console.log(err);
     }
     res.render('KhachHang/khachhang', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title: "Phản hồi khách hàng sau khi sử dụng dịch vụ xây dựng mới, sửa chữa cải tạo tại sửa chữa cải tạo Hưng Thịnh",
       content: data.content,
       linkbar: data.linkbar
     });

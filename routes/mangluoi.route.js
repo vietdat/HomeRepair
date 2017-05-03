@@ -68,32 +68,31 @@ router.get('/', function(req, res, next) {
               }
               else {
                 html = html
-                + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
-                +    '<div class="row">'
-                +     '<div class="col-sm-2">'
-                +       '<div>'
-                +          '<a href="'+ config.domain + "/mang-luoi/" + data.getData[i].url +'" class="full-image">'
-                +            '<img alt="'+ data.getData[i].image.alt + '" src="' + data.getData[i].image.src +'" style="height:100px; width: 100px" />'
-                +          '</a>'
-                +       '</div>'
-                +     '</div>'
-                +     '<div class="col-sm-10">'
-                +         '<h4 class="no-padding-top no-margin-top">'
-                +             '<a href="'+ config.domain + "/mang-luoi/" + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
-                +         '</h4>'
-                +         '<div class="col-md-12 no-padding-left">'
-                +             '<div class="entry-content">'
-                +                 '<p>'+ data.getData[i].description +'...</p>'
-                +             '</div>'
-                +         '</div>'
-                +      '</div>'
-                +   '</div>'
-                + '</div>'
+                  + '<div class="col-sm-12 margin-buttom-10 no-padding-left">'
+                  +    '<div class="row">'
+                  +     '<div class="col-sm-2">'
+                  +       '<div>'
+                  +          '<a href="'+ config.domain + "/mang-luoi/" + data.getData[i].url +'" class="full-image">'
+                  +            '<img alt="'+ data.getData[i].image.alt + '" src="' + data.getData[i].image.src +'" style="height:100px; width: 100px" />'
+                  +          '</a>'
+                  +       '</div>'
+                  +     '</div>'
+                  +     '<div class="col-sm-10">'
+                  +         '<h4 class="no-padding-top no-margin-top">'
+                  +             '<a href="'+ config.domain + "/mang-luoi/" + data.getData[i].url +'"><h3 class="no-padding-top no-margin-top">'+ data.getData[i].title +'</h3></a>'
+                  +         '</h4>'
+                  +         '<div class="col-md-12 no-padding-left">'
+                  +             '<div class="entry-content">'
+                  +                 '<p>'+ data.getData[i].description +'...</p>'
+                  +             '</div>'
+                  +         '</div>'
+                  +      '</div>'
+                  +   '</div>'
+                  + '</div>'
               }
             }
           }
         }
-
 
         var numOfPage = Math.floor(data.checkPage/10) + 1;
 
@@ -118,7 +117,7 @@ router.get('/', function(req, res, next) {
       console.log(err);
     }
     res.render('MangLuoi/mangluoi', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title: "Dịch vụ xây dựng mới, sửa chữa cải tạo tại các quận,huyện Hồ Chí Minh",
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
@@ -158,6 +157,9 @@ router.get('/:url', function(req, res, next) {
                     + '<a href=' + linkbar[1] + '>Mạng lưới</a>' + "/"
                     + '<a href=' + linkbar[2] + '>' + title +'</a>'
                     + '</div>';
+
+        req.url_title = title;
+
         done(null, html);
       } else {
         done();
@@ -244,7 +246,7 @@ router.get('/:url', function(req, res, next) {
     if(data.data) {
       var body = decode(data.data.content);
       res.render('MangLuoi/mangluoidetail', {
-        title: "Sửa chữa cải tạo Hưng Thịnh",
+        title: req.url_title + " - Chuyên xây dựng mới, sửa chữa cải tạo tại Hồ Chí Minh - Sài Gòn",
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,

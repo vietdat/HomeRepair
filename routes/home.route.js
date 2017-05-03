@@ -9,7 +9,7 @@ var DichVuSuaChuaCaiTaoModel = require('../model/dichvusuachuacaitao.model');
 
 router.get('/home', function(req, res, next) {
   res.render('Home/homepage', {
-  	title: "Sửa chữa cải tạo Hưng Thịnh",
+  	title: "Sửa chữa cải tạo Hưng Thịnh chuyên sửa chửa, cải tạo, xây dựng mới tại các quận Hồ Chí Minh",
   	body: "body"
   });
 });
@@ -257,6 +257,7 @@ router.get('/', function(req, res, next) {
 
     console.log("data - don gia: ", data);
     res.render('Home/homepage', {
+      title: "Sửa chữa cải tạo Hưng Thịnh chuyên sửa chửa, cải tạo, xây dựng mới tại các quận Hồ Chí Minh",
       dongiasuachuacaitao: data.dongiasuachuacaitao,
       dongiaxaydungmoi: data.dongiaxaydungmoi,
       mangluoihoatdong: data.mangluoihoatdong,

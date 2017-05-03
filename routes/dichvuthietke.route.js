@@ -40,6 +40,8 @@ router.get('/:url', function(req, res, next) {
               break;
         }
 
+        req.url_title = url_title;
+
         console.log("Url title: ", url_title);
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
@@ -127,7 +129,7 @@ router.get('/:url', function(req, res, next) {
       console.log(err);
     }
     res.render('DichVuThietKe/dichvuthietke', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title:  req.url_title + "- Sửa chữa cải tạo Hưng Thịnh",
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
@@ -179,6 +181,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         var first = data.data.title.substring(0,1);
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
+
+        req.url_title = url_title + ' - ' + title;
 
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
@@ -271,7 +275,7 @@ router.get('/:type/:title_url', function(req, res, next) {
     if(data.data) {
       var body = decode(data.data.content);
       res.render('DichVuThietKe/dichvuthietkedetail', {
-        title: "Sửa chữa cải tạo Hưng Thịnh",
+        title:  req.url_title + "- Sửa chữa cải tạo Hưng Thịnh",
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
