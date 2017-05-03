@@ -35,7 +35,7 @@ router.get('/:url', function(req, res, next) {
               break;
         }
 
-        console.log("Url title", url_title);
+        req.url_title = url_title;
 
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
@@ -123,7 +123,7 @@ router.get('/:url', function(req, res, next) {
       console.log(err);
     }
     res.render('CamNangSuaChuaNha/camnangsuachuanha', {
-      title: "Sửa chữa cải tạo Hưng Thịnh",
+      title: "Sửa chữa cải tạo Hưng Thịnh - " + req.url_title,
       linkbar: data.linkbar,
       content: data.content.html,
       content_head: data.content.html_head
@@ -170,6 +170,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         var first = data.data.title.substring(0,1);
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
+
+        req.url_title = url_title + ' - ' + title;
 
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
@@ -262,7 +264,7 @@ router.get('/:type/:title_url', function(req, res, next) {
     if(data.data) {
       var body = decode(data.data.content);
       res.render('CamNangSuaChuaNha/camnangsuachuanhadetail', {
-        title: "Sửa chữa cải tạo Hưng Thịnh",
+        title: "Sửa chữa cải tạo Hưng Thịnh - " + req.url_title,
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
