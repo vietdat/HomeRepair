@@ -270,3 +270,28 @@ figure.image-wide img, img.image-wide {
 .right {
 		float: right;
 }
+
+/* This gets Google to fall into place */
+.social {
+	font-size: 1px;
+}
+
+.social iframe,.social>span {
+	vertical-align: middle;
+}
+
+/* This gets Facebook to fall into place */
+.social iframe {
+	vertical-align: middle;
+}
+
+/* Set an optional width for your button wrappers */
+.social span {
+	display: inline-block;
+	width: 110px;
+}
+
+/* Adjust the widths individually if you like */
+.social .google {
+	width: 75px;
+}

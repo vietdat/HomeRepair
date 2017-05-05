@@ -14,7 +14,7 @@ router.get('/home', function(req, res, next) {
 });
 
 var subString = function(str) {
-  var res = str.substring(0, 110);
+  var res = str.substring(0, 200);
   res = res + '...';
   return res;
 }
@@ -50,16 +50,16 @@ router.get('/', function(req, res, next) {
           else {
             if(flag < 2) {
               dongiasuachuacaitao_html = dongiasuachuacaitao_html
-                  +'<div class="blog-item col-sm-6">'
+                  +'<div class="blog-item col-sm-12">'
                   +    '<div class="row">'
-                  +        '<div class="col-sm-4">'
+                  +        '<div class="col-sm-3">'
                   +            '<div>'
                   +                '<a href="/don-gia/don-gia-sua-chua-cai-tao/'+dongia.url+'" class="full-image">'
-                  +                    '<img width="100" height="100" src="'+dongia.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+                  +                    '<img width="150" height="100" src="'+dongia.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
                   +                '</a>'
                   +            '</div>'
                   +        '</div>'
-                  +        '<div class="col-sm-8">'
+                  +        '<div class="col-sm-9">'
                   +            '<h4 class="no-padding-top no-margin-top"><a href="/don-gia/don-gia-sua-chua-cai-tao/'+dongia.url+'">'+dongia.title+'</a></h4>'
                   +            '<div class="col-md-12 no-padding-left">'
                   +                '<div class="entry-content">'
@@ -68,7 +68,8 @@ router.get('/', function(req, res, next) {
                   +            '</div>'
                   +        '</div>'
                   +    '</div>'
-                  +'</div>';
+                  +'</div>'
+                  +'<div class="distance-10"></div>';
               flag++;
             }
 
@@ -104,16 +105,16 @@ router.get('/', function(req, res, next) {
           else {
             if(flag < 2) {
               dongiaxaydungmoi_html = dongiaxaydungmoi_html
-                  +'<div class="blog-item col-sm-6">'
+                  +'<div class="blog-item col-sm-12">'
                   +    '<div class="row">'
-                  +        '<div class="col-sm-4">'
+                  +        '<div class="col-sm-3">'
                   +            '<div>'
                   +                '<a href="/don-gia/don-gia-xay-dung-moi/'+dongia.url+'" class="full-image">'
-                  +                    '<img width="100" height="100" src="'+dongia.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+                  +                    '<img width="150" height="100" src="'+dongia.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
                   +                '</a>'
                   +            '</div>'
                   +        '</div>'
-                  +        '<div class="col-sm-8">'
+                  +        '<div class="col-sm-9">'
                   +            '<h4 class="no-padding-top no-margin-top"><a href="/don-gia/don-gia-xay-dung-moi/'+dongia.url+'">'+dongia.title+'</a></h4>'
                   +            '<div class="col-md-12 no-padding-left">'
                   +                '<div class="entry-content">'
@@ -122,7 +123,9 @@ router.get('/', function(req, res, next) {
                   +            '</div>'
                   +        '</div>'
                   +    '</div>'
-                  +'</div>';
+                  +'</div>'
+                  +'<div class="clearfix"></div>'
+                  +'<div class="distance-10"></div>';
                   flag++;
                 }
           }
@@ -164,16 +167,16 @@ router.get('/', function(req, res, next) {
         else {
           if(flag < 2) {
             mangluoihoatdong_html = mangluoihoatdong_html
-                +'<div class="blog-item col-sm-6">'
+                +'<div class="blog-item col-sm-12">'
                 +    '<div class="row">'
-                +        '<div class="col-sm-4">'
+                +        '<div class="col-sm-3">'
                 +            '<div>'
                 +                '<a href="/mang-luoi/'+mangluoi.url+'" class="full-image">'
-                +                    '<img width="100" height="100" src="'+mangluoi.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+                +                    '<img width="150" height="100" src="'+mangluoi.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
                 +                '</a>'
                 +            '</div>'
                 +        '</div>'
-                +        '<div class="col-sm-8">'
+                +        '<div class="col-sm-9">'
                 +            '<h4 class="no-padding-top no-margin-top"><a href="/mang-luoi/'+mangluoi.url+'">'+mangluoi.title+'</a></h4>'
                 +            '<div class="col-md-12 no-padding-left">'
                 +                '<div class="entry-content">'
@@ -182,7 +185,9 @@ router.get('/', function(req, res, next) {
                 +            '</div>'
                 +        '</div>'
                 +    '</div>'
-                +'</div>';
+                +'</div>'
+                +'<div class="clearfix"></div>'
+                +'<div class="distance-10"></div>';
                 flag++;
               }
         }
@@ -223,12 +228,12 @@ router.get('/', function(req, res, next) {
         else {
           if(flag < 2) {
             dichvusuachuacaitao_html = dichvusuachuacaitao_html
-                +'<div class="blog-item col-sm-6">'
+                +'<div class="blog-item col-sm-12">'
                 +    '<div class="row">'
-                +        '<div class="col-sm-4">'
+                +        '<div class="col-sm-3">'
                 +            '<div>'
                 +                '<a href="/dich-vu/'+dichvu.type+"/" +dichvu.url+'" class="full-image">'
-                +                    '<img width="100" height="100" src="'+dichvu.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
+                +                    '<img width="150" height="100" src="'+dichvu.image.src+'" class="aligncenter wp-post-image" alt="sua-chua-cai-tao-hung-thinh">'
                 +                '</a>'
                 +            '</div>'
                 +        '</div>'
@@ -241,7 +246,9 @@ router.get('/', function(req, res, next) {
                 +            '</div>'
                 +        '</div>'
                 +    '</div>'
-                +'</div>';
+                +'</div>'
+                +'<div class="clearfix"></div>'
+                +'<div class="distance-10"></div>'
                 flag++;
           }
         }

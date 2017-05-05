@@ -169,7 +169,6 @@ router.get('/:url', function(req, res, next) {
   })
 });
 
-
 router.get('/:type/:title_url', function(req, res, next) {
   async.auto({
     data: function(done) {
@@ -241,7 +240,7 @@ router.get('/:type/:title_url', function(req, res, next) {
 
         console.log("Config ", config );
         linkbar[0] = config.domain;
-        linkbar[1] = linkbar[0] + "/" + req.params.type;
+        linkbar[1] = linkbar[0] + "/dich-vu/" + req.params.type;
         linkbar[2] = linkbar[1] + "/" + req.params.title_url;
 
         var first = data.data.title.substring(0,1);
