@@ -263,7 +263,8 @@ router.get('/', function(req, res, next) {
         dongiasuachuacaitao: data.dongiasuachuacaitao,
         dongiaxaydungmoi: data.dongiaxaydungmoi,
         mangluoihoatdong: data.mangluoihoatdong,
-        dichvusuachuacaitao: data.dichvusuachuacaitao
+        dichvusuachuacaitao: data.dichvusuachuacaitao,
+
       });
     }
 
@@ -273,7 +274,9 @@ router.get('/', function(req, res, next) {
       dongiasuachuacaitao: data.dongiasuachuacaitao,
       dongiaxaydungmoi: data.dongiaxaydungmoi,
       mangluoihoatdong: data.mangluoihoatdong,
-      dichvusuachuacaitao: data.dichvusuachuacaitao
+      dichvusuachuacaitao: data.dichvusuachuacaitao,
+      meta_description: 'Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng với giá tốt nhất'
+
     });
 
   });

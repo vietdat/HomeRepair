@@ -164,7 +164,8 @@ router.get('/:url', function(req, res, next) {
       title: req.url_title + " - Sửa chữa cải tạo Hưng Thịnh",
       linkbar: data.linkbar,
       content: data.content.html,
-      content_head: data.content.html_head
+      content_head: data.content.html_head,
+      meta_description: req.url_title + ' Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng với giá tốt nhất'
     });
   })
 });
@@ -344,7 +345,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
-        footer2: data.footer2
+        footer2: data.footer2,
+        meta_description: req.url_title + ' Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng với giá tốt nhất'
       });
     } else {
       return;

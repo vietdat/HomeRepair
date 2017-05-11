@@ -116,7 +116,8 @@ router.get('/:url', function(req, res, next) {
         var res = {};
         res['html'] = html;
         res['html_head'] = html_head;
-        console.log("res ", res);
+        var meta_description = 'Cẩm nang sửa chữa nhà cho mọi người, sửa nhà hợp phong thủy, kinh nghiệm sửa chửa, xây dựng mới, mẹo nhỏ làm căn nhà bạn chống chọi với thời gian.'
+        res['meta_description'] = meta_description;
         done(null, res);
     }]
   },
@@ -128,7 +129,8 @@ router.get('/:url', function(req, res, next) {
       title: req.url_title + "- Sửa chữa cải tạo Hưng Thịnh",
       linkbar: data.linkbar,
       content: data.content.html,
-      content_head: data.content.html_head
+      content_head: data.content.html_head,
+      meta_description : data.content.meta_description
     });
   })
 });
@@ -270,7 +272,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
-        footer2: data.footer2
+        footer2: data.footer2,
+        meta_description: req.url_title + ' Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng với giá tốt nhất'
       });
     } else {
       return;

@@ -125,7 +125,8 @@ router.get('/', function(req, res, next) {
     }
     res.render('ThucTe/thucte', {
       dathicong: data.dathicong,
-      dangthicong: data.dangthicong
+      dangthicong: data.dangthicong,
+      meta_description: 'Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng ở tất cả các quận, huyện, Tp. Hồ Chí Minh'
     });
   });
 });
@@ -390,7 +391,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
-        footer2: data.footer2
+        footer2: data.footer2,
+        meta_description: 'Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng ở tất cả các quận, huyện, Tp. Hồ Chí Minh'
       });
     } else {
       return;

@@ -59,7 +59,8 @@ router.get('/', function(req, res, next) {
     res.render('KhachHang/khachhang', {
       title: "Phản hồi khách hàng sau khi sử dụng dịch vụ xây dựng mới, sửa chữa cải tạo tại sửa chữa cải tạo Hưng Thịnh",
       content: data.content,
-      linkbar: data.linkbar
+      linkbar: data.linkbar,
+      meta_description: 'Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng luôn đặt quyền lợi khách hàng lên trên cùng'
     });
   })
 });
