@@ -52,6 +52,8 @@ router.get('/:url', function(req, res, next) {
     content: ['getData', function(data, done) {
       var html = '';
       var html_head = '';
+      var social = '';
+      var meta = '';
 
       if(data) {
           if( data.getData ) {
@@ -107,15 +109,32 @@ router.get('/:url', function(req, res, next) {
                   +      '</div>'
                   +   '</div>'
                   + '</div>';
-
-
               }
             }
+
+            social = social
+              + '<div class="social">'
+              +	  '<span class="Facebook">'
+              +    '<div class="fb-like" data-href="'+config.domain + '"/cam-nang/"' + req.params.url+'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+              +	'</span>'
+              + '<span class="google">'
+              +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
+              +	'</span>'
+              + '</div>';
+
+            meta = meta
+              + '<meta property="og:url" content="'+config.domain + '"/cam-nang/"' + req.params.url+'" />'
+              + '<meta property="og:type" content="website" />'
+              + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
+              + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
+              + '<meta property="og:image" content="http://xaydungcaitao.com/images/1493077256560la_kinh.jpg" />'
           }
         }
         var res = {};
         res['html'] = html;
         res['html_head'] = html_head;
+        res['social'] = social;
+        res['meta'] = meta;
         console.log("res ", res);
         done(null, res);
     }]
@@ -128,7 +147,9 @@ router.get('/:url', function(req, res, next) {
       title: req.url_title + "- Sửa chữa cải tạo Hưng Thịnh",
       linkbar: data.linkbar,
       content: data.content.html,
-      content_head: data.content.html_head
+      content_head: data.content.html_head,
+      social: data.content.social,
+      meta: data.content.meta
     });
   })
 });
