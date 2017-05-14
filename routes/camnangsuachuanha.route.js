@@ -125,7 +125,7 @@ router.get('/:url', function(req, res, next) {
             meta = meta
               + '<meta property="og:url" content="http://xaydungcaitao.com/"/>'
               + '<meta property="og:type" content="website" />'
-              + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
+              + '<meta property="og:title" content= "'+ req.url_title + '"/>'
               + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
               + '<meta property="og:image" content="http://xaydungcaitao.com/images/1493077256560la_kinh.jpg" />'
           }
@@ -196,7 +196,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
 
-        req.url_title = url_title + ' - ' + title;
+        req.url_title = title + ' - ' + url_title;
 
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"

@@ -278,7 +278,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         var last = data.data.title.substring(1);
         var title = first.toUpperCase() + last.toLowerCase();
 
-        req.url_title = url_title + " - " + title;
+        req.url_title = title + " - " + url_title;
 
         var html = "<div>"
                     + '<a href=' + linkbar[0] + '>Trang chủ</a>' + "/"
