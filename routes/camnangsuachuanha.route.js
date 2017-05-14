@@ -19,7 +19,6 @@ router.get('/:url', function(req, res, next) {
           next(err);
         }
 
-        console.log("Config ", config );
         linkbar[0] = config.domain;
         linkbar[1] = linkbar[0] + "/cam-nang/" + req.params.url;
         var url_title = '';
@@ -52,8 +51,6 @@ router.get('/:url', function(req, res, next) {
     content: ['getData', function(data, done) {
       var html = '';
       var html_head = '';
-      var social = '';
-      var meta = '';
 
       if(data) {
           if( data.getData ) {
@@ -112,10 +109,13 @@ router.get('/:url', function(req, res, next) {
               }
             }
 
+            var social = '';
+            var meta = '';
+
             social = social
               + '<div class="social">'
               +	  '<span class="Facebook">'
-              +    '<div class="fb-like" data-href="xaydungcaitao.com/cam-nang/"' + req.params.url+'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+              +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
               +	'</span>'
               + '<span class="google">'
               +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
@@ -123,7 +123,7 @@ router.get('/:url', function(req, res, next) {
               + '</div>';
 
             meta = meta
-              + '<meta property="og:url" content="http://xaydungcaitao.com/cam-nang/"' + req.params.url+'" />'
+              + '<meta property="og:url" content="http://xaydungcaitao.com/"/>'
               + '<meta property="og:type" content="website" />'
               + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
               + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
@@ -188,7 +188,6 @@ router.get('/:type/:title_url', function(req, res, next) {
               break;
         }
 
-        console.log("Config ", config );
         linkbar[0] = config.domain;
         linkbar[1] = linkbar[0] + "/cam-nang/" + req.params.type;
         linkbar[2] = linkbar[1] + "/" + req.params.title_url;
@@ -217,7 +216,6 @@ router.get('/:type/:title_url', function(req, res, next) {
       if(data) {
           var html = '';
           if( data.getDataFooter) {
-            console.log(data.getDataFooter);
             var length = -1;
             if(data.getDataFooter.length > 4) {
               length = 4;
@@ -281,7 +279,34 @@ router.get('/:type/:title_url', function(req, res, next) {
         }
       done(null, html);
     }],
+    social: ['footer2', function(data, done) {
+      var social = '';
+      var meta = '';
 
+      social = social
+        + '<div class="social">'
+        +	  '<span class="Facebook">'
+        +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+        +	'</span>'
+        + '<span class="google">'
+        +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
+        +	'</span>'
+        + '</div>';
+
+      meta = meta
+        + '<meta property="og:url" content="http://xaydungcaitao.com/"/>'
+        + '<meta property="og:type" content="website" />'
+        + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
+        + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
+        + '<meta property="og:image" content="http://xaydungcaitao.com/images/1493077256560la_kinh.jpg" />'
+
+      var result = {};
+
+      result['social'] = social;
+      result['meta'] = meta;
+
+      done(null, result);
+    }]
   },
   function(err, data) {
     if(err) {
@@ -295,6 +320,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         linkbar: data.linkbar,
         footer: data.footer,
         footer2: data.footer2,
+        meta: data.social.meta,
+        social: data.social.social,
         meta_description: req.url_title + ' Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng với giá tốt nhất'
       });
     } else {
