@@ -18,11 +18,11 @@
     <link rel='stylesheet' href='/css/style.css'/>
   	<link href="/css/home.css" type="text/css" rel="stylesheet" />
   	<link href="/css/baivietxemnhieu.css" type="text/css" rel="stylesheet" />
+    <meta name="keywords" content="Sửa chữa cải tạo nhà phố, xây dựng mới, sửa nhà giá rẻ, sửa chữa nhà phố, sửa nhà hợp phong thủy, cải tạo mặt bằng, thiết kế xây dựng"/>
 	  <meta charset="utf-8"/>
-
+    {{{meta}}}
     <meta name="viewport" content="width=device-width, initial-scale=0, user-scalable=yes"/>
-    {{meta}}
-
+    <meta name="description" content="{{{meta_description}}}">
     <script src="/js/layout.js"></script>
     <script src="/js/homepage.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer>
@@ -106,7 +106,7 @@
 		                    <a href="/dich-vu/sua-chua-cai-tao-nha-tron-goi" class="list-group-item"><span>Sửa chữa cải tạo nhà trọn gói</span></a>
 		                    <a href="/dich-vu/sua-chua-cai-tao-nha-pho" class="list-group-item"><span>Sửa chữa cải tạo nhà phố</span></a>
 		                    <a href="/dich-vu/sua-chua-cai-tao-nha-cap-4" class="list-group-item"><span>Sửa chữa cải tạo nhà cấp 4</span></a>
-		                    <a href="/dich-vu/sua-chua-cai-tao-nha-mat-tien" class="list-group-item"><span>Sửa chữa cải tạo nhà mặt tiền</span></a>
+		                    <a href="/dich-vu/sua-chua-cai-tao-nha-mat-tien" class="list-group-item"><span>Sửa chữa cải tạo mặt tiền</span></a>
 		                    <a href="/dich-vu/sua-chua-cai-tao-nha-mai-ton" class="list-group-item"><span>Sửa chữa cải tạo nhà mái tôn</span></a>
 		                    <a href="/dich-vu/sua-chua-cai-tao-mat-bang" class="list-group-item"><span>Sửa chữa cải tạo mặt bằng</span></a>
 		                    <a href="/dich-vu/sua-chua-cai-tao-san-vuon" class="list-group-item"><span>Sửa chữa cải tạo sân vườn</span></a>
@@ -549,6 +549,24 @@
         <p class="phone-strong" style="margin: 0; line-height: 1 !important">0933 789 712</p>
 			</div>
 		</div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '214940259009638',
+          xfbml      : true,
+          version    : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 	</div>
 	</body>
 </html>

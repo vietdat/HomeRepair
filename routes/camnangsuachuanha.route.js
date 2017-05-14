@@ -115,7 +115,7 @@ router.get('/:url', function(req, res, next) {
             social = social
               + '<div class="social">'
               +	  '<span class="Facebook">'
-              +    '<div class="fb-like" data-href="'+config.domain + '"/cam-nang/"' + req.params.url+'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+              +    '<div class="fb-like" data-href="xaydungcaitao.com/cam-nang/"' + req.params.url+'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
               +	'</span>'
               + '<span class="google">'
               +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
@@ -123,7 +123,7 @@ router.get('/:url', function(req, res, next) {
               + '</div>';
 
             meta = meta
-              + '<meta property="og:url" content="'+config.domain + '"/cam-nang/"' + req.params.url+'" />'
+              + '<meta property="og:url" content="http://xaydungcaitao.com/cam-nang/"' + req.params.url+'" />'
               + '<meta property="og:type" content="website" />'
               + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
               + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
@@ -135,7 +135,9 @@ router.get('/:url', function(req, res, next) {
         res['html_head'] = html_head;
         res['social'] = social;
         res['meta'] = meta;
-        console.log("res ", res);
+        var meta_description = 'Cẩm nang sửa chữa nhà cho mọi người, sửa nhà hợp phong thủy, kinh nghiệm sửa chửa, xây dựng mới, mẹo nhỏ làm căn nhà bạn chống chọi với thời gian.'
+        res['meta_description'] = meta_description;
+
         done(null, res);
     }]
   },
@@ -149,7 +151,8 @@ router.get('/:url', function(req, res, next) {
       content: data.content.html,
       content_head: data.content.html_head,
       social: data.content.social,
-      meta: data.content.meta
+      meta: data.content.meta,
+      meta_description : data.content.meta_description
     });
   })
 });
@@ -291,7 +294,8 @@ router.get('/:type/:title_url', function(req, res, next) {
         body: body,
         linkbar: data.linkbar,
         footer: data.footer,
-        footer2: data.footer2
+        footer2: data.footer2,
+        meta_description: req.url_title + ' Hưng Thịnh - công ty chuyên xây dựng nhà phố, sửa chửa nhà, cải tạo mặt bằng với giá tốt nhất'
       });
     } else {
       return;
