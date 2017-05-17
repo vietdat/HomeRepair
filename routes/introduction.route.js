@@ -250,7 +250,7 @@ router.get('/:url', function(req, res, next) {
         }
       done(null, html);
     }],
-    social: ['content', function(data, done) {
+    social: ['footer2', function(data, done) {
       var social = '';
       var meta = '';
 

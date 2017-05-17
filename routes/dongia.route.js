@@ -132,8 +132,19 @@ router.get('/:url', function(req, res, next) {
           html = html + '<ul class="pagination right">';
 
           for (var i = 0; i < numOfPage; i++) {
-            html = html + '<li><a href="/don-gia/' + req.params.url + '?page_size=' + (i + 1) + '">' + (i + 1) + '</a></li>'
-          }
+            if(!req.query.page_size) {
+              if(i==0) {
+                html = html + '<li><a style="background-color: #ccc;" href="/mang-luoi?page_size=' + (i +1) + '">' + (i + 1) + '</a></li>'
+              } else {
+                html = html + '<li><a href="/mang-luoi?page_size=' + (i +1) + '">' + (i + 1) + '</a></li>'
+              }
+            } else {
+              if(req.query.page_size == i+1) {
+                html = html + '<li><a style="background-color: #ccc;" href="/mang-luoi?page_size=' + (i + 1) + '">' + (i + 1) + '</a></li>'
+              } else {
+                html = html + '<li><a href="/mang-luoi?page_size=' + (i + 1) + '">' + (i + 1) + '</a></li>'
+              }
+            }          }
           html = html + '</ul>';
         }
 
