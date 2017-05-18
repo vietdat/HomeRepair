@@ -68,6 +68,9 @@ router.get('/:url', function(req, res, next) {
           case "dich-vu-chong-tham":
               url_title = "Dịch vụ chống thấm";
               break;
+          case "sua-chua-cai-tao-khac":
+              url_title = "Sửa chữa cải tạo khác";
+              break;
           default:
               url_title = "";
               break;
@@ -263,6 +266,9 @@ router.get('/:type/:title_url', function(req, res, next) {
               break;
           case "dich-vu-chong-tham":
               url_title = "Dịch vụ chống thấm";
+              break;
+          case "sua-chua-cai-tao-khac":
+              url_title = "Sửa chữa cải tạo khác";
               break;
           default:
               url_title = "";
