@@ -14,7 +14,7 @@ var thucte 					= require('./thucte');
 var upload 					= require('./upload');
 var khachhang       = require('./khachhang');
 var dichvuthietke   = require('./dichvuthietke');
-
+var noithat         = require('./noithat');
 
 /* GET home page. */
 function isLoggedIn(req, res, next) {
@@ -46,6 +46,8 @@ router.use('/thuc-te',isLoggedIn,thucte);
 router.use('/khach-hang',isLoggedIn,khachhang);
 
 router.use('/dich-vu-thiet-ke',isLoggedIn,dichvuthietke);
+
+router.use('/noi-that', isLoggedIn, noithat);
 
 router.use('/resource',isLoggedIn,resource);
 

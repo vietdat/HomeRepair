@@ -11,8 +11,8 @@ var session = require('express-session')
 var mongoose 		= require('mongoose');
 var User=require('./model/user');
 mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh');
-// mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
+// mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh');
+mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home 			            = require('./routes/home.route');
 var introduction 	        = require('./routes/introduction.route');
 var dichvusuachuacaitao   = require('./routes/dichvusuachuacaitao.route');
@@ -23,7 +23,7 @@ var lienhe                = require('./routes/lienhe.route');
 var thucte                = require('./routes/thucte.route');
 var khachhang                = require('./routes/khachhang.route');
 var dichvuthietke                = require('./routes/dichvuthietke.route');
-
+var noithat               = require('./routes/noithat.route');
 //admin router
 var administrator = require('./routes/Admin/administrator');
 var filemanager = require('./filemanager');
@@ -114,6 +114,7 @@ app.use('/lien-he', lienhe);
 app.use('/thuc-te', thucte);
 app.use('/khach-hang', khachhang);
 app.use('/dich-vu-thiet-ke', dichvuthietke);
+app.use('/noi-that', noithat);
 
 // app.post('/uploader1/upload', browser.upload);
 
