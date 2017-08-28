@@ -293,11 +293,11 @@ router.get('/:type/:title_url', function(req, res, next) {
         + '</div>';
 
       meta = meta
-        + '<meta property="og:url" content="http://xaydungcaitao.com/"/>'
+        + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'"/>'
         + '<meta property="og:type" content="website" />'
         + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
         + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
-        
+
       var result = {};
 
       result['social'] = social;
