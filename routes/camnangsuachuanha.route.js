@@ -285,7 +285,10 @@ router.get('/:type/:title_url', function(req, res, next) {
       social = social
         + '<div class="social">'
         +	  '<span class="Facebook">'
-        +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+        +    '<div class="fb-like" href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true"></div>'
+        +	'</span>'
+        +	  '<span class="Facebook">'
+        +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-size="small" data-show-faces="true" data-share="true"></div>'
         +	'</span>'
         + '<span class="google">'
         +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
