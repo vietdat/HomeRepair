@@ -127,6 +127,7 @@ router.get('/:url', function(req, res, next) {
               + '<meta property="og:type" content="website" />'
               + '<meta property="og:title" content= "'+ req.url_title + '"/>'
               + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
+              + '<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>'
           }
         }
         var res = {};
@@ -291,7 +292,6 @@ router.get('/:type/:title_url', function(req, res, next) {
         +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
         +	'</span>'
         + '</div>';
-
       meta = meta
         + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'"/>'
         + '<meta property="og:type" content="website" />'
