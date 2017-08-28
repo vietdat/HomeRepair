@@ -281,22 +281,21 @@ router.get('/:type/:title_url', function(req, res, next) {
     social: ['footer2', function(data, done) {
       var social = '';
       var meta = '';
-      var href = 'http://xaydungcaitao.com/cam-nang/kinh-nghiem-sua-chua-nha/kinh-nghiem-sua-chua-cai-tao-nha-cu'
-      social = social + '<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>'
-        // + '<div class="social">'
-        // +	  '<span class="Facebook">'
-        // +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
-        // +	'</span>'
-        // + '<span class="google">'
-        // +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
-        // +	'</span>'
-        // + '</div>';
-      // meta = meta
-      //   + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'"/>'
-      //   + '<meta property="og:type" content="website" />'
-      //   + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
-      //   + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
-      //   + '<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>'
+      social = social
+        + '<div class="social">'
+        +	  '<span class="Facebook">'
+        +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+        +	'</span>'
+        + '<span class="google">'
+        +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
+        +	'</span>'
+        + '</div>';
+      meta = meta
+        + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'"/>'
+        + '<meta property="og:type" content="website" />'
+        + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
+        + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
+        + '<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>'
 
       var result = {};
 
