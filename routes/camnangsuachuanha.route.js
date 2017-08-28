@@ -281,19 +281,16 @@ router.get('/:type/:title_url', function(req, res, next) {
     social: ['footer2', function(data, done) {
       var social = '';
       var meta = '';
-
-      social = social
-        + '<div class="social">'
-        +	  '<span class="Facebook">'
-        +    '<div class="fb-like" href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true"></div>'
-        +	'</span>'
-        +	  '<span class="Facebook">'
-        +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-size="small" data-show-faces="true" data-share="true"></div>'
-        +	'</span>'
-        + '<span class="google">'
-        +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
-        +	'</span>'
-        + '</div>';
+      var href = 'http://xaydungcaitao.com/cam-nang/kinh-nghiem-sua-chua-nha/kinh-nghiem-sua-chua-cai-tao-nha-cu'
+      social = social + '<div class="fb-share-button" data-href="'+href+'" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>'
+        // + '<div class="social">'
+        // +	  '<span class="Facebook">'
+        // +    '<div class="fb-like" data-href="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>'
+        // +	'</span>'
+        // + '<span class="google">'
+        // +   '<div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>'
+        // +	'</span>'
+        // + '</div>';
       // meta = meta
       //   + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'"/>'
       //   + '<meta property="og:type" content="website" />'
