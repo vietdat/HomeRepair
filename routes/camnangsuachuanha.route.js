@@ -123,9 +123,10 @@ router.get('/:url', function(req, res, next) {
               + '</div>';
 
             meta = meta
-              + '<meta property="og:url" content="http://xaydungcaitao.com/"/>'
+              + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.url +'/"/>'
               + '<meta property="og:type" content="website" />'
               + '<meta property="og:title" content= "'+ req.url_title + '"/>'
+              + '<meta property="og:updated_time" content="1496821331"/>'
               + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
           }
         }
@@ -293,6 +294,7 @@ router.get('/:type/:title_url', function(req, res, next) {
       meta = meta
         + '<meta property="og:url" content="' + config.domain + '/cam-nang/' + req.params.type + '/' + req.params.title_url +'"/>'
         + '<meta property="og:type" content="website" />'
+        + '<meta property="og:updated_time" content="1496821332"/>'
         + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
         + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
         + '<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>'
