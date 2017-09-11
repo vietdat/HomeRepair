@@ -177,7 +177,7 @@ router.get('/:url', function(req, res, next) {
         + '<meta property="og:type" content="website" />'
         + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
         + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
-        
+
 
       var result = {};
 
@@ -387,7 +387,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         + '<meta property="og:type" content="website" />'
         + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
         + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
-        
+
 
       var result = {};
 

@@ -18,12 +18,14 @@ var introduction 	        = require('./routes/introduction.route');
 var dichvusuachuacaitao   = require('./routes/dichvusuachuacaitao.route');
 var camnangsuachuanha     = require('./routes/camnangsuachuanha.route');
 var dongia                = require('./routes/dongia.route');
-var mangluoi                = require('./routes/mangluoi.route');
+var mangluoi              = require('./routes/mangluoi.route');
 var lienhe                = require('./routes/lienhe.route');
 var thucte                = require('./routes/thucte.route');
-var khachhang                = require('./routes/khachhang.route');
-var dichvuthietke                = require('./routes/dichvuthietke.route');
+var khachhang             = require('./routes/khachhang.route');
+var dichvuthietke         = require('./routes/dichvuthietke.route');
 var noithat               = require('./routes/noithat.route');
+var noithathungthinh      = require('./routes/noithathungthinh.route');
+
 //admin router
 var administrator = require('./routes/Admin/administrator');
 var filemanager = require('./filemanager');
@@ -115,10 +117,9 @@ app.use('/thuc-te', thucte);
 app.use('/khach-hang', khachhang);
 app.use('/dich-vu-thiet-ke', dichvuthietke);
 app.use('/noi-that', noithat);
+app.use('/noi-that-hung-thinh', noithathungthinh);
 
 // app.post('/uploader1/upload', browser.upload);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

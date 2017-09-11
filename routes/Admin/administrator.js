@@ -15,6 +15,7 @@ var upload 					= require('./upload');
 var khachhang       = require('./khachhang');
 var dichvuthietke   = require('./dichvuthietke');
 var noithat         = require('./noithat');
+var noithathungthinh = require('./noithathungthinh');
 
 /* GET home page. */
 function isLoggedIn(req, res, next) {
@@ -53,5 +54,6 @@ router.use('/resource',isLoggedIn,resource);
 
 router.use('/upload',isLoggedIn,upload);
 
+router.use('/noi-that-hung-thinh', isLoggedIn, noithathungthinh);
 
 module.exports = router;

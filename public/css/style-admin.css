@@ -125,7 +125,9 @@ td button {
 .add-article-mangluoi, .edit-article-mangluoi,
 .add-article-dongia, .edit-article-dongia,
 .add-article-khachhang, .edit-article-khachhang,
-.add-article-dichvuthietke, .edit-article-dichvuthietke{
+.add-article-dichvuthietke, .edit-article-dichvuthietke,
+.add-article-noithat, .edit-article-noithat,
+.add-article-noithathungthinh, .edit-article-noithathungthinh{
     position: fixed;
     height: 100%;
     top:0;

@@ -295,3 +295,57 @@ figure.image-wide img, img.image-wide {
 .social .google {
 	width: 75px;
 }
+
+.container-content {
+	display: flex;
+}
+.container-image {
+	flex: 1;
+	margin: 5px;
+	border: 0.5px solid #73AD21;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.container-content-each {
+	text-align: center;
+}
+.container-image > img {
+	width: 200px;
+	margin: auto;
+}
+
+.special-price {
+	text-decoration: line-through;
+}
+
+.top_content {
+	display: flex;
+}
+
+.top_content {
+	display: flex;
+	margin: auto;
+}
+
+.image-product-detail {
+	border: 1px solid #ddd; /* Gray border */
+	border-radius: 1px;  /* Rounded border */
+	width: 300px; /* Set a small width */
+}
+
+.info-product-detail {
+    margin-left: 80px;
+}
+
+.product-description-content .menu-product{
+	width: 100px;
+}
+
+.product-description-content {
+	display: flex;
+}
+
+.content-product-detail-footer {
+	margin: 50px;
+}
