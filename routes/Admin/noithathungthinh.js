@@ -45,7 +45,7 @@ router.post('/add', function(req, res, next) {
     var d = new Date();
     var n = d.getTime().toString();
     urlImage = n + filename;
-    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', urlImage)));
+    file.pipe(fs.createWriteStream(path.join('public/images', urlImage)));
   });
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
     console.log('Field [' + fieldname + ']: value: ');
@@ -188,11 +188,11 @@ router.post('/update', function(req, res, next) {
     } else {
       flag = true;
     }
-    file.pipe(fs.createWriteStream(path.join(process.env.PWD, 'public/images', urlImage)));
+    file.pipe(fs.createWriteStream(path.join('public/images', urlImage)));
   });
 
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-    console.log('Field [' + fieldname + ']: value: ');
+    console.log('Field [' + fieldname + ']: value: ', val);
   });
 
   busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
@@ -218,6 +218,7 @@ router.post('/update', function(req, res, next) {
         break;
       case 'type':
         type = val;
+        console.log('type: ', type);
         break;
       case 'product_code':
         product_code = val;
@@ -280,7 +281,7 @@ router.post('/update', function(req, res, next) {
       upsert: true
     },function(err, doc){
         if (err) return res.send(500, { error: err });
-        else res.redirect('/hungthinh-admin/noi-that');
+        else res.redirect('/hungthinh-admin/noi-that-hung-thinh');
     });
   });
   req.pipe(busboy);
