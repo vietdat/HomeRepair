@@ -11,8 +11,8 @@ var session = require('express-session')
 var mongoose 		= require('mongoose');
 var User=require('./model/user');
 mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh');
-// mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
+// mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh');
+mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home 			            = require('./routes/home.route');
 var introduction 	        = require('./routes/introduction.route');
 var dichvusuachuacaitao   = require('./routes/dichvusuachuacaitao.route');
