@@ -73,7 +73,7 @@ router.get('/:url', function(req, res, next) {
       let i = 0;
       let content_html = '<div class="page">';
       for(i = 0; i < data.getData.length; i++) {
-        if(!i%3) {
+        if(i%3 == 0) {
           content_html += '<div class="container-content">'
         }
 
@@ -84,14 +84,14 @@ router.get('/:url', function(req, res, next) {
           + '</div>'
           + '<div style="font-size: 25px">'+ data.getData[i].title +'</div>'
           + '<div class="special-price" style="color: black">'+ data.getData[i].price.real +'</div>'
-          +   '<div style="color: red; font-size: 18px">'+ data.getData[i].price.promotion +'</div>'
-          + '</div>'
+          + '<div style="color: red; font-size: 18px">'+ data.getData[i].price.promotion +'</div>'
           + '</a>'
-        if(!i%3) {
+          + '</div>'
+        if(i%3 == 2) {
           content_html += '</div>'
         }
       }
-      content_html += '</div>'
+      content_html += '</div></div>'
 
       done(null, content_html);
     }]
@@ -226,7 +226,8 @@ router.get('/:type/:title_url', function(req, res, next) {
       let content_html = '<div class="page">';
       console.log(data.getData);
       for(i = 0; i < data.getData.length; i++) {
-        if(!i%3) {
+        if(i%3 == 0) {
+          console.log('da vao day 230 i%3 ', i%3);
           content_html += '<div class="container-content">'
         }
 
@@ -238,13 +239,15 @@ router.get('/:type/:title_url', function(req, res, next) {
           + '<div style="font-size: 25px">'+ data.getData[i].title +'</div>'
           + '<div class="special-price" style="color: black">'+ data.getData[i].price.real +'</div>'
           +   '<div style="font-size: 18px; color:red">'+ data.getData[i].price.promotion +'</div>'
-          + '</div>'
           + '</a>'
-        if(!i%3) {
+          + '</div>'
+
+        if(i%3 == 2) {
+          console.log('da vao day 246 i%3 ', i%3);
           content_html += '</div>'
         }
       }
-      content_html += '</div>'
+      content_html += '</div></div>'
 
       done(null, content_html);
     }]

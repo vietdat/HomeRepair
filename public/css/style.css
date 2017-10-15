@@ -308,6 +308,7 @@ figure.image-wide img, img.image-wide {
 }
 
 .container-content-each {
+	width: 33%;
 	text-align: center;
 }
 .container-image > img {
