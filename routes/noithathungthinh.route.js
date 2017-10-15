@@ -87,11 +87,11 @@ router.get('/:url', function(req, res, next) {
           + '<div style="color: red; font-size: 18px">'+ data.getData[i].price.promotion +'</div>'
           + '</a>'
           + '</div>'
-        if(i%3 == 2) {
+        if(i%3 == 2 || i == data.getData.length - 1) {
           content_html += '</div>'
         }
       }
-      content_html += '</div></div>'
+      content_html += '</div>'
 
       done(null, content_html);
     }]
@@ -242,12 +242,12 @@ router.get('/:type/:title_url', function(req, res, next) {
           + '</a>'
           + '</div>'
 
-        if(i%3 == 2) {
+        if(i%3 == 2 || i == data.getData.length - 1) {
           console.log('da vao day 246 i%3 ', i%3);
           content_html += '</div>'
         }
       }
-      content_html += '</div></div>'
+      content_html += '</div>'
 
       done(null, content_html);
     }]
