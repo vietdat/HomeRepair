@@ -138,7 +138,7 @@ router.get('/:url', function(req, res, next) {
         + '<meta property="og:type" content="website" />'
         + '<meta property="og:title" content= "'+ req.url_title + '"/>'
         + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
-        
+        + '<meta property="og:image" content="http://xaydungcaitao.com/images/1503889590390thiet%20ke%20thi%20cong%20noi%20that%20phong%20khach%20vach%20kinh%20phong%20khach%20chung%20cu_result.jpg" />'
 
       var result = {};
 
@@ -309,7 +309,7 @@ router.get('/:type/:title_url', function(req, res, next) {
         + '<meta property="og:type" content="website" />'
         + '<meta property="og:title" content= "'+ req.url_title + '"- Sửa chữa cải tạo Hưng Thịnh"/>'
         + '<meta property="og:description" content="Trang thông tin, kĩ thuật những lưu ý,mẹo nhỏ trong sửa chữa cải tạo" />'
-        
+
 
       var result = {};
 
