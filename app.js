@@ -75,7 +75,7 @@ app.use(express.static(path.join(__dirname, 'public'),{maxage:'2h'}));
 
 //init passport
 app.set('trust proxy', 1) // trust first proxy
-app.use(session({ secret: 'keyboard cat' }));
+//app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
