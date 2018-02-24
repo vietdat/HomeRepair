@@ -2,5 +2,5 @@ app.js
 connectDB.js
 npm-debug.log
 config.js
-public/images
+public
 node_modules/
