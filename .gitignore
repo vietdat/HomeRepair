@@ -2,5 +2,4 @@ app.js
 connectDB.js
 npm-debug.log
 config.js
-public
 node_modules/
