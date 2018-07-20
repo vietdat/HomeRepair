@@ -1,30 +1,30 @@
-var express 		= require('express');
-var path 			= require('path');
+var express = require('express');
+var path = require('path');
 var fs = require('fs');
-var favicon 		= require('serve-favicon');
-var logger 			= require('morgan');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
 var util = require('util');
 var multer = require('multer');
-var cookieParser 	= require('cookie-parser');
-var bodyParser 		= require('body-parser');
+// var cookieParser = require('cookie-parser');
+// var bodyParser = require('body-parser');
 var session = require('express-session')
-var mongoose 		= require('mongoose');
-var User=require('./model/user');
-mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh');
+var mongoose = require('mongoose');
+var User = require('./model/user');
+// mongoose.Promise 	= global.Promise;
+mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh', { useNewUrlParser: true });
 // mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
-var home 			            = require('./routes/home.route');
-var introduction 	        = require('./routes/introduction.route');
-var dichvusuachuacaitao   = require('./routes/dichvusuachuacaitao.route');
-var camnangsuachuanha     = require('./routes/camnangsuachuanha.route');
-var dongia                = require('./routes/dongia.route');
-var mangluoi              = require('./routes/mangluoi.route');
-var lienhe                = require('./routes/lienhe.route');
-var thucte                = require('./routes/thucte.route');
-var khachhang             = require('./routes/khachhang.route');
-var dichvuthietke         = require('./routes/dichvuthietke.route');
-var noithat               = require('./routes/noithat.route');
-var noithathungthinh      = require('./routes/noithathungthinh.route');
+var home = require('./routes/home.route');
+var introduction = require('./routes/introduction.route');
+var dichvusuachuacaitao = require('./routes/dichvusuachuacaitao.route');
+var camnangsuachuanha = require('./routes/camnangsuachuanha.route');
+var dongia = require('./routes/dongia.route');
+var mangluoi = require('./routes/mangluoi.route');
+var lienhe = require('./routes/lienhe.route');
+var thucte = require('./routes/thucte.route');
+var khachhang = require('./routes/khachhang.route');
+var dichvuthietke = require('./routes/dichvuthietke.route');
+var noithat = require('./routes/noithat.route');
+var noithathungthinh = require('./routes/noithathungthinh.route');
 
 //admin router
 var administrator = require('./routes/Admin/administrator');
@@ -36,7 +36,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //config passport
 passport.use(new LocalStrategy(
-  function(username, password, done) {
+  function (username, password, done) {
     console.log(username);
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
@@ -51,12 +51,12 @@ passport.use(new LocalStrategy(
   }
 ));
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
@@ -68,10 +68,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public'),{maxage:'2h'}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public'), { maxage: '2h' }));
 
 //init passport
 app.set('trust proxy', 1) // trust first proxy
@@ -122,14 +122,14 @@ app.use('/noi-that-hung-thinh', noithathungthinh);
 // app.post('/uploader1/upload', browser.upload);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

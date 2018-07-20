@@ -5,7 +5,6 @@ var async = require('async');
 var DonGiaModel = require('../model/dongia.model');
 var MangLuoiModel = require('../model/mangluoi.model');
 var DichVuSuaChuaCaiTaoModel = require('../model/dichvusuachuacaitao.model');
-var browser = require('file-manager-js');
 var Busboy = require('busboy');
 var path = require('path');
 
