@@ -5,13 +5,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var util = require('util');
 var multer = require('multer');
-// var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var session = require('express-session')
 var mongoose = require('mongoose');
 var User = require('./model/user');
 // mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:tumotdenchin@54.71.53.86:27017/hungthinh', { useNewUrlParser: true });
+mongoose.connect('mongodb://ht:ht123456@210.2.86.35:27017/htdb', { useNewUrlParser: true });
 // mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home = require('./routes/home.route');
 var introduction = require('./routes/introduction.route');
@@ -37,7 +37,6 @@ var LocalStrategy = require('passport-local').Strategy;
 //config passport
 passport.use(new LocalStrategy(
   function (username, password, done) {
-    console.log(username);
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -46,13 +45,14 @@ passport.use(new LocalStrategy(
       if (!user.validPassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
+
       return done(null, user);
     });
   }
 ));
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function (id, done) {
@@ -68,14 +68,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'), { maxage: '2h' }));
 
 //init passport
 app.set('trust proxy', 1) // trust first proxy
-//app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 

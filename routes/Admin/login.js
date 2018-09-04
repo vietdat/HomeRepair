@@ -19,11 +19,11 @@ router.post('/',
   })
 );
 
-// router.post('/create-new-user', function(req, res, next) {
+// router.get('/create-new-user', function(req, res, next) {
 //   var user = {};
-//   user['username'] = 'admin';
-//   user['password'] = 'x@ydungc@it@ohungthinh';
-//
+//   user['username'] = 'admin1';
+//   user['password'] = 'admin1';
+
 //   var x = new userModel(user);
 //   x.save();
 //   res.send("success")
