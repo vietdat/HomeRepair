@@ -1,0 +1,274 @@
+<section class="nine columns main-content" style="position: relative">
+  <div>
+    <table>
+      <tr>
+        <th>Tiêu đề</th>
+        <th>link</th>
+        <th>Lệnh</th>
+      </tr>
+      {{#each data}}
+        <tr>
+          <td>{{title}}</td>
+          <td>{{url}}</td>
+          <td style="margin-left: 10px;">
+            <button class="editCategory" idArticle= {{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
+            <button class="deleteCategory" idArticle= {{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+
+  <div class="u-full-width add-article-tintuc" style="display:none">
+    <h2>Add Introduction Article</h2>
+    <form name="myForm" onsubmit="return validateForm()" class="row" method="POST" action="tin-tuc/add" enctype="multipart/form-data" id="user-data">
+      <div class="five columns">
+        Tiêu đề bài viết:
+        <br>
+        <input type="text" name="title" value="" size="35">
+        <br> Đường đẫn bài viết:
+        <br>
+        <input type="text" name="url" value="" size="35">
+        <br> Danh mục
+        <br>
+        <select name="type" form="user-data" style="color:#000">
+          <option value="tin-moi">Tin mới</option>
+        </select>
+        <br> Đường đẫn image:
+        <br>
+        <input id="imageULR" type="text" name="urlImage" size="35" />
+        <br>
+        <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
+        <br> Chú thích ảnh
+        <br>
+        <input type="text" name="altImage" value="" size="35">
+        <br> Description
+
+        <br>
+        <textarea name="description" style="color:#000" rows="5" cols="35"></textarea>
+        <br>
+      </div>
+
+      <div class="six columns">
+        <textarea name="content" id="editor2" rows="5" cols="80">
+        </textarea>
+
+        <br>
+        <button type="submit" id="add-article" style="color: #fff">Add</button>
+        <button type="button" id="close-add-article">Close</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="u-full-width edit-article-tintuc" style="display:none">
+    <h2>Edit Article</h2>
+    <form name="myForm" class="row" method="POST" action="tin-tuc/update"
+     id="user-data" enctype="multipart/form-data">
+      <div class="five columns">
+        <input id="edit-id" type="text" name="id" value="" size="35" style="display:none">
+        Tiêu đề bài viết:
+        <br>
+        <input id="edit-title" type="text" name="title" value="" size="35">
+        <br> Đường đẫn bài viết:
+        <br>
+        <input id="edit-url" type="text" name="url" value="" size="35">
+        <br> Danh mục
+        <br>
+        <select id="edit-type" name="type" style="color:#000">
+          <option value="tin-moi">Tin mới</option>
+        </select>
+        <br> Đường đẫn image:
+        <br>
+        <input id="edit-imageULR" type="text" name="urlImage" size="35" />
+        <br>
+        <input id="upload-input" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" name="image" multiple="multiple" style="color: white !important" />
+        <br> Chú thích ảnh
+        <br>
+        <input id="edit-altImage" type="text" name="altImage" value="" size="35">
+        <br> Description
+
+        <br>
+        <textarea id="edit-description" name="description" style="color:#000" rows="5" cols="35"></textarea>
+        <br>
+
+      </div>
+
+      <div class="six columns">
+        <textarea name="content" id="editor1" rows="5" cols="80"></textarea>
+        <br>
+
+        <button type="submit" id="edit-article" style="color: #fff">Add</button>
+        <button type="button" id="close-edit-article" style="color: #fff">Close</button>
+      </div>
+    </form>
+  </div>
+
+</section>
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script>
+  CKEDITOR.replace('editor2', {
+    extraPlugins: 'uploadimage,image2',
+    height: 300,
+    filebrowserBrowseUrl: '/Filemanager/',
+    filebrowserUploadUrl: '/uploader1/upload?Type=File',
+    filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
+    filebrowserFlashUploadUrl: '/uploader1/upload?Type=Flash',
+    stylesSet: [{
+        name: 'Narrow image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-narrow'
+        }
+      },
+      {
+        name: 'Wide image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-wide'
+        }
+      }
+    ],
+    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+    // resizer (because image size is controlled by widget styles or the image takes maximum
+    // 100% of the editor width).
+    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+    image2_disableResizer: true
+  });
+</script>
+
+<script>
+  CKEDITOR.replace('editor1', {
+    extraPlugins: 'uploadimage,image2',
+    height: 300,
+    filebrowserBrowseUrl: '/Filemanager/',
+    filebrowserUploadUrl: '/uploader1/upload?Type=File',
+    filebrowserImageUploadUrl: '/uploader1/upload?Type=Image',
+    filebrowserFlashUploadUrl: '/uploader1/upload?Type=Flash',
+    stylesSet: [{
+        name: 'Narrow image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-narrow'
+        }
+      },
+      {
+        name: 'Wide image',
+        type: 'widget',
+        widget: 'image',
+        attributes: {
+          'class': 'image-wide'
+        }
+      }
+    ],
+    // Configure the Enhanced Image plugin to use classes instead of styles and to disable the
+    // resizer (because image size is controlled by widget styles or the image takes maximum
+    // 100% of the editor width).
+    image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+    image2_disableResizer: true
+  });
+</script>
+
+<script>
+  $("#close-add-article").click(function() {
+    $(".add-article-tintuc").css("display", "none");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "1");
+  });
+  $("#add-button").click(function() {
+    $(".add-article-tintuc").css("display", "block");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "-1");
+  });
+  $(".deleteCategory").click(function() {
+    var cButton = $(this);
+    var id = $(this).attr('idArticle');
+    var retVal = confirm("Do you want to continue ?");
+    if( retVal == true ){
+      $.ajax({
+        type: "POST",
+        success: function(result) {
+          if (result == 'success')
+            cButton.parent().parent().remove();
+          else {
+            alert(result);
+          }
+
+        },
+        url: "tin-tuc/delete",
+        data: {
+          id: id
+        },
+      });
+      return true;
+    }
+    else{
+      return false;
+    }
+
+  });
+
+  $(".editCategory").click(function() {
+    var id = $(this).attr('idArticle');
+    $(".edit-article-tintuc").css("display", "block");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "-1");
+    $("#edit-id").val(id);
+
+    $.ajax({
+      type: "POST",
+      url: "tin-tuc/edit",
+      data: {
+        id: id
+      },
+      success: function(data) {
+        if (data){
+          $('#edit-title').val(data[0].title);
+          $('#edit-url').val(data[0].url);
+          $('#edit-type').val(data[0].type);
+          $('#edit-imageULR').val(data[0].image.src);
+          $('#edit-altImage').val(data[0].image.alt);
+          $('#edit-description').val(data[0].description);
+           CKEDITOR.instances.editor1.insertHtml(data[0].content);
+        }
+        else {
+          alert("Khong the edit, lien he vs admin de duoc fix loi");
+        }
+      }
+    });
+  });
+  $("#close-edit-article").click(function() {
+    $(".edit-article-tintuc").css("display", "none");
+    $(".wrap-content").css("opacity", "1");
+    $(".add-button").css("z-index", "1");
+  });
+</script>
+
+<script>
+  $("#tin-tuc").addClass("active");
+</script>
+
+<!--Upload image  -->
+<script>
+  var formData = new FormData();
+  $('input[type="file"]').change(function() {
+    var fileName = this.files[0].name;
+    var fileSize = this.files[0].size;
+    var fileType = this.files[0].type;
+
+    if (!this.files) return;
+
+    var d = new Date();
+    var n = d.getTime().toString();
+
+    formData.append('file', this.files[0], n + this.files[0].name);
+
+    $('#imageULR').val("/images/" + n + this.files[0].name);
+  });
+</script>

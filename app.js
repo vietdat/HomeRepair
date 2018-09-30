@@ -11,8 +11,8 @@ var session = require('express-session')
 var mongoose = require('mongoose');
 var User = require('./model/user');
 // mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:hungthinh@127.0.0.1:27017/hungthinh', { useNewUrlParser: true });
-// mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
+// mongoose.connect('mongodb://hungthinh:hungthinh@127.0.0.1:27017/hungthinh', { useNewUrlParser: true });
+mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home = require('./routes/home.route');
 var introduction = require('./routes/introduction.route');
 var dichvusuachuacaitao = require('./routes/dichvusuachuacaitao.route');
@@ -25,6 +25,7 @@ var khachhang = require('./routes/khachhang.route');
 var dichvuthietke = require('./routes/dichvuthietke.route');
 var noithat = require('./routes/noithat.route');
 var noithathungthinh = require('./routes/noithathungthinh.route');
+var tintuc = require('./routes/tintuc.route');
 
 //admin router
 var administrator = require('./routes/Admin/administrator');
@@ -118,6 +119,7 @@ app.use('/khach-hang', khachhang);
 app.use('/dich-vu-thiet-ke', dichvuthietke);
 app.use('/noi-that', noithat);
 app.use('/noi-that-hung-thinh', noithathungthinh);
+app.use('/tin-tuc', tintuc);
 
 // app.post('/uploader1/upload', browser.upload);
 
