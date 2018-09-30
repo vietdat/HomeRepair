@@ -6,6 +6,7 @@ var gioithieu				= require("./gioithieu");
 var dichvusuachuacaitao 	= require("./dichvusuachuacaitao");
 var camnangsuachuanha		= require("./camnangsuachuanha");
 var dongia					= require("./dongia");
+var tintuc					= require("./tintuc");
 var mangluoi 				= require("./mangluoi");
 var resource				= require("./resource");
 var login 					= require('./login');
@@ -47,6 +48,8 @@ router.use('/thuc-te',isLoggedIn,thucte);
 router.use('/khach-hang',isLoggedIn,khachhang);
 
 router.use('/dich-vu-thiet-ke',isLoggedIn,dichvuthietke);
+
+router.use('/tin-tuc', isLoggedIn, tintuc);
 
 router.use('/noi-that', isLoggedIn, noithat);
 
