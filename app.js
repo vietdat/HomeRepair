@@ -11,7 +11,7 @@ var session = require('express-session')
 var mongoose = require('mongoose');
 var User = require('./model/user');
 // mongoose.Promise 	= global.Promise;
-mongoose.connect('mongodb://hungthinh:hungthinh@61.28.233.106:27017/hungthinh', { useNewUrlParser: true });
+mongoose.connect('mongodb://hungthinh:hungthinh@61.28.233.128:27017/hungthinh', { useNewUrlParser: true });
 // mongoose.connect('mongodb://hungthinh:tumotdenchin@ds013545.mlab.com:13545/demo');
 var home = require('./routes/home.route');
 var introduction = require('./routes/introduction.route');
