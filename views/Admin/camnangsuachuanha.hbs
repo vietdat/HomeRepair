@@ -61,7 +61,7 @@
       </div>
     </form>
   </div>
-
+{{!-- ---------------------------- --}}
   <div class="u-full-width edit-article-camnangsuachuanha" style="display:none">
     <h2>Edit Article</h2>
     <form name="myForm" class="row" method="POST" action="cam-nang-sua-chua-nha/update"
@@ -89,7 +89,6 @@
         <br>
         <input id="edit-altImage" type="text" name="altImage" value="" size="35">
         <br> Description
-
         <br>
         <textarea id="edit-description" name="description" style="color:#000" rows="5" cols="35"></textarea>
         <br>
@@ -100,7 +99,7 @@
         <textarea name="content" id="editor1" rows="5" cols="80"></textarea>
         <br>
 
-        <button type="submit" id="edit-article" style="color: #fff">Add</button>
+        <button type="submit" id="edit-article" style="color: #fff">Edit</button>
         <button type="button" id="close-edit-article" style="color: #fff">Close</button>
       </div>
     </form>
@@ -159,6 +158,7 @@
 <script>
   $("#close-add-article").click(function() {
     $(".add-article-camnangsuachuanha").css("display", "none");
+    window.location.reload(true);
     $(".wrap-content").css("opacity", "1");
     $(".add-button").css("z-index", "1");
   });
@@ -225,6 +225,7 @@
   });
   $("#close-edit-article").click(function() {
     $(".edit-article-camnangsuachuanha").css("display", "none");
+    window.location.reload(true);
     $(".wrap-content").css("opacity", "1");
     $(".add-button").css("z-index", "1");
   });

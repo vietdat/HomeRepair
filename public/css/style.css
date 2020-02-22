@@ -21,7 +21,7 @@ body {
 }
 
 .main-content {
-  width: 56% !important;
+  /* width: 56% !important; */
   padding-right: 0px !important;
   padding-left: 0px !important;
 }

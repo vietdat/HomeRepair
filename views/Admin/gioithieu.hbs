@@ -10,9 +10,9 @@
         <tr>
           <td>{{title}}</td>
           <td>{{url}}</td>
-          <td style="margin-left: 10px;">
-            <button class="editCategory" idArticle= {{id}} style="display: inline-block;float:left; margin-left:10px;">Edit</button>
-            <button class="deleteCategory" idArticle= {{id}} style="display: inline-block ;float:right;margin-right:10px">Delete</button>
+          <td style="margin-left: 5px;">
+            <button class="editCategory" idArticle= {{id}} style="display: inline-block;float:left; margin-left:5px;">Edit</button>
+            <button class="deleteCategory" idArticle= {{id}} style="display: inline-block ;float:right;margin-right:5px">Delete</button>
           </td>
         </tr>
       {{/each}}
@@ -221,6 +221,7 @@
   $(".editCategory").click(function() {
     var id = $(this).attr('idArticle');
     $(".edit-article-gioithieu").css("display", "block");
+    window.location.reload(true);
     $(".wrap-content").css("opacity", "1");
     $(".add-button").css("z-index", "-1");
     $("#edit-id").val(id);
@@ -249,6 +250,7 @@
   });
   $("#close-edit-article").click(function() {
     $(".edit-article-gioithieu").css("display", "none");
+    window.location.reload(true);
     $(".wrap-content").css("opacity", "1");
     $(".add-button").css("z-index", "1");
   });
